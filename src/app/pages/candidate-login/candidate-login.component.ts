@@ -29,7 +29,6 @@ import { HelpersService } from '../../services/helpers/helpers.service';
   styleUrl: './candidate-login.component.scss',
 })
 export class CandidateLoginComponent {
-  authSubscription!: Subscription;
   companyEmail!: string;
   isOTPSent: boolean = false;
   isCandidateLogin: boolean = false;
@@ -45,15 +44,8 @@ export class CandidateLoginComponent {
     }
   }
 
-  ngOnDestroy(): void {
-    this.authSubscription?.unsubscribe();
-  }
-
   ngOnInit() {
-    this.authSubscription = this.authService.authState.subscribe((user) => {
-      console.log('user', user);
-      user && this.helper.saveToStorage(user);
-    });
+    this.helper.isUserTokenValid();
   }
 
   googleSignin(googleWrapper: any) {

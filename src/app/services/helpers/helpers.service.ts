@@ -1,16 +1,18 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { decrypt, encrypt } from '../sharedFunctions/sharedFunctions';
+import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelpersService {
+  authSubscription!: Subscription;
   countryList$: BehaviorSubject<any> = new BehaviorSubject(null);
   private userSubject = new BehaviorSubject<any>(null);
   private userObject = new BehaviorSubject<any>({});
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private authService: SocialAuthService) { }
 
 
   setIPToStorage() {
@@ -92,5 +94,21 @@ export class HelpersService {
     return "img/icons/user.svg";
   }
 
+  isUserTokenValid() {
+    this.authSubscription = this.authService.authState.subscribe(async (user) => {
+      console.log('user', user);
+      if (user) {
+        this.saveToStorage(user);
+      } else {
+        await this.refreshToken();
+        this.isUserTokenValid();
+      }
+    });
+  }
+
+  async refreshToken(): Promise<boolean> {
+    await this.authService.refreshAccessToken(GoogleLoginProvider.PROVIDER_ID);
+    return true;
+  }
 
 }
