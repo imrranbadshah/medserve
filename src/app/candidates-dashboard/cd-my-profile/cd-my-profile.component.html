@@ -3,26 +3,28 @@
 </h3>
 <div class="user-photo-wrap d-inline-block position-relative index-1 rounded-circle mb-35">
     <div class="user-avatar d-inline-block rounded-circle">
-        <img src="img/dashbboard/user-big.jpg" alt="User" class="rounded-circle">
+        <img [src]="profilePic" alt="User" class="rounded-circle dp" (error)="handleError()">
     </div>
-    <div class="file-upload-btn position-absolute">
-        <label for="upload" class="file-upload__label transition d-flex flex-column align-items-center justify-content-center bg-white rounded-circle">
+    <!-- <div class="file-upload-btn position-absolute">
+        <label for="upload"
+            class="file-upload__label transition d-flex flex-column align-items-center justify-content-center bg-white rounded-circle">
             <img src="img/icons/edit.svg" alt="Edit Icon">
         </label>
         <input id="upload" class="file-upload__input" type="file" name="file-upload">
-    </div>
+    </div> -->
 </div>
 <h3 class="db-content-title fs-20 fw-bold mb-22">
     Information
 </h3>
-<form class="comment-form">
+<form class="comment-form" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group mb-20">
                 <label class="text-dark" for="fname">
                     First Name
                 </label>
-                <input type="text" name="fname" id="fname" placeholder="First Name" class="bg-gray border-0 w-100 round-4">
+                <input type="text" id="fname" formControlName="firstName" placeholder="First Name"
+                    class="bg-gray border-0 w-100 round-4">
             </div>
         </div>
         <div class="col-md-6">
@@ -30,7 +32,8 @@
                 <label class="text-dark" for="lname">
                     Last Name
                 </label>
-                <input type="text" name="lname" id="lname" placeholder="Last Name" class="bg-gray border-0 w-100 round-4">
+                <input type="text" id="lname" placeholder="Last Name" formControlName="lastName"
+                    class="bg-gray border-0 w-100 round-4">
             </div>
         </div>
         <div class="col-md-6">
@@ -38,7 +41,8 @@
                 <label class="text-dark" for="fname">
                     Email Address
                 </label>
-                <input type="email" name="email" id="email" placeholder="Email Address" class="bg-gray border-0 w-100 round-4">
+                <input type="email" id="email" placeholder="Email Address" formControlName="email"
+                    class="bg-gray border-0 w-100 round-4">
             </div>
         </div>
         <div class="col-md-6">
@@ -46,10 +50,11 @@
                 <label class="text-dark" for="web_url">
                     Website Address
                 </label>
-                <input type="text" name="web_url" id="web_url" placeholder="First Name" class="bg-gray border-0 w-100 round-4">
+                <input type="text" id="web_url" placeholder="Web URL" formControlName="webURL"
+                    class="bg-gray border-0 w-100 round-4">
             </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="form-group mb-20">
                 <label class="text-dark" for="date">
                     Founded Date
@@ -64,16 +69,16 @@
                 </label>
                 <input type="number" name="company_size" id="company_size" placeholder="1000" class="bg-gray border-0 w-100 round-4">
             </div>
-        </div>
+        </div> -->
         <div class="col-md-6">
             <div class="form-group mb-20">
                 <label class="text-dark" for="phone">
                     Phone No
                 </label>
-                <input type="number" name="phone" id="phone" class="bg-gray border-0 w-100 round-4">
+                <input type="number" id="phone" formControlName="phoneNumber" class="bg-gray border-0 w-100 round-4">
             </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="form-group mb-20">
                 <label class="text-dark" for="category">
                     Category
@@ -93,8 +98,8 @@
                     </option>
                 </select>
             </div>
-        </div>
-        <div class="col-12">
+        </div> -->
+        <!-- <div class="col-12">
             <div class="form-group">
                 <label class="text-dark" for="company_desc">
                     Company Description
@@ -102,23 +107,24 @@
                 <textarea name="company_desc" id="company_desc" cols="30" rows="10" placeholder="Your message here"  class="bg-gray border-0 w-100 round-4"></textarea>
                 <span>Brief description about your company within 250 words.</span>
             </div>
-        </div>
+        </div> -->
     </div>
-</form>
-<h3 class="db-content-title fs-20 fw-bold mb-22">
-    Location
-</h3>
-<form class="comment-form mb-0">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group mb-20">
-                <label class="text-dark" for="address">
-                    Address
-                </label>
-                <input type="text" name="address" id="address" placeholder="Location" class="bg-gray border-0 w-100 round-4">
+    <!-- </form> -->
+    <h3 class="db-content-title fs-20 fw-bold mb-22">
+        Location
+    </h3>
+    <div class="comment-form mb-0">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group mb-20">
+                    <label class="text-dark" for="address">
+                        Address
+                    </label>
+                    <input type="text" id="address" placeholder="address" class="bg-gray border-0 w-100 round-4"
+                        formControlName="address">
+                </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6">
+            <!-- <div class="col-xl-3 col-lg-4 col-md-6">
             <div class="form-group mb-20">
                 <label class="text-dark" for="country">
                     Country
@@ -182,11 +188,12 @@
                     </option>
                 </select>
             </div>
+        </div> -->
         </div>
     </div>
 </form>
 <div class="form-btn mb-25">
-    <button class="btn style-four me-3">
+    <button class="btn style-four me-3" type="submit" [disabled]="editProfileForm.invalid">
         Save
     </button>
     <button class="btn style-three">

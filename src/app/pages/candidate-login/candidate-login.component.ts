@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { BackToTopComponent } from '../../common/back-to-top/back-to-top.component';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FooterComponent } from '../../common/footer/footer.component';
 import { NavbarComponent } from '../../common/navbar/navbar.component';
 import { TopHeaderComponent } from '../../common/top-header/top-header.component';
-import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { SocialAuthService, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { GoogleSigninComponent } from '../../components/google-signin/google-signin.component';
 import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { OtpLayoutComponent } from '../../components/otp-layout/otp-layout.component';
+import { HelpersService } from '../../services/helpers/helpers.service';
 
 @Component({
   selector: 'app-candidate-login',
@@ -19,45 +22,55 @@ import { Subscription } from 'rxjs';
     BackToTopComponent,
     SocialLoginModule,
     GoogleSigninComponent,
+    FormsModule,
+    OtpLayoutComponent
   ],
   templateUrl: './candidate-login.component.html',
   styleUrl: './candidate-login.component.scss',
-  providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('836629619269-92cv29guqpku6qmp593l0rjs01i7aiu9.apps.googleusercontent.com', {
-              scopes: 'openid profile email',
-            }),
-          },
-        ],
-        onError: (err) => {
-          console.error(err);
-        },
-      } as SocialAuthServiceConfig,
-    }
-  ],
 })
 export class CandidateLoginComponent {
   authSubscription!: Subscription;
-
-  constructor(private authService: SocialAuthService) { }
+  companyEmail!: string;
+  isOTPSent: boolean = false;
+  isCandidateLogin: boolean = false;
+  constructor(
+    private authService: SocialAuthService,
+    private activatedRoute: ActivatedRoute,
+    private helper: HelpersService) {
+    console.log("this.activatedRoute", this.activatedRoute?.snapshot?.routeConfig?.path);
+    if (this.activatedRoute?.snapshot?.routeConfig?.path?.includes("candidate")) {
+      this.isCandidateLogin = true;
+    } else {
+      this.isCandidateLogin = false;
+    }
+  }
 
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
+    this.authSubscription?.unsubscribe();
   }
 
   ngOnInit() {
-    // this.authSubscription = this.authService.authState.subscribe((user) => {
-    //   console.log('user', user);
-    // });
+    this.authSubscription = this.authService.authState.subscribe((user) => {
+      console.log('user', user);
+      user && this.helper.saveToStorage(user);
+    });
   }
 
   googleSignin(googleWrapper: any) {
-    // googleWrapper.click();
+    googleWrapper.click();
   }
+
+  onCompanyEmailSubmit() {
+    console.log("comapny", this.companyEmail);
+    if (this.companyEmail) {
+      this.isOTPSent = true;
+    }
+  }
+
+
+  verifyOTP(val: string) {
+    console.log(val);
+  }
+
+
 }

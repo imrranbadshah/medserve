@@ -19,11 +19,11 @@ export class GoogleSigninComponent {
       type: 'icon',
       width: '200',
     });
-  
+
     const googleLoginWrapperButton = googleLoginWrapper.querySelector(
       'div[role=button]'
     ) as HTMLElement;
-  
+
     return {
       click: () => {
         googleLoginWrapperButton?.click();
@@ -34,5 +34,5 @@ export class GoogleSigninComponent {
 
   handleGoogleLogin() {
     this.loginWithGoogle.emit(this.createFakeGoogleWrapper());
-}
+  }
 }

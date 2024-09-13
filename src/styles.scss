@@ -1869,3 +1869,31 @@ sup {
     color: red;
     font-size: 0.8rem;
 }
+
+.link {
+    color: #ffffff !important;
+
+    &::after {
+        background-color: white !important;
+    }
+}
+
+.dp {
+    width: 75px;
+    border: 1px solid #e1e1e1;
+    background: #e1e1e1;
+}
+
+.routeButton {
+    background: transparent;
+    border: none;
+    text-decoration: none;
+}
+
+.white {
+    color: white;
+}
+
+.themeColor {
+    color: var(--primaryColor);
+}

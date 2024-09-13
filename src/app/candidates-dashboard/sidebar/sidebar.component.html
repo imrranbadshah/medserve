@@ -1,7 +1,7 @@
 <div class="db-sidebar transition">
     <div class="db-user-option d-flex align-items-center">
-        <img src="img/dashbboard/user.png" alt="User Avatar" class="user-img">
-        <span class="fs-18 fw-bold">Patric Watson</span>
+        <img [src]="profilePic" alt="User Avatar" class="user-img dp" (error)="handleError()">
+        <span class="fs-18 fw-bold">{{name}}</span>
     </div>
     <ul class="db-menu list-unstyle">
         <li>
@@ -54,25 +54,29 @@
         </li> -->
 
         <li>
-            <a  routerLink="/candidates-dashboard/personal-forms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/candidates-dashboard/personal-forms" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
                 <i class="ri-logout-box-line"></i>
                 Personal
             </a>
         </li>
         <li>
-            <a  routerLink="/candidates-dashboard/academics-forms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/candidates-dashboard/academics-forms" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
                 <i class="ri-logout-box-line"></i>
                 Academics
             </a>
         </li>
         <li>
-            <a  routerLink="/candidates-dashboard/document-forms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/candidates-dashboard/document-forms" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
                 <i class="ri-logout-box-line"></i>
                 Documents
             </a>
         </li>
         <li>
-            <a  routerLink="/candidates-dashboard/experience-forms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/candidates-dashboard/experience-forms" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
                 <i class="ri-logout-box-line"></i>
                 Experiences
             </a>

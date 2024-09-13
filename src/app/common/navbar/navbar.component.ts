@@ -1,6 +1,7 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { HelpersService } from '../../services/helpers/helpers.service';
 
 @Component({
     selector: 'app-navbar',
@@ -9,11 +10,37 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+    isUserDropdownMenus: boolean = false;
+    userDropdownOptions: any = [
+        {
+            id: 1,
+            name: "Edit Profile",
+            routerLink: "/candidates-dashboard/my-profile"
+        },
+        {
+            id: 100,
+            name: "Logout",
+            routerLink: "/"
+        },
+    ]
+    isLogged!: boolean;
+    userObject: any;
+    constructor(
+        public router: Router,
+        public helper: HelpersService
+    ) {
 
-    constructor (
-        public router: Router
-    ) {}
+    }
+    ngOnInit(): void {
+        this.helper.getUserDetails().subscribe((resp: any) => {
+            this.isLogged = false;
+            if (resp && Object.keys(resp)) {
+                this.isLogged = true;
+                this.userObject = resp;
+            }
+        })
+    }
 
     // Navbar Sticky
     isSticky: boolean = false;
@@ -37,6 +64,10 @@ export class NavbarComponent {
     notificationsDropdownClassApplied = false;
     notificationsDropdownToggleClass() {
         this.notificationsDropdownClassApplied = !this.notificationsDropdownClassApplied;
+    }
+
+    userDropdownToggleClass() {
+        this.isUserDropdownMenus = !this.isUserDropdownMenus;
     }
 
     // Responsive Navbar Accordion
@@ -74,4 +105,8 @@ export class NavbarComponent {
         return this.openSectionIndex3 === index;
     }
 
+
+    logout() {
+
+    }
 }

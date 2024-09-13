@@ -1,14 +1,12 @@
 <!-- Navbar -->
-<div
-    class="navbar-area style-one position-relative"
-    [ngClass]="{'sticky': isSticky, 'style-two': router.url === '/index-2' || router.url === '/index-3'}"
->
+<div class="navbar-area style-one position-relative"
+    [ngClass]="{'sticky': isSticky, 'style-two': router.url === '/index-2' || router.url === '/index-3'}">
     <nav class="navbar navbar-expand-lg bg_dark d-flex justify-content-between align-items-center">
-        <div class="container">
+        <div class="container  py-3">
             <a routerLink="/" class="navbar-brand">
                 <img src="img/logo-white.svg" alt="Logo">
             </a>
-            <ul
+            <!-- <ul
                 class="category-menu list-unstyle d-none d-xl-block"
                 *ngIf="router.url === '/index-2'"
             >
@@ -76,27 +74,20 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
             <div class="other-options d-flex align-items-center justify-content-end d-lg-none">
-                <div
-                    class="option-item"
-                    [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}"
-                >
+                <div class="option-item" [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}">
                     <div class="notif-option position-relative">
                         <button
                             class="dropdown-toggle d-flex align-items-center position-relative bg-transparent border-0 transition"
-                            type="button"
-                            (click)="notificationsDropdownToggleClass()"
-                        >
+                            type="button" (click)="notificationsDropdownToggleClass()">
                             <img src="img/icons/bell-white.svg" alt="Bell Icon" class="notif-btn">
-                            <span class="d-flex flex-column align-items-center justify-content-center rounded-circle text-white position-absolute">
+                            <span
+                                class="d-flex flex-column align-items-center justify-content-center rounded-circle text-white position-absolute">
                                 1
                             </span>
                         </button>
-                        <div
-                            class="dropdown-menu top-1 border-0"
-                            [class.active]="notificationsDropdownClassApplied"
-                        >
+                        <div class="dropdown-menu top-1 border-0" [class.active]="notificationsDropdownClassApplied">
                             <h3 class="fs-20 fw-semibold mb-15">
                                 Notifications
                             </h3>
@@ -130,11 +121,7 @@
                     </div>
                 </div>
                 <div class="option-item">
-                    <button
-                        class="navbar-toggler"
-                        (click)="toggleClass()"
-                        type="button"
-                    >
+                    <button class="navbar-toggler" (click)="toggleClass()" type="button">
                         <span class="burger-menu">
                             <span class="top-bar"></span>
                             <span class="middle-bar"></span>
@@ -143,79 +130,89 @@
                     </button>
                 </div>
             </div>
-            <div class="collapse navbar-collapse">
-                <ul
-                    class="navbar-nav"
-                    [ngClass]="{'ms-auto': router.url === '/index-2'}"
-                >
-                    <li class="nav-item">
+            <div class="collapse navbar-collapse navbar-nav">
+                <ul class="navbar-nav" [ngClass]="{'ms-auto': router.url === '/index-2'}">
+
+                    <!--  <li class="nav-item">
                         <a href="javascript:void(0)" class="dropdown-toggle nav-link">
                             Home
                         </a>
                         <ul class="dropdown-menu list-unstyle">
                             <li class="nav-item">
-                                <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home Demo - 1</a>
+                                <a routerLink="/" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">Home Demo - 1</a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/index-2" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home Demo - 2</a>
+                                <a routerLink="/index-2" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">Home Demo - 2</a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/index-3" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home Demo - 3</a>
+                                <a routerLink="/index-3" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">Home Demo - 3</a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
+                    </li> <li class="nav-item">
                         <a href="javascript:void(0)" class="dropdown-toggle nav-link">
                             Find Jobs
                         </a>
                         <ul class="dropdown-menu list-unstyle">
                             <li class="nav-item">
-                                <a routerLink="/jobs-left-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/jobs-left-sidebar" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Jobs Left Sidebar
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/jobs-right-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/jobs-right-sidebar" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Jobs Right Sidebar
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/jobs-grid" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/jobs-grid" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Jobs Grid
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/jobs-list" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/jobs-list" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Jobs List
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/jobs-columns" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/jobs-columns" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Jobs Columns
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/jobs-top-map" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/jobs-top-map" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Jobs Top Map
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/jobs-sidebar-map" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/jobs-sidebar-map" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Jobs Sidebar Map
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/job-details-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/job-details-sidebar" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Job Details Left Sidebar
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/job-details-sidebar-two" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/job-details-sidebar-two" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Job Details Right Sidebar
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/job-details-without-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/job-details-without-sidebar" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Job Details No Sidebar
                                 </a>
                             </li>
@@ -227,37 +224,44 @@
                         </a>
                         <ul class="dropdown-menu list-unstyle">
                             <li class="nav-item">
-                                <a routerLink="/employers-left-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/employers-left-sidebar" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Employers Left Sidebar
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/employers-right-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/employers-right-sidebar" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Employers Right Sidebar
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/employers-grid" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/employers-grid" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Employers Grid
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/employers-list" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/employers-list" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Employers List
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/employers-sidebar-map" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/employers-sidebar-map" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Employers Sidebar Map
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/employer-details" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/employer-details" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Employer Details
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/employers-dashboard" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/employers-dashboard" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Employers Dashboard
                                 </a>
                             </li>
@@ -269,32 +273,38 @@
                         </a>
                         <ul class="dropdown-menu list-unstyle">
                             <li class="nav-item">
-                                <a routerLink="/candidates-left-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/candidates-left-sidebar" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Candidates Left Sidebar
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/candidates-right-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/candidates-right-sidebar" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Candidates Right Sidebar
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/candidates-grid" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/candidates-grid" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Candidates Grid
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/candidates-sidebar-map" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/candidates-sidebar-map" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Candidates Sidebar Map
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/candidate-details" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/candidate-details" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Candidate Details
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/candidates-dashboard" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/candidates-dashboard" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Candidates Dashboard
                                 </a>
                             </li>
@@ -311,17 +321,20 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
-                                        <a routerLink="/blog-left-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                        <a routerLink="/blog-left-sidebar" class="nav-link" routerLinkActive="active"
+                                            [routerLinkActiveOptions]="{exact: true}">
                                             Blog Left Sidebar
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a routerLink="/blog-right-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                        <a routerLink="/blog-right-sidebar" class="nav-link" routerLinkActive="active"
+                                            [routerLinkActiveOptions]="{exact: true}">
                                             Blog Right Sidebar
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a routerLink="/blog-grid" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                        <a routerLink="/blog-grid" class="nav-link" routerLinkActive="active"
+                                            [routerLinkActiveOptions]="{exact: true}">
                                             Blog Grid
                                         </a>
                                     </li>
@@ -333,17 +346,20 @@
                                 </a>
                                 <ul class="dropdown-menu list-unstyle">
                                     <li class="nav-item">
-                                        <a routerLink="/blog-details-left-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                        <a routerLink="/blog-details-left-sidebar" class="nav-link"
+                                            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                                             Blog Details Left Sidebar
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a routerLink="/blog-details-right-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                        <a routerLink="/blog-details-right-sidebar" class="nav-link"
+                                            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                                             Blog Details Right Sidebar
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a routerLink="/blog-details-no-sidebar" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                        <a routerLink="/blog-details-no-sidebar" class="nav-link"
+                                            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                                             Blog Details No Sidebar
                                         </a>
                                     </li>
@@ -357,72 +373,75 @@
                         </a>
                         <ul class="dropdown-menu list-unstyle">
                             <li class="nav-item">
-                                <a routerLink="/about-us" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/about-us" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     About Us
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/pricing-plan" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/pricing-plan" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Pricing Plan
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/faq" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/faq" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     FAQ
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/contact-us" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/contact-us" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Contact Us
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/login" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/login" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Login
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/register" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/register" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Register
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/privacy-policy" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/privacy-policy" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Privacy Policy
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/terms-conditions" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/terms-conditions" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     Terms & Conditions
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a routerLink="/error-404" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/error-404" class="nav-link" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}">
                                     404 Error Page
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
-                <div
-                    class="other-options d-flex align-items-center justify-content-end"
-                    [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}"
-                >
+                <div class="other-options d-flex align-items-center justify-content-end"
+                    [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}">
                     <div class="notif-option position-relative">
-                        <button
+                        <!-- <button
                             class="dropdown-toggle d-flex align-items-center position-relative bg-transparent border-0 transition"
-                            type="button"
-                            (click)="notificationsDropdownToggleClass()"
-                        >
+                            type="button" (click)="notificationsDropdownToggleClass()">
                             <img src="img/icons/bell-white.svg" alt="Bell Icon" class="notif-btn">
-                            <span class="d-flex flex-column align-items-center justify-content-center rounded-circle text-white position-absolute">
+                            <span
+                                class="d-flex flex-column align-items-center justify-content-center rounded-circle text-white position-absolute">
                                 1
                             </span>
                         </button>
-                        <div
-                            class="dropdown-menu top-1 border-0"
-                            [class.active]="notificationsDropdownClassApplied"
-                        >
+                        <div class="dropdown-menu top-1 border-0" [class.active]="notificationsDropdownClassApplied">
                             <h3 class="fs-20 fw-semibold mb-15">
                                 Notifications
                             </h3>
@@ -452,25 +471,56 @@
                                     </span>
                                 </li>
                             </ul>
+                        </div> -->
+                        @if(isLogged){
+                        <button
+                            class="dropdown-toggle d-flex align-items-center position-relative bg-transparent border-0 transition"
+                            type="button" (click)="userDropdownToggleClass()">
+                            <img src="img/icons/user.svg" alt="user Icon" class="notif-btn">
+                        </button>
+                        <div class="dropdown-menu top-1 border-0" [class.active]="isUserDropdownMenus">
+                            <h3 class="fs-20 fw-semibold mb-15">
+                                Hi {{userObject?.name}}
+                            </h3>
+                            <ul class="list-unstyle">
+                                @for(item of userDropdownOptions;track item.id){
+                                @if(item.id == 100){
+                                <li class="position-relative" (click)="logout()">
+                                    <p class=" fw-semibold font_secondary text-title logout fs-15 !important">
+                                        {{item.name}}
+                                    </p>
+                                </li>
+                                } @else{
+                                <li class="position-relative" [routerLink]="item.routerLink">
+                                    <p class="fs-15 fw-semibold font_secondary text-title">
+                                        {{item.name}}
+                                    </p>
+                                </li>
+                                }
+                                }
+                            </ul>
                         </div>
+                        }
+
                     </div>
-                    <a routerLink="/login" class="link style-four fw-medium">
+                    @if(!isLogged){
+                    <div routerLink="/candidate-login" class="link style-four fw-medium">
+                        <!-- Desktop version -->
                         Login
-                    </a>
-                    <a routerLink="/register" class="btn style-four">
+                    </div>
+                    }
+                    <!-- <a routerLink="/register" class="btn style-four">
                         Register Now
-                    </a>
+                    </a> -->
                 </div>
-                <div
-                    class="other-options d-flex align-items-center justify-content-end"
-                    *ngIf="router.url === '/index-2' || router.url === '/index-3'"
-                >
-                    <a routerLink="/login" class="link style-three fw-medium ms-0">
-                        Login/Register
+                <div class="other-options d-flex align-items-center justify-content-end"
+                    *ngIf="router.url === '/index-2' || router.url === '/index-3'">
+                    <a routerLink="/candidate-login" class="link style-three fw-medium ms-0">
+                        Login 2
                     </a>
-                    <a routerLink="/db-post-job" class="btn style-four">
+                    <!-- <a routerLink="/db-post-job" class="btn style-four">
                         Post A Job
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
@@ -483,16 +533,13 @@
         <a routerLink="/" class="logo d-inline-block">
             <img src="img/logo-white.svg" alt="Logo" class="logo">
         </a>
-        <button
-            type="button"
-            (click)="toggleClass()"
-            class="close-btn bg-transparent transition position-relative lh-1 p-0 border-0"
-        >
+        <button type="button" (click)="toggleClass()"
+            class="close-btn bg-transparent transition position-relative lh-1 p-0 border-0">
             <i class="ri-close-line"></i>
         </button>
     </div>
     <div class="offcanvas-body">
-        <div class="accordion">
+        <!-- <div class="accordion">
             <div class="accordion-item rounded-0 border-0">
                 <button
                     type="button"
@@ -826,28 +873,24 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div
-            class="other-options d-flex align-items-center"
-            [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}"
-        >
-            <a routerLink="/login" class="link style-four fw-medium">
-                Login
+        </div> -->
+        <div class="other-options d-flex align-items-center"
+            [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}">
+            <a routerLink="/candidate-login" class="link style-four fw-medium">
+                Login 3
             </a>
-            <a routerLink="/register" class="btn style-four">
+            <!-- <a routerLink="/register" class="btn style-four">
                 Register Now
-            </a>
+            </a> -->
         </div>
-        <div
-            class="other-options d-flex align-items-center"
-            *ngIf="router.url === '/index-2' || router.url === '/index-3'"
-        >
-            <a routerLink="/login" class="link style-three fw-medium ms-0">
-                Login/Register
+        <div class="other-options d-flex align-items-center"
+            *ngIf="router.url === '/index-2' || router.url === '/index-3'">
+            <a routerLink="/candidate-login" class="link style-three fw-medium ms-0">
+                Login 4
             </a>
-            <a routerLink="/db-post-job" class="btn style-four">
+            <!-- <a routerLink="/db-post-job" class="btn style-four">
                 Post A Job
-            </a>
+            </a> -->
         </div>
     </div>
 </div>

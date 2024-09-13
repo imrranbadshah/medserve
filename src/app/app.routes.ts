@@ -100,6 +100,7 @@ export const routes: Routes = [
     { path: 'blog-details-no-sidebar', component: BlogDetailsNoSidebarPageComponent },
     { path: 'contact-us', component: ContactPageComponent },
     { path: 'candidate-login', component: CandidateLoginComponent },
+    { path: 'employer-login', component: CandidateLoginComponent },
     {
         path: 'employers-dashboard',
         component: EmployersDashboardComponent,
@@ -117,7 +118,7 @@ export const routes: Routes = [
         path: 'candidates-dashboard',
         component: CandidatesDashboardComponent,
         children: [
-           
+
             { path: '', component: CdDashboardComponent },
             { path: 'my-profile', component: CdMyProfileComponent },
             { path: 'applied-job', component: CdAppliedJobComponent },

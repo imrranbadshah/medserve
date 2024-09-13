@@ -1,6 +1,7 @@
 .candidateLogin {
     background: var(--primaryColor);
-    height: 100vh;
+    height: calc(100vh - 95.77px);
+    width: 100%;
 
     .bgImage {
         background-image: url("../../../../public/img/candidates/candidateBanner.jpg");
@@ -29,5 +30,15 @@
 
     &:last-child {
         margin-bottom: 0;
+    }
+}
+
+.companyLogin {
+    width: 70%;
+    padding: 6% 5%;
+    background: white;
+
+    * {
+        width: 100%;
     }
 }
