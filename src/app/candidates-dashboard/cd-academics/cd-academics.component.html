@@ -1,0 +1,103 @@
+<!-- <app-dynamic-forms [jsonFormData]="formData" [styleClass]="'academics'"></app-dynamic-forms> -->
+
+<form [formGroup]="academicsFormGroup" (ngSubmit)="onSubmit()">
+    <div class="form-row academics">
+        <div class="form-group col-1">
+            <label>Enter Your Name <sup>*</sup></label>
+            <input type="text" placeholder="Enter your name" formControlName="name">
+            @if(getControl("name").touched && getControl("name").errors){
+            <div class="error-messages">
+                @if (getControl("name").errors?.['required']) {
+                <small class="error">This field is required.</small>
+                }
+                @if (getControl("name").errors?.['pattern']) {
+                <small class="error">This field is required.</small>
+                }
+
+            </div>
+            }
+        </div>
+        <div class="form-group col-2">
+            <label>Institute Name <sup>*</sup></label>
+            <input type="text" placeholder="Enter institute name" formControlName="instituteName">
+            @if(getControl("name").touched && getControl("name").errors){
+            <div class="error-messages">
+                @if (getControl("name").errors?.['required']) {
+                <small class="error">This field is required.</small>
+                }
+                @if (getControl("name").errors?.['pattern']) {
+                <small class="error">This field is required.</small>
+                }
+
+            </div>
+            }
+        </div>
+
+        <div class="form-group col-3">
+            <label>From <sup>*</sup></label>
+            <div class="input-group dateTime mb-3">
+                <input type="text" class="form-control" formControlName="fromDate" placeholder="Enter from date" />
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                    <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
+                    <input type="date" class="hiddenDateInput" (change)="formatDate($event,'fromDate')" />
+                </button>
+            </div>
+            @if(getControl("fromDate").touched && getControl("fromDate").errors){
+            <div class="error-messages">
+                @if (getControl("fromDate").errors?.['required']) {
+                <small class="error">This field is required.</small>
+                }
+
+            </div>
+            }
+        </div>
+        <div class="form-group col-4">
+            <label>To <sup>*</sup></label>
+            <div class="input-group dateTime mb-3">
+                <input type="text" class="form-control" formControlName="toDate" placeholder="Enter to date" />
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                    <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
+                    <input type="date" class="hiddenDateInput" (change)="formatDate($event,'toDate')" />
+                </button>
+            </div>
+            @if(getControl("toDate").touched && getControl("toDate").errors){
+            <div class="error-messages">
+                @if (getControl("toDate").errors?.['required']) {
+                <small class="error">This field is required.</small>
+                }
+
+            </div>
+            }
+        </div>
+
+
+        <div class="form-group col-5">
+            <label>Degree <sup>*</sup></label>
+            <input type="text" placeholder="Enter degree" formControlName="degree" />
+            @if(getControl("degree").touched && getControl("degree").errors){
+            <div class="error-messages">
+                @if (getControl("degree").errors?.['required']) {
+                <small class="error">This field is required.</small>
+                }
+
+            </div>
+            }
+        </div>
+        <div class="form-group col-6">
+            <label>Address <sup>*</sup></label>
+            <input type="text" placeholder="Enter address" formControlName="address">
+            @if(getControl("address").touched && getControl("address").errors){
+            <div class="error-messages">
+                @if (getControl("address").errors?.['required']) {
+                <small class="error">This field is required.</small>
+                }
+            </div>
+            }
+        </div>
+
+
+    </div>
+    <div class="flex text-center my-5">
+        <button class="btn style-four" type="submit" [disabled]="academicsFormGroup.invalid">Save & Submit</button>
+    </div>
+</form>

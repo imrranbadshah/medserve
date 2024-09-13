@@ -1,0 +1,64 @@
+[
+    {
+      "type": "text",
+      "label": "Enter Your Name",
+      "name": "name",
+      "placeholder": "Enter your name",
+      "validators": {
+        "required": true,
+        "minLength": 3,
+        "maxLength": 50,
+        "pattern": "^[a-zA-Z ]+$"
+      }
+    },
+    {
+      "type": "text",
+      "label": "Institute Name",
+      "name": "instituteName",
+      "placeholder": "Enter institute name",
+      "validators": {
+        "required": true,
+        "minLength": 3,
+        "maxLength": 100
+      }
+    },
+    {
+      "type": "date",
+      "label": "From",
+      "name": "fromDate",
+      "placeholder": "Enter from date",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "type": "date",
+      "label": "To",
+      "name": "toDate",
+      "placeholder": "Enter to date",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "type": "text",
+      "label": "Degree",
+      "name": "degree",
+      "placeholder": "Enter degree",
+      "validators": {
+        "required": true,
+        "minLength": 3,
+        "maxLength": 50
+      }
+    },
+    {
+      "type": "text",
+      "label": "Address",
+      "name": "address",
+      "placeholder": "Enter address",
+      "validators": {
+        "required": true,
+        "minLength": 10
+      }
+    }
+  ]

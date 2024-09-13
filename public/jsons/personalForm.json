@@ -1,0 +1,120 @@
+[
+  {
+    "type": "text",
+    "label": "Your First Name",
+    "name": "firstName",
+    "placeholder": "Enter your first name",
+    "validators": {
+      "required": true
+    }
+  },
+  {
+    "type": "text",
+    "label": "Your Last Name",
+    "name": "lastName",
+    "placeholder": "Enter your last name",
+    "validators": {
+      "required": true
+    }
+  },
+  {
+    "type": "text",
+    "label": "Gender",
+    "name": "gender",
+    "placeholder": "Enter Gender",
+    "validators": {
+      "required": true
+    }
+  },
+  {
+    "type": "date",
+    "label": "Date of Birth",
+    "name": "dateOfBirth",
+    "placeholder": "Enter your date of birth",
+    "validators": {
+      "required": true
+    }
+  },
+    {
+      "type": "text",
+      "label": "Spouse Name",
+      "name": "spouseName",
+      "placeholder": "Enter your spouse's name"
+    },
+  {
+    "type": "text",
+    "label": "Phone Number",
+    "name": "phoneNumber",
+    "placeholder": "Enter your phone number",
+    "validators": {
+      "required": true,
+      "minLength": 10,
+      "maxLength": 10,
+      "pattern": "^[0-9]*$"
+    }
+  },
+    {
+      "type": "email",
+      "label": "Email",
+      "name": "email",
+      "placeholder": "Enter your email address",
+      "validators": {
+        "required": true,
+        "email": true
+      }
+    },
+  {
+    "type": "text",
+    "label": "Address",
+    "name": "address",
+    "placeholder": "Enter your current address",
+    "validators": {
+      "required": true
+    }
+  },
+  {
+    "type": "text",
+    "label": "Country",
+    "name": "country",
+    "placeholder": "Enter your country"
+  },
+  {
+    "type": "text",
+    "label": "State / City",
+    "name": "stateCity",
+    "placeholder": "Enter your state or city"
+  },
+  {
+    "type": "text",
+    "label": "Passport Number",
+    "name": "passportNumber",
+    "placeholder": "Enter your passport number",
+    "validators": {
+      "required": true
+    }
+  },
+  {
+    "type": "text",
+    "label": "Country of Issue",
+    "name": "countryOfIssue",
+    "placeholder": "Enter the country of issue"
+  },
+  {
+    "type": "date",
+    "label": "Issue Date",
+    "name": "issueDate",
+    "placeholder": "Enter issue date",
+    "validators": {
+      "required": true
+    }
+  },
+  {
+    "type": "date",
+    "label": "Expiry Date",
+    "name": "expiryDate",
+    "placeholder": "Enter expiry date",
+    "validators": {
+      "required": true
+    }
+  }
+]

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { RouterOutlet, Router, Event, NavigationEnd } from '@angular/router';
+import { errorInterceptor } from './interceptors/error/error.interceptor';
 
 @Component({
     selector: 'app-root',

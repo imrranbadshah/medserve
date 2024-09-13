@@ -1,0 +1,32 @@
+<div class="container row mb-2" (fileDropped)="onFileDropped($event)">
+    <div class="col-md-6 d-flex flex-column align-items-start text-start">
+        <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+        <h6>{{title}}</h6>
+        <small class="desc">{{desc}}</small>
+    </div>
+    <div class="col-md-6 d-flex flex-column align-items-center text-center">
+        <img src="./img/icons/upload.svg" />
+        <h6 for="fileDropRef" class="mt-2">Browse for file</h6>
+    </div>
+</div>
+<!-- <div class="files-list">
+    @for(file of files;track file;let i =$index){
+        <div class="single-file">
+            <div class="file-icon" style="width: 50px"></div>
+            <div class="info">
+                <h4 class="name">
+                    {{ file?.name }}
+                </h4>
+                <p class="size">
+                    {{ formatBytes(file?.size) }}
+                </p>
+                <app-progress [progress]="file?.progress"></app-progress>
+            </div>
+    
+            <div class="delete" (click)="deleteFile(i)">
+                <img src="./img/icons/delete.svg" />
+            </div>
+        </div>
+    }
+   
+</div> -->

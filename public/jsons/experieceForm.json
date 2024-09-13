@@ -1,0 +1,73 @@
+[
+    {
+      "type": "text",
+      "label": "Company Name",
+      "name": "companyName",
+      "placeholder": "Enter company name",
+      "validators": {
+        "required": true,
+        "minLength": 3,
+        "maxLength": 100
+      }
+    },
+    {
+      "type": "text",
+      "label": "Address",
+      "name": "address",
+      "placeholder": "Enter address",
+      "validators": {
+        "required": true,
+        "minLength": 10
+      }
+    },
+    {
+      "type": "text",
+      "label": "Job Title",
+      "name": "jobTitle",
+      "placeholder": "Enter job title",
+      "validators": {
+        "required": true,
+        "minLength": 3,
+        "maxLength": 50
+      }
+    },
+    {
+      "type": "date",
+      "label": "From",
+      "name": "fromDate",
+      "placeholder": "Enter from date",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "type": "date",
+      "label": "To",
+      "name": "toDate",
+      "placeholder": "Enter to date",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "type": "text",
+      "label": "Industry",
+      "name": "industry",
+      "placeholder": "Enter industry",
+      "validators": {
+        "required": true,
+        "minLength": 3,
+        "maxLength": 50
+      }
+    },
+    {
+      "type": "textarea",
+      "label": "Job Responsibilities",
+      "name": "jobResponsibilities",
+      "placeholder": "Enter job responsibilities",
+      "validators": {
+        "required": true,
+        "minLength": 50
+      }
+    }
+  ]
