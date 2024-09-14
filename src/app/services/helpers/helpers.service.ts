@@ -3,6 +3,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { decrypt, encrypt } from '../sharedFunctions/sharedFunctions';
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
+import { Toast } from '../../models/toast-models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,14 @@ export class HelpersService {
   countryList$: BehaviorSubject<any> = new BehaviorSubject(null);
   private userSubject = new BehaviorSubject<any>(null);
   private userObject = new BehaviorSubject<any>({});
+  toasts: Toast[] = [];
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private authService: SocialAuthService) { }
 
 
+  /**
+   * @description Used to store the IP to local storage
+   * @returns 
+   */
   setIPToStorage() {
     let ipobject = {};
     let res: BehaviorSubject<any> = new BehaviorSubject(null);
@@ -48,7 +54,11 @@ export class HelpersService {
     }
   }
 
-
+  /**
+   * @description Used to formate date from mm/dd/yyyy to eg. 12-mar-2024
+   * @param value 
+   * @returns 
+   */
   formatcDate(value: string) {
     const selectedDateObj = new Date(value);
     const day = selectedDateObj.getDate();
@@ -58,6 +68,9 @@ export class HelpersService {
     return `${day}-${month}-${year}`;
   }
 
+  /**
+   * @description used to save the user details to storage with encryptions
+   */
   saveToStorage(userObj: any) {
     if (!isPlatformBrowser(this.platformId)) {
       return
@@ -67,6 +80,9 @@ export class HelpersService {
     localStorage.setItem("token", userObj.idToken);
   }
 
+  /**
+  * @description used to get the user token from storage
+  */
   getUserToken() {
     if (!isPlatformBrowser(this.platformId)) {
       return
@@ -78,6 +94,9 @@ export class HelpersService {
     return this.userSubject.asObservable();
   }
 
+  /**
+  * @description used to get the user details from storage with decryptions
+  */
   getUserDetails() {
     if (!isPlatformBrowser(this.platformId)) {
       return this.userObject.asObservable();
@@ -90,10 +109,17 @@ export class HelpersService {
     return this.userObject.asObservable();
   }
 
+  /**
+   * @description Used to get and show dummy images incase the image in UI gets error
+   * @returns 
+   */
   getDummyImage() {
     return "img/icons/user.svg";
   }
 
+  /**
+   * @description to check if the user token is valid or not 
+   */
   isUserTokenValid() {
     this.authSubscription = this.authService.authState.subscribe(async (user) => {
       console.log('user', user);
@@ -106,9 +132,32 @@ export class HelpersService {
     });
   }
 
+  /**
+   * @description Used to refresh the current token if the token expires
+   * @returns 
+   */
   async refreshToken(): Promise<boolean> {
     await this.authService.refreshAccessToken(GoogleLoginProvider.PROVIDER_ID);
     return true;
+  }
+
+  /**
+   * @description used to show the toast message element
+   * @param title 
+   * @param message 
+   * @param type 
+   * @param delay 
+   */
+  show(title: string, message: string, type: 'success' | 'error' | 'warning', delay = 5000) {
+    this.toasts.push({ title, message, type, delay });
+    setTimeout(() => this.remove(this.toasts[0]), delay);
+  }
+
+  /**
+   * @description used to remove the toast element
+   */
+  remove(toast: Toast) {
+    this.toasts = this.toasts.filter(t => t !== toast);
   }
 
 }

@@ -3,11 +3,12 @@ import { DynamicFormsComponent } from '../../components/dynamic-forms/dynamic-fo
 import { ApiService } from '../../services/api/api.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { HelpersService } from '../../services/helpers/helpers.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cd-experiences',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './cd-experiences.component.html',
   styleUrl: './cd-experiences.component.scss'
 })
@@ -27,21 +28,29 @@ export class CdExperiencesComponent {
     )
   }
 
+  /**
+   * @description Used to format date
+   * @param date 
+   * @param formControl 
+   */
   formatDate(date: any, formControl: string) {
     let formatedDate = this.helper.formatcDate(date.target.value)
     this.experienceFormGroup.patchValue({ [formControl]: formatedDate });
   }
 
   /**
- * @author Imran A
- * @description used to get the formcontrol for validations
- * @param controlName 
- * @returns 
- */
+   * @author Imran A
+   * @description used to get the formcontrol for validations
+   * @param controlName 
+   * @returns 
+   */
   getControl(controlName: string) {
     return this.experienceFormGroup.get(controlName) as FormControl;
   }
 
+  /**
+   * @description Used to submit the form
+   */
   onSubmit() {
     console.log(this.experienceFormGroup.value);
   }

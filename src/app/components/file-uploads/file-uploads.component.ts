@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-file-uploads',
@@ -10,6 +10,7 @@ import { Component, Input } from '@angular/core';
 export class FileUploadsComponent {
   @Input('title') title!: string;
   @Input('desc') desc!: string;
+  @Output() fileSelected!: File;
   files: any[] = [];
 
   /**
@@ -43,10 +44,11 @@ export class FileUploadsComponent {
    * @param files (Files List)
    */
   prepareFilesList(files: Array<any>) {
+    this.files = [];
     for (const item of files) {
-      item.progress = 0;
       this.files.push(item);
     }
+    console.log("this.files", this.files);
   }
 
   /**

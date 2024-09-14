@@ -1,4 +1,14 @@
 {
+    "common": {
+        "personal": "Personal",
+        "documents": "Documents",
+        "educational": "Educational",
+        "fieldrequired": "This field is required",
+        "minimumlength ": "Minimum length ",
+        "invalidformat": "Invalid format",
+        "required": "required",
+        "SaveSubmit": "Save & Submit"
+    },
     "personalForm": {
         "yourFirstName": "Your First Name",
         "yourLastName": "Your Last Name",
@@ -19,8 +29,8 @@
         "enteryourlastname": "Enter your last name",
         "selectyourGender": "Select your Gender",
         "enteryourDateofBirth": "Enter your Date of Birth",
-        "enteryourspouse'sname": "Enter your spouse's name",
-        "eg:+91": "eg : +91",
+        "enteryourspousename": "Enter your spouse's name",
+        "eg91": "eg : +91",
         "enteryourphonenumber": "Enter your phone number",
         "enteryouremailaddress": "Enter your email address",
         "enteryourcurrentaddress": "Enter your current address",
@@ -29,10 +39,7 @@
         "enteryourpassportnumber": "Enter your passport number",
         "enterthecountryofissue": "Enter the country of issue",
         "enterissueDate": "Enter issue Date",
-        "enterexpirydate": "Enter expiry date",
-        "fieldrequired": "This field is required.",
-        "minimumlength ": "Minimum length ",
-        "invalidformat": "Invalid format."
+        "enterexpirydate": "Enter expiry date"
     },
     "experiencesForm": {
         "companyName": "Company Name",
@@ -48,9 +55,7 @@
         "enterfromdate": "Enter from date",
         "entertodate": "Enter to date",
         "enterindustry": "Enter industry",
-        "enterjobresponsibilities": "Enter job responsibilities",
-        "fieldrequired": "This field is required.",
-        "invalidformat": "Invalid format."
+        "enterjobresponsibilities": "Enter job responsibilities"
     },
     "academicsForm": {
         "yourName": "Enter Your Name",
@@ -65,6 +70,18 @@
         "entertodate": "Enter to date",
         "enterdegree": "Enter degree",
         "enteraddress": "Enter address",
-        "fieldrequired": "This field is required."
+        "fieldrequired": "This field is required"
+    },
+    "documentForm": {
+        "uploadyourPassport": "Please upload your Passport",
+        "uploadyourPassportDesc": "Please upload a color scanned pdf of both front and back side of your passport, ensuring good lighting",
+        "pleaseuploadyourPhoto": "Please upload your Photo",
+        "pleaseuploadyourPhotoDesc": "Please upload your recent passport photo in JPG or PDF format",
+        "submitPersonal": "Submit Personal Documents",
+        "submitEducational": "Submit Educational Documents",
+        "degreeCertificate": "Please upload your Degree certificate",
+        "degreeCertificateDesc": "Please upload your color-scanned copy of your Degree certificate",
+        "nursingCertificate": "Please upload your Nursing certificate",
+        "nursingCertificateDesc": "Please upload your color-scanned copy of your Nursing certificate"
     }
 }

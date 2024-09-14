@@ -2,6 +2,10 @@ import { isPlatformBrowser } from "@angular/common";
 import * as forge from "node-forge";
 import * as pako from 'pako';
 
+
+/**
+ * @description Used to get IP addr from localStorage
+ */
 export function getIpaddress(platformId: any) {
     if (isPlatformBrowser(platformId)) {
         return JSON.parse(localStorage.getItem('ipobject') as string);
@@ -11,6 +15,12 @@ export function getIpaddress(platformId: any) {
     }
 }
 
+/**
+ * @description used to encrypt
+ * @param keys 
+ * @param value 
+ * @returns 
+ */
 export function encrypt(keys: string, value: any) {
     try {
         var textEncoder = new TextEncoder(); //similar to buffer in node js
@@ -31,9 +41,11 @@ export function encrypt(keys: string, value: any) {
         console.log(err)
         return null
     }
-
 }
 
+/**
+ * @description used for decryptions
+ */
 export function decrypt(keys: string, value: any) {
     try {
         var textDecoder = new TextDecoder();

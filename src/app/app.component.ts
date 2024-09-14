@@ -4,6 +4,7 @@ import { RouterOutlet, Router, Event, NavigationEnd } from '@angular/router';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ToastComponent } from './common/toast/toast.component';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -12,7 +13,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, TranslateModule],
+    imports: [RouterOutlet, TranslateModule, ToastComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })

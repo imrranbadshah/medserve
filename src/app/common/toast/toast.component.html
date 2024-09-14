@@ -1,0 +1,17 @@
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    @for(toast of helper.toasts;track toast.title){
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" [ngClass]="{
+            'bg-success': toast.type === 'success', 
+            'bg-danger': toast.type === 'error', 
+            'bg-info': toast.type === 'warning'
+          }">
+        <div class="toast-header">
+            <strong class="me-auto">{{ toast.title }}</strong>
+            <button type="button" class="btn-close" aria-label="Close" (click)="removeToast(toast)"></button>
+        </div>
+        <div class="toast-body">
+            {{ toast.message }}
+        </div>
+    </div>
+    }
+</div>

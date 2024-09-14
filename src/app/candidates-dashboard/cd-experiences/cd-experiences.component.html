@@ -1,24 +1,26 @@
 <form [formGroup]="experienceFormGroup" (ngSubmit)="onSubmit()">
     <div class="form-row experieces">
         <div class="form-group col-1">
-            <label>Company Name <sup>*</sup></label>
-            <input type="text" placeholder="Enter company name" formControlName="companyName" required>
+            <label>{{'experiencesForm.companyName' | translate}} <sup>*</sup></label>
+            <input type="text" placeholder="{{'experiencesForm.entercompanyname' | translate}}"
+                formControlName="companyName" required>
             @if(getControl("companyName").touched && getControl("companyName").errors){
             <div class="error-messages">
                 @if (getControl("companyName").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
             </div>
             }
         </div>
         <div class="form-group col-2">
-            <label>Address <sup>*</sup></label>
-            <input type="text" placeholder="Enter address" formControlName="address" required>
+            <label>{{'experiencesForm.address' | translate}} <sup>*</sup></label>
+            <input type="text" placeholder="{{'experiencesForm.enteraddress' | translate}}" formControlName="address"
+                required>
             @if(getControl("address").touched && getControl("address").errors){
             <div class="error-messages">
                 @if (getControl("address").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
             </div>
             }
@@ -26,21 +28,22 @@
         </div>
 
         <div class="form-group col-3">
-            <label>Job Title <sup>*</sup></label>
-            <input type="text" placeholder="Enter job title" formControlName="jobTitle" required>
+            <label>{{'experiencesForm.jobTitle' | translate}} Title <sup>*</sup></label>
+            <input type="text" placeholder="{{'experiencesForm.enterjobtitle' | translate}}" formControlName="jobTitle"
+                required>
             @if(getControl("jobTitle").touched && getControl("jobTitle").errors){
             <div class="error-messages">
                 @if (getControl("jobTitle").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
             </div>
             }
         </div>
         <div class="form-group col-4">
-            <label>From <sup>*</sup></label>
+            <label>{{'experiencesForm.from' | translate}} <sup>*</sup></label>
             <div class="input-group dateTime mb-3">
-                <input type="text" class="form-control" formControlName="fromDate" placeholder="Enter from date"
-                    required />
+                <input type="text" class="form-control" formControlName="fromDate"
+                    placeholder="{{'experiencesForm.enterfromdate' | translate}}" required />
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                     <input type="date" class="hiddenDateInput" (change)="formatDate($event,'fromDate')" />
@@ -49,7 +52,7 @@
             @if(getControl("fromDate").touched && getControl("fromDate").errors){
             <div class="error-messages">
                 @if (getControl("fromDate").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
             </div>
             }
@@ -57,9 +60,10 @@
 
 
         <div class="form-group col-5">
-            <label>To <sup>*</sup></label>
+            <label>{{'experiencesForm.to' | translate}} <sup>*</sup></label>
             <div class="input-group dateTime mb-3">
-                <input type="text" class="form-control" formControlName="toDate" placeholder="Enter to date" required />
+                <input type="text" class="form-control" formControlName="toDate"
+                    placeholder="{{'experiencesForm.entertodate' | translate}}" required />
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                     <input type="date" class="hiddenDateInput" (change)="formatDate($event,'toDate')" />
@@ -68,37 +72,38 @@
             @if(getControl("toDate").touched && getControl("toDate").errors){
             <div class="error-messages">
                 @if (getControl("toDate").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
             </div>
             }
         </div>
         <div class="form-group col-6">
-            <label>Industry <sup>*</sup></label>
-            <input type="text" placeholder="Enter industry" formControlName="industry" required>
+            <label>{{'experiencesForm.industry' | translate}} <sup>*</sup></label>
+            <input type="text" placeholder="{{'experiencesForm.enterindustry' | translate}}" formControlName="industry"
+                required>
             @if(getControl("industry").touched && getControl("industry").errors){
             <div class="error-messages">
                 @if (getControl("industry").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
                 @if (getControl("industry").errors?.['pattern']) {
-                <small class="error">Invalid format</small>
+                <small class="error">{{'common.invalidformat' | translate}}</small>
                 }
             </div>
             }
         </div>
         <div class="form-group col-7">
-            <label>Job Responsibilities <sup>*</sup></label>
-            <textarea type="text" rows="6" placeholder="Enter job responsibilities"
+            <label>{{'experiencesForm.jobResponsibilities' | translate}}<sup>*</sup></label>
+            <textarea type="text" rows="6" placeholder="{{'experiencesForm.enterjobresponsibilities' | translate}}"
                 formControlName="jobResponsibilities" required>
                 </textarea>
             @if(getControl("jobResponsibilities").touched && getControl("jobResponsibilities").errors){
             <div class="error-messages">
                 @if (getControl("jobResponsibilities").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
                 @if (getControl("jobResponsibilities").errors?.['pattern']) {
-                <small class="error">Invalid format</small>
+                <small class="error">{{'common.invalidformat' | translate}}</small>
                 }
             </div>
             }

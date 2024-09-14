@@ -1,13 +1,18 @@
-<div class="container row mb-2" (fileDropped)="onFileDropped($event)">
-    <div class="col-md-6 d-flex flex-column align-items-start text-start">
-        <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
-        <h6>{{title}}</h6>
-        <small class="desc">{{desc}}</small>
+<div class="container mb-2" (fileDropped)="onFileDropped($event)">
+    <div class="row">
+        <div class="col-md-6 d-flex flex-column align-items-start text-start">
+            <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+            <h6>{{title}}</h6>
+            <small class="desc">{{desc}}</small>
+        </div>
+        <div class="col-md-6 d-flex flex-column align-items-center text-center">
+            <img src="./img/icons/upload.svg" />
+            <h6 for="fileDropRef" class="mt-2">Browse for file</h6>
+        </div>
     </div>
-    <div class="col-md-6 d-flex flex-column align-items-center text-center">
-        <img src="./img/icons/upload.svg" />
-        <h6 for="fileDropRef" class="mt-2">Browse for file</h6>
-    </div>
+    @if(files && files.length > 0){
+    <div class="selectionText">{{files.length}} file selected - {{files[0].name}}</div>
+    }
 </div>
 <!-- <div class="files-list">
     @for(file of files;track file;let i =$index){

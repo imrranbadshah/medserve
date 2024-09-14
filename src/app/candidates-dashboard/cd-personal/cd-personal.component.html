@@ -3,24 +3,26 @@
 <form [formGroup]="personalFormGroup" (ngSubmit)="onSubmit()">
     <div class="form-row personal">
         <div class="form-group col-1">
-            <label>Your First Name <sup>*</sup></label>
-            <input type="text" placeholder="Enter your first name" formControlName="firstName" required>
+            <label>{{'personalForm.yourFirstName' | translate}} <sup>*</sup></label>
+            <input type="text" placeholder="{{'personalForm.enteryourfirstname' | translate}}"
+                formControlName="firstName" required>
             @if(getControl("firstName").touched && getControl("firstName").errors){
             <div class="error-messages">
                 @if (getControl("firstName").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
             </div>
             }
         </div>
         <div class="form-group col-2">
-            <label>Your Last Name <sup>*</sup></label>
-            <input type="text" placeholder="Enter your last name" formControlName="lastName" required>
+            <label>{{'personalForm.yourLastName' | translate}} <sup>*</sup></label>
+            <input type="text" placeholder="{{'personalForm.enteryourlastname' | translate}}" formControlName="lastName"
+                required>
 
             @if(getControl("lastName").touched && getControl("lastName").errors){
             <div class="error-messages">
                 @if (getControl("lastName").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
             </div>
@@ -28,9 +30,9 @@
         </div>
 
         <div class="form-group col-3">
-            <label>Gender <sup>*</sup></label>
-            <select class="form-select noBorderInput" aria-label="gender" placeholder="Select your Gender"
-                formControlName="gender">
+            <label>{{'personalForm.gender' | translate}}<sup>*</sup></label>
+            <select class="form-select noBorderInput" aria-label="gender" formControlName="gender">
+                <option selected disabled value="">{{'personalForm.selectyourGender' | translate}}</option>
                 @for(item of genderList;track item.value){
                 <option [value]="item.id">{{item.value}}</option>
                 }
@@ -38,17 +40,17 @@
             @if(getControl("gender").touched && getControl("gender").errors){
             <div class="error-messages">
                 @if (getControl("gender").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
             </div>
             }
         </div>
         <div class="form-group col-4">
-            <label>Date of Birth <sup>*</sup></label>
+            <label>{{'personalForm.dateOfBirth' | translate}} <sup>*</sup></label>
             <div class="input-group dateTime mb-3">
                 <input type="text" class="form-control" formControlName="dateOfBirth"
-                    placeholder="Enter your Date of Birth" readonly />
+                    placeholder="{{'personalForm.enteryourDateofBirth' | translate}}" readonly />
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                     <input type="date" class="hiddenDateInput" (change)="formatDate($event,'dateOfBirth')" />
@@ -57,7 +59,7 @@
             @if(getControl("dateOfBirth").touched && getControl("dateOfBirth").errors){
             <div class="error-messages">
                 @if (getControl("dateOfBirth").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
             </div>
@@ -65,63 +67,67 @@
 
         </div>
         <div class="form-group col-5">
-            <label>Spouse Name</label>
-            <input type="text" placeholder="Enter your spouse's name" formControlName="spouseName">
+            <label>{{'personalForm.spouseName' | translate}}</label>
+            <input type="text" placeholder="{{'personalForm.enteryourspousename' | translate}}"
+                formControlName="spouseName">
         </div>
 
 
         <div class="input-group form-group col-6">
-            <label>Phone Number <sup>*</sup></label>
+            <label>{{'personalForm.PhoneNumber' | translate}} <sup>*</sup></label>
             <div class="d-flex input-group mb-3">
-                <input class="form-control noBorderInput flex-02" placeholder="eg : +91" formControlName="countryCode"
-                    [ngbTypeahead]="search" (focus)="focus$.next($any($event).target.value)"
-                    (click)="click$.next($any($event).target.value)" />
+                <input class="form-control noBorderInput flex-02" placeholder="{{'personalForm.eg91' | translate}}"
+                    formControlName="countryCode" [ngbTypeahead]="search"
+                    (focus)="focus$.next($any($event).target.value)" (click)="click$.next($any($event).target.value)" />
 
-                <input class="form-control flex-1 noBorderInput" placeholder="Enter your phone number"
-                    formControlName="phoneNumber" />
+                <input class="form-control flex-1 noBorderInput"
+                    placeholder="{{'personalForm.enteryourphonenumber' | translate}}" formControlName="phoneNumber" />
             </div>
             @if(getControl("countryCode").touched && getControl("countryCode").errors){
             <div class="error-messages">
                 @if (getControl("countryCode").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
             </div>
             }
             @if(getControl("phoneNumber").touched && getControl("phoneNumber").errors){
             <div class="error-messages">
                 @if (getControl("phoneNumber").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
                 @if (getControl("phoneNumber").errors?.['minLength']) {
-                <small class="error">Minimum length {{
-                    getControl("phoneNumber").errors?.['minLength'].requiredLength }} required.</small>
+                <small class="error">{{'common.minimumlength' | translate}} {{
+                    getControl("phoneNumber").errors?.['minLength'].requiredLength }} {{'common.required' |
+                    translate}}.</small>
                 }
             </div>
             }
         </div>
 
         <div class="form-group col-7">
-            <label>Email <sup>*</sup></label>
-            <input type="email" placeholder="Enter your email address" formControlName="email">
+            <label>{{'personalForm.email' | translate}} <sup>*</sup></label>
+            <input type="email" placeholder="{{'personalForm.enteryouremailaddress' | translate}}"
+                formControlName="email">
             @if(getControl("email").touched && getControl("email").errors){
             <div class="error-messages">
                 @if (getControl("email").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
                 @if (getControl("email").errors?.['pattern']) {
-                <small class="error">Invalid format.</small>
+                <small class="error">{{'common.invalidformat' | translate}}</small>
                 }
             </div>
             }
         </div>
         <div class="form-group col-8">
-            <label>Address <sup>*</sup></label>
-            <input type="text" placeholder="Enter your current address" formControlName="address">
+            <label>{{'personalForm.address' | translate}} <sup>*</sup></label>
+            <input type="text" placeholder="{{'personalForm.enteryouremailaddress' | translate}}"
+                formControlName="address">
             @if(getControl("address").touched && getControl("address").errors){
             <div class="error-messages">
                 @if (getControl("address").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
             </div>
@@ -129,10 +135,11 @@
         </div>
 
         <div class="form-group col-10">
-            <label>State / City <sup>*</sup></label>
+            <label>{{'personalForm.stateCity' | translate}} <sup>*</sup></label>
             <div class="d-flex input-group dataListInputs mb-3">
-                <input class="form-control noBorderInput" placeholder="Enter your state or city"
-                    formControlName="stateCity" [ngbTypeahead]="searchCities" (selectItem)="onCitySelect($event)">
+                <input class="form-control noBorderInput"
+                    placeholder="{{'personalForm.enteryourstateorcity' | translate}}" formControlName="stateCity"
+                    [ngbTypeahead]="searchCities" (selectItem)="onCitySelect($event)">
                 @if (searching){
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <img class="iconType" src="/img/searchLoader.gif" alt="calender">
@@ -142,58 +149,60 @@
             @if(getControl("stateCity").touched && getControl("stateCity").errors){
             <div class="error-messages">
                 @if (getControl("stateCity").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
             </div>
             }
         </div>
         <div class="form-group col-9">
-            <label>Country <sup>*</sup></label>
-            <input type="text" placeholder="Enter your country" formControlName="country">
+            <label>{{'personalForm.country' | translate}} <sup>*</sup></label>
+            <input type="text" placeholder="{{'personalForm.enteryourcountry' | translate}} " formControlName="country">
             @if(getControl("country").touched && getControl("country").errors){
             <div class="error-messages">
                 @if (getControl("country").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
                 @if (getControl("country").errors?.['pattern']) {
-                <small class="error">Invalid format.</small>
+                <small class="error">{{'common.invalidformat' | translate}}</small>
                 }
             </div>
             }
         </div>
         <div class="form-group col-11">
-            <label>Passport Number <sup>*</sup></label>
-            <input type="text" placeholder="Enter your passport number" formControlName="passportNumber">
+            <label>{{'personalForm.passportNumber' | translate}} <sup>*</sup></label>
+            <input type="text" placeholder="{{'personalForm.enteryourpassportnumber' | translate}}"
+                formControlName="passportNumber">
             @if(getControl("passportNumber").touched && getControl("passportNumber").errors){
             <div class="error-messages">
                 @if (getControl("passportNumber").errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
             </div>
             }
         </div>
         <div class="form-group col-12">
-            <label>Country of Issue <sup>*</sup></label>
-            <input type="text" placeholder="Enter the country of issue" formControlName="countryOfIssue">
+            <label>{{'personalForm.countryOfIssue' | translate}} <sup>*</sup></label>
+            <input type="text" placeholder="{{'personalForm.enterthecountryofissue' | translate}}"
+                formControlName="countryOfIssue">
             @if(getControl('countryOfIssue').touched && getControl('countryOfIssue').errors){
             <div class="error-messages">
                 @if (getControl('countryOfIssue').errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
                 @if (getControl('countryOfIssue').errors?.['pattern']) {
-                <small class="error">Invalid format.</small>
+                <small class="error">{{'common.invalidformat' | translate}}</small>
                 }
             </div>
             }
         </div>
         <div class="form-group col-13">
-            <label>Issue Date <sup>*</sup></label>
+            <label>{{'personalForm.issueDate' | translate}} <sup>*</sup></label>
             <div class="input-group dateTime mb-3">
-                <input type="text" class="form-control" formControlName="issueDate" placeholder="Enter issue Date"
-                    readonly />
+                <input type="text" class="form-control" formControlName="issueDate"
+                    placeholder="{{'personalForm.enterissueDate' | translate}}" readonly />
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                     <input type="date" class="hiddenDateInput" (change)="formatDate($event,'issueDate')" />
@@ -202,17 +211,17 @@
             @if(getControl('issueDate').touched && getControl('issueDate').errors){
             <div class="error-messages">
                 @if (getControl('issueDate').errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
 
             </div>
             }
         </div>
         <div class="form-group col-14">
-            <label>Expiry Date <sup>*</sup></label>
+            <label>{{'personalForm.expiryDate' | translate}} <sup>*</sup></label>
             <div class="input-group dateTime mb-3">
-                <input type="text" class="form-control" formControlName="expiryDate" placeholder="Enter expiry date"
-                    readonly />
+                <input type="text" class="form-control" formControlName="expiryDate"
+                    placeholder="{{'personalForm.enterexpirydate' | translate}} " readonly />
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                     <input type="date" class="hiddenDateInput" (change)="formatDate($event,'expiryDate')" />
@@ -221,13 +230,14 @@
             @if(getControl('expiryDate').touched && getControl('expiryDate').errors){
             <div class="error-messages">
                 @if (getControl('expiryDate').errors?.['required']) {
-                <small class="error">This field is required.</small>
+                <small class="error">{{'common.fieldrequired' | translate}}</small>
                 }
             </div>
             }
         </div>
     </div>
     <div class="flex text-center my-5">
-        <button class="btn style-four" type="submit" [disabled]="personalFormGroup.invalid">Save & Submit</button>
+        <button class="btn style-four" type="submit" [disabled]="personalFormGroup.invalid">{{'common.SaveSubmit' |
+            translate}}</button>
     </div>
 </form>

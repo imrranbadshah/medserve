@@ -16,6 +16,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
     console.log("PLATFORM_ID", PLATFORM_ID);
     let currentLanguage;
     let _LanguageService = inject(LanguageService);
+    let notification = inject(HelpersService)
     let timestamp = Date.now();
     let platformId = inject(PLATFORM_ID)
     let ip = '';
@@ -62,7 +63,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
     return next(authReq).pipe(tap((event: any) => {
       if (event.type === HttpEventType.Response) {
         if (event && event.body && event.body['message'] && !event.body['status']) {
-          // notification.error(event.body['message'], 'Close', 5000);
+          notification.show("Something went wrong !", event.body['message'], 'error');
         }
 
         if (event && event.body && event.body['data'] && typeof event.body['data'] == "string") {

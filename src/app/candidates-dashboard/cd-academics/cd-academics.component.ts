@@ -3,11 +3,12 @@ import { ApiService } from '../../services/api/api.service';
 import { DynamicFormsComponent } from '../../components/dynamic-forms/dynamic-forms.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HelpersService } from '../../services/helpers/helpers.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cd-academics',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './cd-academics.component.html',
   styleUrl: './cd-academics.component.scss'
 })
@@ -34,11 +35,19 @@ export class CdAcademicsComponent {
     return this.academicsFormGroup.get(controlName) as FormControl;
   }
 
+  /**
+  * @description Used to format date
+  * @param date 
+  * @param formControl 
+  */
   formatDate(date: any, formControl: string) {
     let formatedDate = this.helper.formatcDate(date.target.value)
     this.academicsFormGroup.patchValue({ [formControl]: formatedDate });
   }
 
+  /**
+  * @description Used to submit the form
+  */
   onSubmit() {
     console.log(this.academicsFormGroup.value);
   }

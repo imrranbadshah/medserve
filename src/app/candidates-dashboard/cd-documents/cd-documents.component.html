@@ -1,34 +1,33 @@
 <div class="px-4 d-flex flex-column">
     <div class="px-5">
-        <p>Personal Documents</p>
+        <p>{{'common.personal' | translate}} {{'common.documents' | translate}}</p>
         <div>
-            <app-file-uploads [title]="'Please upload your Passport'" [desc]="'Please upload a color scanned pdf of both front and back side of your passport, ensuring good lighting'"
-                ></app-file-uploads>
+            <app-file-uploads [title]="'documentForm.uploadyourPassport' | translate"
+                [desc]="'documentForm.uploadyourPassportDesc' | translate"></app-file-uploads>
         </div>
         <div class="mt-3">
-            <app-file-uploads [title]="'Please upload your Photo'"
-                [desc]="'Please upload your recent passport photo in JPG or PDF format'"
-                ></app-file-uploads>
+            <app-file-uploads [title]="'documentForm.pleaseuploadyourPhoto' | translate"
+                [desc]="'documentForm.pleaseuploadyourPhotoDesc' | translate"></app-file-uploads>
         </div>
         <div class="my-2 text-end">
-            <button class="btn style-four">Save & Submit</button>
+            <button class="btn style-four" (click)="uploadFiles('personal')">{{'documentForm.submitPersonal' |
+                translate}}</button>
         </div>
     </div>
     <div class="lines align-self-center my-4"></div>
     <div class="px-5">
-        <p>Educational Documents</p>
+        <p>{{'common.educational' | translate}} {{'common.documents' | translate}}</p>
         <div>
-            <app-file-uploads [title]="'Please upload your Passport'"
-                [desc]="'Please upload a color scanned pdf of both front and back side of your passport, ensuring good lighting'"
-                ></app-file-uploads>
+            <app-file-uploads [title]="'documentForm.degreeCertificate' | translate"
+                [desc]="'documentForm.degreeCertificateDesc' | translate"></app-file-uploads>
         </div>
         <div class="mt-3">
-            <app-file-uploads [title]="'Please upload your Photo'"
-                [desc]="'Please upload your recent passport photo in JPG or PDF format'"
-                ></app-file-uploads>
+            <app-file-uploads [title]="'documentForm.nursingCertificate' | translate"
+                [desc]="'documentForm.nursingCertificateDesc' | translate"></app-file-uploads>
         </div>
         <div class="my-2 text-end">
-            <button class="btn style-four">Save & Submit</button>
+            <button class="btn style-four" (click)="uploadFiles('education')">{{'documentForm.submitEducational' |
+                translate}}</button>
         </div>
     </div>
 </div>
