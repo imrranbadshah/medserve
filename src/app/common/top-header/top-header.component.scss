@@ -1,23 +1,101 @@
 .navbar-top {
-    background-color: #BFCED9;
+    background-color: var(--primaryColor);
+
     padding: {
-        top: 6px;
-        bottom: 6px;
-    };
+        top: 13px;
+        bottom: 13px;
+    }
+
     p {
-        color: #364D5F;
+        color: var(--primaryColor);
 
         .link {
-            color: #364D5F;
+            color: var(--primaryColor);
             margin-left: 3px;
 
             img {
                 top: -2px;
                 margin-left: 3px;
             }
+
             &::after {
-                background-color: #364D5F;
+                background-color: var(--primaryColor);
             }
+        }
+    }
+}
+
+.dropdown-toggle {
+    padding: 0;
+
+    span {
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        background-color: #FE8C23;
+
+        font: {
+            size: 12px;
+            weight: 500;
+        }
+    }
+
+    img {
+        position: relative;
+        top: -1px;
+    }
+}
+
+.userDropdown {
+    position: relative;
+    top: -3px;
+
+    .dropdown-menu {
+        margin-top: 15px;
+        min-width: 280px;
+        padding: 20px 25px;
+        left: auto !important;
+        right: calc(100% - 212px) !important;
+        box-shadow: 0 4px 34px rgba(101, 96, 240, 0.15);
+
+        ul {
+            li {
+                cursor: pointer;
+                margin-bottom: 15px;
+                border-bottom: 1px dashed #dddddd;
+
+                padding: {
+                    bottom: 15px;
+                    right: 20px;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                    border-bottom: none;
+                }
+
+                p {
+                    margin-bottom: 0;
+                }
+
+                &:after {
+                    right: 0;
+                    top: 11px;
+                    content: "";
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    position: absolute;
+                }
+            }
+        }
+
+        &.active {
+            display: block;
         }
     }
 }

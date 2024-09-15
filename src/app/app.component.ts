@@ -19,7 +19,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 })
 export class AppComponent {
 
-    title = 'Abezo - Angular 18 Job Board Template';
+    title = 'Medserve';
 
     constructor(
         private router: Router,
@@ -27,12 +27,12 @@ export class AppComponent {
         public translate: TranslateService
     ) {
 
-        translate.addLangs(['en', 'fr']);
-        translate.setDefaultLang('en');
+        this.translate.addLangs(['en', 'fr']);
+        this.translate.setDefaultLang('en');
 
-        const browserLang = translate.getBrowserLang();
+        const browserLang = this.translate.getBrowserLang();
         console.log("browserLang==>", browserLang);
-        // translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+        translate.use(browserLang && browserLang.match(/en|fr/) ? browserLang : 'en');
 
         this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd) {

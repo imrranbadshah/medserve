@@ -5,9 +5,13 @@
         gap: 20px;
         margin-bottom: 20px;
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
+        
+    }
+
+    @media only screen and (max-width: 767px) {
+        &.form-row {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
         }
     }
 }

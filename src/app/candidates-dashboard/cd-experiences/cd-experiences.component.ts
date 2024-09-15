@@ -34,7 +34,7 @@ export class CdExperiencesComponent {
    * @param formControl 
    */
   formatDate(date: any, formControl: string) {
-    let formatedDate = this.helper.formatcDate(date.target.value)
+    let formatedDate = this.helper.formatDate(date.target.value)
     this.experienceFormGroup.patchValue({ [formControl]: formatedDate });
   }
 

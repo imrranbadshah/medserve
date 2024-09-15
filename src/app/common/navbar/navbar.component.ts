@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {
         this.helper.getUserDetails().subscribe((resp: any) => {
             this.isLogged = false;
-            if (resp && Object.keys(resp)) {
+            if (resp && Object.keys(resp).length > 0) {
                 this.isLogged = true;
                 this.userObject = resp;
             }
@@ -107,6 +107,6 @@ export class NavbarComponent implements OnInit {
 
 
     logout() {
-
+        this.helper.logout();
     }
 }

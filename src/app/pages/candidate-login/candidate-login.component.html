@@ -15,14 +15,14 @@
         } @else {
         <div class="companyLogin  d-flex flex-column align-items-center justify-content-center">
             @if(!isOTPSent){
-            <div class="form-group ">
+            <div class="form-group">
                 <label>Your Company Email</label>
                 <input type="text" placeholder="Enter your Company email" [(ngModel)]="companyEmail">
             </div>
             <div class="flex text-center mt-4">
                 <button class="btn style-four" type="button" (click)="onCompanyEmailSubmit()">Login</button>
             </div>
-            <button type="button" class="btn btn-link routeButton themeColor" routerLink="/candidate-login">Candidate
+            <button type="button" class="btn btn-link routeButton themeColor" routerLink="/">Jobseeker
                 Login</button>
 
             } @else {

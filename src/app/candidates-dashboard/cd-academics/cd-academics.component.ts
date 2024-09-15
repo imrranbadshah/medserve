@@ -17,10 +17,12 @@ export class CdAcademicsComponent {
   constructor(private fb: FormBuilder, private helper: HelpersService) {
     this.academicsFormGroup = this.fb.group(
       {
-        fullname: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
-        instituteName: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
-        fromDate: ['', [Validators.required]],
-        toData: ['', [Validators.required]],
+        "fullname": ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
+        "instituteName": ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
+        "fromDate": ['', [Validators.required]],
+        "toDate": ['', [Validators.required]],
+        "address": ['', [Validators.required]],
+        "degree": ['', [Validators.required]],
       }
     )
   }
@@ -41,7 +43,7 @@ export class CdAcademicsComponent {
   * @param formControl 
   */
   formatDate(date: any, formControl: string) {
-    let formatedDate = this.helper.formatcDate(date.target.value)
+    let formatedDate = this.helper.formatDate(date.target.value)
     this.academicsFormGroup.patchValue({ [formControl]: formatedDate });
   }
 

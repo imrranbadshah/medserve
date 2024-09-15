@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BackToTopComponent } from '../../common/back-to-top/back-to-top.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../../common/footer/footer.component';
 import { NavbarComponent } from '../../common/navbar/navbar.component';
 import { TopHeaderComponent } from '../../common/top-header/top-header.component';
@@ -35,21 +35,29 @@ export class CandidateLoginComponent {
   constructor(
     private authService: SocialAuthService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private helper: HelpersService) {
     console.log("this.activatedRoute", this.activatedRoute?.snapshot?.routeConfig?.path);
-    if (this.activatedRoute?.snapshot?.routeConfig?.path?.includes("candidate")) {
-      this.isCandidateLogin = true;
-    } else {
-      this.isCandidateLogin = false;
-    }
+    this.helper.getUserDetails().subscribe((resp: any) => {
+      if (Object.keys(resp).length > 0) {
+        this.router.navigateByUrl("/");
+      } else {
+        if (this.activatedRoute?.snapshot?.routeConfig?.path?.includes("employer")) {
+          this.isCandidateLogin = false;
+        } else {
+          this.isCandidateLogin = true;
+        }
+      }
+    })
   }
 
   ngOnInit() {
-    this.helper.isUserTokenValid();
+
   }
 
   googleSignin(googleWrapper: any) {
     googleWrapper.click();
+    this.helper.isUserTokenValid('buttonClick');
   }
 
   onCompanyEmailSubmit() {
@@ -59,10 +67,8 @@ export class CandidateLoginComponent {
     }
   }
 
-
   verifyOTP(val: string) {
     console.log(val);
   }
-
 
 }

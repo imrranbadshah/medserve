@@ -89,7 +89,6 @@ export class CdPersonalComponent implements OnInit {
   getCountryMaster() {
     this.api.getCountryMaster().subscribe((resp: any) => {
       this.countryMaster = resp.data.countryList;
-      console.log("this.countryMaster", this.countryMaster);
     })
   }
 
@@ -175,7 +174,7 @@ export class CdPersonalComponent implements OnInit {
   * @param formControl 
   */
   formatDate(date: any, formControl: string) {
-    let formatedDate = this.helper.formatcDate(date.target.value);
+    let formatedDate = this.helper.formatDate(date.target.value);
     this.personalFormGroup.patchValue({ [formControl]: formatedDate });
   }
 

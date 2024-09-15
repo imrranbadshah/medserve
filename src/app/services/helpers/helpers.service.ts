@@ -4,17 +4,23 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { decrypt, encrypt } from '../sharedFunctions/sharedFunctions';
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Toast } from '../../models/toast-models';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelpersService {
+
   authSubscription!: Subscription;
   countryList$: BehaviorSubject<any> = new BehaviorSubject(null);
-  private userSubject = new BehaviorSubject<any>(null);
+  // private userSubject = new BehaviorSubject<any>(null);
   private userObject = new BehaviorSubject<any>({});
   toasts: Toast[] = [];
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private authService: SocialAuthService) { }
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private authService: SocialAuthService,
+    private router: Router
+  ) { }
 
 
   /**
@@ -59,7 +65,7 @@ export class HelpersService {
    * @param value 
    * @returns 
    */
-  formatcDate(value: string) {
+  formatDate(value: string) {
     const selectedDateObj = new Date(value);
     const day = selectedDateObj.getDate();
     const month = selectedDateObj.toLocaleString('en-US', { month: 'short' });
@@ -80,19 +86,6 @@ export class HelpersService {
     localStorage.setItem("token", userObj.idToken);
   }
 
-  /**
-  * @description used to get the user token from storage
-  */
-  getUserToken() {
-    if (!isPlatformBrowser(this.platformId)) {
-      return
-    }
-    const storedData = localStorage.getItem('token');
-    if (storedData) {
-      this.userSubject.next(storedData);
-    }
-    return this.userSubject.asObservable();
-  }
 
   /**
   * @description used to get the user details from storage with decryptions
@@ -120,15 +113,20 @@ export class HelpersService {
   /**
    * @description to check if the user token is valid or not 
    */
-  isUserTokenValid() {
+  isUserTokenValid(type?: string) {
     this.authSubscription = this.authService.authState.subscribe(async (user) => {
       console.log('user', user);
       if (user) {
         this.saveToStorage(user);
+        this.router.navigateByUrl("/candidates-dashboard/personal-forms");
       } else {
-        await this.refreshToken();
+        if (!type) {
+          await this.refreshToken();
+        }
         this.isUserTokenValid();
       }
+    }, (err: any) => {
+      this.show("something went wrong", err.message, "error");
     });
   }
 
@@ -158,6 +156,17 @@ export class HelpersService {
    */
   remove(toast: Toast) {
     this.toasts = this.toasts.filter(t => t !== toast);
+  }
+
+  logout() {
+    this.userObject.next({});
+    this.authService.signOut();
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+    this.router.navigateByUrl("/candidate-login");
+    // let encryptedUserObject: string = encrypt("id", userObj)?.data as string;
+    // localStorage.setItem("id", encryptedUserObject);
+    // this.isUserLoggedIn.asObservable.
   }
 
 }

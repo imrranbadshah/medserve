@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-lg bg_dark d-flex justify-content-between align-items-center">
         <div class="container  py-3">
             <a routerLink="/" class="navbar-brand">
-                <img src="img/logo-white.svg" alt="Logo">
+                <img src="img/web-logo.png" alt="Logo">
             </a>
             <!-- <ul
                 class="category-menu list-unstyle d-none d-xl-block"
@@ -76,7 +76,7 @@
                 </li>
             </ul> -->
             <div class="other-options d-flex align-items-center justify-content-end d-lg-none">
-                <div class="option-item" [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}">
+                <!-- <div class="option-item" [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}">
                     <div class="notif-option position-relative">
                         <button
                             class="dropdown-toggle d-flex align-items-center position-relative bg-transparent border-0 transition"
@@ -119,7 +119,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="option-item">
                     <button class="navbar-toggler" (click)="toggleClass()" type="button">
                         <span class="burger-menu">
@@ -472,7 +472,7 @@
                                 </li>
                             </ul>
                         </div> -->
-                        @if(isLogged){
+                        <!-- @if(isLogged){
                         <button
                             class="dropdown-toggle d-flex align-items-center position-relative bg-transparent border-0 transition"
                             type="button" (click)="userDropdownToggleClass()">
@@ -500,7 +500,7 @@
                                 }
                             </ul>
                         </div>
-                        }
+                        } -->
 
                     </div>
                     @if(!isLogged){
@@ -516,7 +516,7 @@
                 <div class="other-options d-flex align-items-center justify-content-end"
                     *ngIf="router.url === '/index-2' || router.url === '/index-3'">
                     <a routerLink="/candidate-login" class="link style-three fw-medium ms-0">
-                        Login 2
+                        Login
                     </a>
                     <!-- <a routerLink="/db-post-job" class="btn style-four">
                         Post A Job
@@ -531,7 +531,7 @@
 <div class="responsive-navbar offcanvas offcanvas-end border-0 transition" [class.show]="classApplied">
     <div class="offcanvas-header">
         <a routerLink="/" class="logo d-inline-block">
-            <img src="img/logo-white.svg" alt="Logo" class="logo">
+            <img src="img/web-logo.png" alt="Logo" class="logo">
         </a>
         <button type="button" (click)="toggleClass()"
             class="close-btn bg-transparent transition position-relative lh-1 p-0 border-0">
@@ -874,24 +874,27 @@
                 </div>
             </div>
         </div> -->
-        <div class="other-options d-flex align-items-center"
-            [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}">
-            <a routerLink="/candidate-login" class="link style-four fw-medium">
-                Login 3
+        <div class="other-options d-flex flex-column align-items-center">
+            <a routerLink="/employer-login" class="link style-four fw-medium">
+                Employer Login
             </a>
+            <a routerLink="/candidate-login" class="link style-four fw-medium">
+                Candidate Login
+            </a>
+
             <!-- <a routerLink="/register" class="btn style-four">
                 Register Now
             </a> -->
         </div>
-        <div class="other-options d-flex align-items-center"
+        <!-- <div class="other-options d-flex align-items-center"
             *ngIf="router.url === '/index-2' || router.url === '/index-3'">
             <a routerLink="/candidate-login" class="link style-three fw-medium ms-0">
                 Login 4
             </a>
-            <!-- <a routerLink="/db-post-job" class="btn style-four">
+            <a routerLink="/db-post-job" class="btn style-four">
                 Post A Job
-            </a> -->
-        </div>
+            </a>
+        </div> -->
     </div>
 </div>
 <div class="offcanvas-backdrop fade" [class.show]="classApplied"></div>

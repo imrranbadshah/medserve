@@ -16,6 +16,7 @@
         .navbar-brand {
             position: relative;
             top: -1px;
+            width: 10rem;
         }
 
         .navbar-toggler {
@@ -108,7 +109,7 @@
                     padding: 15px 20px 15px 25px;
                     transition: var(--transition);
                     transform-style: preserve-3d;
-                    background-color: var(--whiteColor);
+                    background-color: var(--primaryColor);
                     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
 
                     .nav-item {
@@ -140,7 +141,7 @@
                                     font: {
                                         size: 16px;
                                         weight: 300;
-                                        family: remixicon !important;
+                                        // family: remixicon !important;
                                     }
 
                                     ;
@@ -535,15 +536,15 @@
 
 // Responsive Navbar
 .responsive-navbar {
-    background: var(--darkColor);
+    background: var(--whiteColor);
 
     .offcanvas-header {
         padding: 25px;
         justify-content: space-between;
-        background-color: rgba(255, 255, 255, 0.05);
+        background-color: rgb(255, 255, 255);
 
         .close-btn {
-            color: var(--whiteColor);
+            color: var(--darkColor);
             font-size: 25px;
             cursor: pointer;
 
@@ -825,7 +826,14 @@
                 margin-top: 20px;
 
                 .link {
-                    margin-right: 15px;
+                    margin-right: 0;
+                    color: var(--darkColor) !important;
+                    padding: 5%;
+                    text-align: left;
+                    display: inline-block;
+                    width: 100%;
+                    border-bottom: 1px solid #e1e1e1;
+                    font-weight: 700 !important;
                 }
             }
         }
@@ -1188,4 +1196,12 @@
 
 .logout {
     color: red;
+}
+
+.dropdown-menu {
+    background: var(--primaryColor);
+
+    * {
+        color: var(--whiteColor);
+    }
 }

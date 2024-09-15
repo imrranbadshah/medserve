@@ -48,7 +48,7 @@
         </div>
         <div class="form-group col-4">
             <label>{{'personalForm.dateOfBirth' | translate}} <sup>*</sup></label>
-            <div class="input-group dateTime mb-3">
+            <div class="input-group dateTime ">
                 <input type="text" class="form-control" formControlName="dateOfBirth"
                     placeholder="{{'personalForm.enteryourDateofBirth' | translate}}" readonly />
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
@@ -75,12 +75,12 @@
 
         <div class="input-group form-group col-6">
             <label>{{'personalForm.PhoneNumber' | translate}} <sup>*</sup></label>
-            <div class="d-flex input-group mb-3">
-                <input class="form-control noBorderInput flex-02" placeholder="{{'personalForm.eg91' | translate}}"
+            <div class="d-flex input-group">
+                <input class="form-control noBorderInput flex-02 w25" placeholder="{{'personalForm.eg91' | translate}}"
                     formControlName="countryCode" [ngbTypeahead]="search"
                     (focus)="focus$.next($any($event).target.value)" (click)="click$.next($any($event).target.value)" />
 
-                <input class="form-control flex-1 noBorderInput"
+                <input class="form-control flex-1 noBorderInput w75"
                     placeholder="{{'personalForm.enteryourphonenumber' | translate}}" formControlName="phoneNumber" />
             </div>
             @if(getControl("countryCode").touched && getControl("countryCode").errors){
@@ -136,7 +136,7 @@
 
         <div class="form-group col-10">
             <label>{{'personalForm.stateCity' | translate}} <sup>*</sup></label>
-            <div class="d-flex input-group dataListInputs mb-3">
+            <div class="d-flex input-group dataListInputs ">
                 <input class="form-control noBorderInput"
                     placeholder="{{'personalForm.enteryourstateorcity' | translate}}" formControlName="stateCity"
                     [ngbTypeahead]="searchCities" (selectItem)="onCitySelect($event)">
@@ -200,7 +200,7 @@
         </div>
         <div class="form-group col-13">
             <label>{{'personalForm.issueDate' | translate}} <sup>*</sup></label>
-            <div class="input-group dateTime mb-3">
+            <div class="input-group dateTime ">
                 <input type="text" class="form-control" formControlName="issueDate"
                     placeholder="{{'personalForm.enterissueDate' | translate}}" readonly />
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
@@ -219,7 +219,7 @@
         </div>
         <div class="form-group col-14">
             <label>{{'personalForm.expiryDate' | translate}} <sup>*</sup></label>
-            <div class="input-group dateTime mb-3">
+            <div class="input-group dateTime ">
                 <input type="text" class="form-control" formControlName="expiryDate"
                     placeholder="{{'personalForm.enterexpirydate' | translate}} " readonly />
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
