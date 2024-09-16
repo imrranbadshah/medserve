@@ -1,0 +1,43 @@
+<div class="card transition bg-white text-center position-relative mb-4">
+    <div class="d-flex card-head-wrapper"></div>
+    <div class="position-relative card-content">
+        <div class="card-content-1">
+            <div class="exp">
+                <label class="fs-10 rounded-circle flex-column justify-content-center align-items-center">
+                    <span class="fs-16">{{candidate.experience}}</span>
+                    Yrs Exp
+                </label>
+            </div>
+            <div class="bookmark">
+                <button
+                    class="add-to-bookmark border-0 d-flex flex-column justify-content-center align-items-center rounded-circle transition">
+                    <img src="img/icons/bookmark.svg" alt="Bookmark Icon" class="transition">
+                </button>
+            </div>
+            <div class="position-absolute profilePic">
+                <img src="img/candidates/candidate-7.png" alt="Candidate">
+            </div>
+        </div>
+        <div class="card-content-2">
+            <div class="basic-info mb-3">
+                <p class="mb-2">{{candidate.name}}</p>
+                <p class="mb-2 fs-14">{{candidate.jobTitle}}</p>
+                <p class="mb-2 fs-12">{{candidate.location}}</p>
+            </div>
+            <div class="d-flex job-info  mb-3">
+                @for(skill of candidate.skills;track skill){
+                <span class="fs-8 d-flex justify-content-center align-items-center" title="{{skill}}">{{skill |
+                    truncate:18}}</span>
+                }
+            </div>
+            <div class="buttonSection">
+                <button type="button" class="btn btn-rounded" [ngClass]="{'active' : candidate.isSelected}"
+                    (click)="addToSelectedList(candidate)">
+                    <img [src]="candidate.isSelected ? 'img/icons/round-check.svg' : 'img/icons/send.svg'"
+                        alt="selection icon" class="transition iconType">
+                    <label>{{candidate.isSelected ? 'Selected' : 'Hire me !'}}</label>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,26 +10,33 @@
         height: 65px;
         background-color: var(--whiteColor);
     }
+
     .db-counter-text {
         text-align: end;
-        
+
         span {
-            font-weight: 500;    
+            font-weight: 500;
         }
+
         h3 {
             line-height: 24px;
             margin: 10px 0 0;
+
             font: {
                 size: 25px;
                 weight: 800;
-            };
+            }
+
+            ;
         }
     }
 }
+
 .db-content-box {
     background-color: #F3F4F4;
     padding: 30px;
 }
+
 .job-card {
     border: 1px solid #F3F4F4;
 
@@ -38,34 +45,34 @@
             width: 35px !important;
             height: 35px !important;
             margin-left: 10px !important;
-    
+
             i {
                 position: relative;
                 font-size: 17px;
                 top: 1px;
             }
+
             &:hover {
                 color: var(--whiteColor);
             }
         }
     }
 }
-.candidate-card {
-    border: 1px solid #F3F4F4;
-}
+
 
 /* Max width 767px */
 @media only screen and (max-width: 767px) {
 
     .db-counter-card {
         padding: 20px;
-    
+
         .db-counter-text {
             h3 {
                 margin-top: 5px;
             }
         }
     }
+
     .db-content-box {
         padding: 20px;
     }
@@ -78,6 +85,7 @@
     .db-counter-card {
         padding: 25px;
     }
+
     .db-content-box {
         padding: 25px;
     }
@@ -101,6 +109,7 @@
             width: 78px;
             height: 78px;
         }
+
         .db-counter-text {
             h3 {
                 font-size: 34px;
@@ -119,3 +128,50 @@
 
 /* Min width 1920px */
 @media only screen and (min-width: 1920px) {}
+
+
+.selectionCard {
+    background: var(--primaryColor);
+    width: 100%;
+    z-index: 999;
+    position: sticky;
+    bottom: 0;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+
+    .card-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        padding: 0 2%;
+
+        button {
+            height: 40px;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-block: 3%;
+        }
+    }
+}
+
+.iconSearch {
+    .input-group-text {
+        height: 100%;
+        background: white;
+        border-radius: 0;
+        border-right: 0;
+    }
+
+    input {
+        border-left: 0;
+    }
+}
+
+.searchRow {
+    z-index: 100;
+    width: 100%;
+    position: sticky;
+    top: 10%;
+    right: 0;
+    margin-bottom: 5%;
+}

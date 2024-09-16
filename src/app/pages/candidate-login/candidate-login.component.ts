@@ -69,6 +69,7 @@ export class CandidateLoginComponent {
 
   verifyOTP(val: string) {
     console.log(val);
+    this.router.navigateByUrl("/employers-dashboard")
   }
 
 }

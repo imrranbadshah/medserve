@@ -1,0 +1,10 @@
+.card {
+    background: var(--primaryColor);
+    color: white;
+}
+
+thead>tr {
+    th {
+        text-transform: capitalize;
+    }
+}

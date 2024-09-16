@@ -97,7 +97,7 @@ export class CdPersonalComponent implements OnInit {
    * @param text$ 
    * @returns 
    */
-  search = (text$: Observable<string>) => {
+  searchPhCode = (text$: Observable<string>) => {
     const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
     const inputFocus$ = this.focus$;
 

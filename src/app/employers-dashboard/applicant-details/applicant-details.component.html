@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                Selected Candidates
+            </div>
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">name</th>
+                    <th scope="col">jobTitle</th>
+                    <th scope="col">location</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(candidate of selectionList;track candidate.id;let i = $index){
+                <tr>
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{candidate.name}}</td>
+                    <td>{{candidate.jobTitle}}</td>
+                    <td>{{candidate.location}}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

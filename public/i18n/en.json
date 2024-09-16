@@ -7,7 +7,8 @@
         "minimumlength ": "Minimum length ",
         "invalidformat": "Invalid format",
         "required": "required",
-        "SaveSubmit": "Save & Submit"
+        "SaveSubmit": "Save & Submit",
+        "cancel": "cancel"
     },
     "personalForm": {
         "yourFirstName": "Your First Name",
@@ -83,5 +84,21 @@
         "degreeCertificateDesc": "Please upload your color-scanned copy of your Degree certificate",
         "nursingCertificate": "Please upload your Nursing certificate",
         "nursingCertificateDesc": "Please upload your color-scanned copy of your Nursing certificate"
+    },
+    "jobPosting": {
+        "jobTitle": "Job Title",
+        "jobTitlePlaceholder": "Enter job title",
+        "speciality": "Speciality",
+        "specialityPlaceholder": "Enter Speciality",
+        "typeOfJob": "Type Of Job",
+        "typeOfJobPlaceholder": "Select type of job",
+        "location": "Location",
+        "locationPlaceholder": "Select job location",
+        "expYears": "Preferred Years of Experience",
+        "expYearsPlaceholder": "Select preferred years of experience",
+        "employer": "Employer",
+        "employerPlaceholder": "Select Employer",
+        "jobDescription": "Job Description",
+        "jobDescPlaceholder": "Write complete job description"
     }
 }

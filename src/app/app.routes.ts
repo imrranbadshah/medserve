@@ -60,6 +60,7 @@ import { CdExperiencesComponent } from './candidates-dashboard/cd-experiences/cd
 import { CdDocumentsComponent } from './candidates-dashboard/cd-documents/cd-documents.component';
 import { CandidateLoginComponent } from './pages/candidate-login/candidate-login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ApplicantDetailsComponent } from './employers-dashboard/applicant-details/applicant-details.component';
 
 export const routes: Routes = [
     // { path: 'home', component: HomeDemoOneComponent },
@@ -107,13 +108,15 @@ export const routes: Routes = [
         path: 'employers-dashboard',
         component: EmployersDashboardComponent,
         children: [
-            { path: '', component: EdDashboardComponent },
+            { path: '', redirectTo: 'post-a-job', pathMatch: 'full' },
+            // { path: 'employers-dashboard', component: EdDashboardComponent },
             { path: 'company-profile', component: EdCompanyProfileComponent },
-            { path: 'jobs', component: EdJobsComponent },
+            // { path: 'jobs', component: EdJobsComponent },
             { path: 'applicants', component: EdApplicantsComponent },
-            { path: 'post-a-job', component: EdPostAJobComponent },
-            { path: 'saved-candidates', component: EdSavedCandidatesComponent },
-            { path: 'account-settings', component: EdAccountSettingsComponent },
+            { path: 'applicants-details', component: ApplicantDetailsComponent },
+            // { path: 'post-a-job', component: EdPostAJobComponent },
+            // { path: 'saved-candidates', component: EdSavedCandidatesComponent },
+            // { path: 'account-settings', component: EdAccountSettingsComponent },
         ]
     },
     {
@@ -128,7 +131,7 @@ export const routes: Routes = [
             // { path: 'shortlist-jobs', component: CdShortlistJobsComponent },
             // { path: 'saved-candidates', component: CdSavedCandidatesComponent },
             // { path: 'account-settings', component: CdAccountSettingsComponent },
-            { path: '', redirectTo: 'candidates-dashboard/personal-forms', pathMatch: 'full' },
+            { path: '', redirectTo: 'personal-forms', pathMatch: 'full' },
             { path: 'personal-forms', component: CdPersonalComponent, canActivate: [AuthGuard], },
             { path: 'academics-forms', component: CdAcademicsComponent, canActivate: [AuthGuard], },
             { path: 'experience-forms', component: CdExperiencesComponent, canActivate: [AuthGuard], },
