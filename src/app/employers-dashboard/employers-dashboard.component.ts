@@ -13,4 +13,5 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     templateUrl: './employers-dashboard.component.html',
     styleUrl: './employers-dashboard.component.scss'
 })
-export class EmployersDashboardComponent {}
+export class EmployersDashboardComponent {
+}

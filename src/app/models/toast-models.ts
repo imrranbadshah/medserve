@@ -4,3 +4,9 @@ export interface Toast {
     type: 'success' | 'error' | 'warning';
     delay?: number;
 }
+
+export interface passDataType {
+    data: any;
+    type: string;
+
+}

@@ -6,7 +6,7 @@
             </div>
         </div>
         <table class="table">
-            <thead class="thead-dark">
+            <thead class="thead">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">name</th>
@@ -25,5 +25,9 @@
                 }
             </tbody>
         </table>
+    </div>
+    <div class="buttonSection d-flex justify-content-end">
+        <button class="btn btn-light btn-light btn-sm mx-2" (click)="back()">← back</button>
+        <button class="btn btn-warning btn-sm mx-2" (click)="confirmSelections()">Submit to hire →</button>
     </div>
 </div>

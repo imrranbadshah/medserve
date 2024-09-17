@@ -15,7 +15,6 @@ export class ApplicantCardComponent {
 
   addToSelectedList(data: any) {
     data.isSelected = !data.isSelected;
-
     this.selectedCandidate.emit(data);
   }
 }

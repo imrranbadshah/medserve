@@ -1,46 +1,81 @@
 .db-sidebar {
-    background-color: #F3F4F4;
     position: sticky;
-    padding: 30px;
     z-index: 2;
     top: 125px;
     left: 0;
-    
-    .db-user-option {
-        margin-bottom: 30px;
 
-        span {
-            color: var(--titleColor);
-            margin-left: 15px;
+    .sidebar-content {
+        background-color: #F3F4F4;
+        padding: 24px;
+
+        .db-user-option {
+            margin-bottom: 30px;
+
+            span {
+                color: var(--titleColor);
+                margin-left: 15px;
+            }
+        }
+
+        .db-menu {
+            li {
+                margin-bottom: 7px;
+
+                a {
+                    display: block;
+                    font-weight: 500;
+                    position: relative;
+                    border-radius: 5px;
+                    padding: 11px 25px 11px 47px;
+                    background-color: transparent;
+
+                    img,
+                    i {
+                        top: 50%;
+                        left: 20px;
+                        font-size: 18px;
+                        position: absolute;
+                        transform: translateY(-50%);
+                    }
+
+                    &.active,
+                    &:hover {
+                        background-color: var(--primaryColor);
+                        color: var(--whiteColor);
+                    }
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
         }
     }
-    .db-menu {
-        li {
-            margin-bottom: 7px;
-            
-            a {
-                display: block;
-                font-weight: 500;
-                position: relative;
-                border-radius: 5px;
-                padding: 11px 25px 11px 47px;
-                background-color: transparent;
+}
 
-                img, i {
-                    top: 50%;
-                    left: 20px;
-                    font-size: 18px;
-                    position: absolute;
-                    transform: translateY(-50%);
-                }
-                &.active, &:hover {
-                    background-color: var(--primaryColor);
-                    color: var(--whiteColor);
-                }
-            }
-            &:last-child {
-                margin-bottom: 0;
-            }
+.selectionCard {
+    background: #f3f4f4;
+    width: 100%;
+    z-index: 999;
+    position: sticky;
+    bottom: 0;
+    border-radius: 0;
+    padding: 2%;
+    // box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        // color: white;
+        padding: 0 2%;
+
+        button {
+            height: 40px;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-block: 3%;
         }
     }
 }
@@ -53,17 +88,20 @@
         position: relative;
         padding: 20px;
         top: 0;
-        
+
         .db-user-option {
             margin-bottom: 20px;
         }
+
         .db-menu {
             li {
                 a {
                     padding: {
                         top: 10px;
                         bottom: 10px;
-                    };
+                    }
+
+                    ;
                 }
             }
         }

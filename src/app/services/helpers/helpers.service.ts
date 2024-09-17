@@ -1,16 +1,17 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { decrypt, encrypt } from '../sharedFunctions/sharedFunctions';
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
-import { Toast } from '../../models/toast-models';
+import { passDataType, Toast } from '../../models/toast-models';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelpersService {
-
+  searchApplicant = new Subject<string>();
+  passedData = new Subject<any>();
   authSubscription!: Subscription;
   countryList$: BehaviorSubject<any> = new BehaviorSubject(null);
   // private userSubject = new BehaviorSubject<any>(null);
@@ -169,4 +170,20 @@ export class HelpersService {
     // this.isUserLoggedIn.asObservable.
   }
 
+
+  startSearchApplicant(searchText: string) {
+    this.searchApplicant.next(searchText);
+  }
+
+  getSearchApplicantText() {
+    return this.searchApplicant.asObservable();
+  }
+
+  passData(data: passDataType) {
+    this.passedData.next(data);
+  }
+
+  getPassedData(): Observable<passDataType> {
+    return this.passedData.asObservable();
+  }
 }

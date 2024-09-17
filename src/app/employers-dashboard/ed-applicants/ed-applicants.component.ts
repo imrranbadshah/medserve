@@ -1,8 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ApplicantCardComponent } from '../../components/applicant-card/applicant-card.component';
 import { FilterPipe } from '../../pipes/filter/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { HelpersService } from '../../services/helpers/helpers.service';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { EventEmitter } from 'stream';
 
 @Component({
     selector: 'app-ed-applicants',
@@ -11,8 +14,7 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './ed-applicants.component.html',
     styleUrl: './ed-applicants.component.scss'
 })
-export class EdApplicantsComponent {
-
+export class EdApplicantsComponent implements OnInit {
     applicantData = [
         {
             "id": 1,
@@ -89,8 +91,11 @@ export class EdApplicantsComponent {
     ]
     candidateSelected: any = [];
     searchText: any;
-    constructor(private router: Router) {
+    constructor(private router: Router, private helper: HelpersService) {
 
+    }
+    ngOnInit(): void {
+        this.helper.getSearchApplicantText().subscribe((resp: string) => this.searchText = resp);
     }
 
 
@@ -98,15 +103,14 @@ export class EdApplicantsComponent {
      * @description used to add and remove candidates on clikc
      */
     selectedCandidate(selectedCandidate: any) {
-        // this.candidateSelected.push(selectedCandidate);
-        const index = this.candidateSelected.indexOf(selectedCandidate.id);
+        const index = this.candidateSelected.findIndex((candidate: any) => candidate.id === selectedCandidate.id);;
         if (index === -1) {
             this.candidateSelected.push(selectedCandidate);
         } else {
             this.candidateSelected.splice(index, 1);
         }
-
         console.log(this.candidateSelected);
+        this.helper.passData({ data: this.candidateSelected, type: "cadidatesSelections" });
     }
 
     clearSelectionList() {
@@ -117,4 +121,6 @@ export class EdApplicantsComponent {
     checkoutOutCandidates() {
         this.router.navigate(["/employers-dashboard/applicants-details"], { queryParams: { data: JSON.stringify(this.candidateSelected) } });
     }
+
+
 }

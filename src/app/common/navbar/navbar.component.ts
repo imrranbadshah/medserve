@@ -2,16 +2,18 @@ import { NgClass, NgIf } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { HelpersService } from '../../services/helpers/helpers.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [RouterLink, NgClass, RouterLinkActive, NgIf],
+    imports: [RouterLink, NgClass, RouterLinkActive, NgIf, FormsModule],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
     isUserDropdownMenus: boolean = false;
+    searchText!: string;
     userDropdownOptions: any = [
         {
             id: 1,
@@ -26,6 +28,7 @@ export class NavbarComponent implements OnInit {
     ]
     isLogged!: boolean;
     userObject: any;
+    showSearch: boolean = false;
     constructor(
         public router: Router,
         public helper: HelpersService
@@ -33,11 +36,21 @@ export class NavbarComponent implements OnInit {
 
     }
     ngOnInit(): void {
+
         this.helper.getUserDetails().subscribe((resp: any) => {
             this.isLogged = false;
             if (resp && Object.keys(resp).length > 0) {
                 this.isLogged = true;
                 this.userObject = resp;
+            }
+        })
+        this.helper.getPassedData().subscribe((resp: any) => {
+            if (resp && resp.type == "search") {
+                if (this.router.url == "/employers-dashboard/applicants") {
+                    this.showSearch = true;
+                } else {
+                    this.showSearch = false;
+                }
             }
         })
     }
@@ -108,5 +121,10 @@ export class NavbarComponent implements OnInit {
 
     logout() {
         this.helper.logout();
+    }
+
+    onSearchText(e: any) {
+        console.log(e.target.value);
+        this.helper.startSearchApplicant(e.target.value);
     }
 }

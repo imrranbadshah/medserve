@@ -6,24 +6,54 @@
     <div class="col-xs-12 col-sm-12 col-md-6 bgImage"> </div>
     <div
         class="col-xs-12 col-sm-12 col-md-6 formContainer d-flex flex-column align-items-center justify-content-center">
-        @if(isCandidateLogin){
+        @if(isCandidateLogin == "candidate"){
         <div class="text-center">
             <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin>
-            <button type="button" class="btn btn-link routeButton white" routerLink="/employer-login">Company
-                Login</button>
+            <!-- <button type="button" class="btn btn-link routeButton white" routerLink="/employer-login">Employer
+                Login</button> -->
         </div>
-        } @else {
+        } @else if(isCandidateLogin == "employer"){
         <div class="companyLogin d-flex flex-column align-items-center justify-content-center">
             @if(!isOTPSent){
             <div class="form-group">
-                <label>Your Company Email</label>
-                <input type="text" placeholder="Enter your Company email" [(ngModel)]="companyEmail">
+                <label>Your Email</label>
+                <input type="text" placeholder="Enter your email" [(ngModel)]="companyEmail">
             </div>
             <div class="flex text-center mt-4">
                 <button class="btn style-four" type="button" (click)="onCompanyEmailSubmit()">Login</button>
             </div>
-            <button type="button" class="btn btn-link routeButton themeColor" routerLink="/">
-                Jobseeker Login
+            <button type="button" class="btn btn-link routeButton themeColor" (click)="showCompanyRegister()">
+                Employer Register
+            </button>
+            } @else {
+            <app-otp-layout [company-Email]="companyEmail" (otpVal)="verifyOTP($event)"></app-otp-layout>
+            }
+        </div>
+        }@else if(isCandidateLogin == "companyRegister"){
+        <div class="companyLogin d-flex flex-column align-items-center justify-content-center">
+            @if(!isOTPSent){
+            <div class="form-group">
+                <label>Company name</label>
+                <input type="text" placeholder="Enter company name" [(ngModel)]="companyEmail">
+            </div>
+            <div class="form-group mt-3">
+                <label>Contact name</label>
+                <input type="text" placeholder="Enter Employer name">
+            </div>
+            <div class="form-group mt-3">
+                <label>Mobile</label>
+                <input type="text" placeholder="Enter mobile number">
+            </div>
+            <div class="form-group mt-3">
+                <label>Email</label>
+                <input type="text" placeholder="Enter your company email">
+            </div>
+            <div class="form-group mt-3">
+                <label>Location</label>
+                <input type="text" placeholder="Enter your company locations">
+            </div>
+            <button class="btn style-four mt-3" type="button" (click)="showCompanyLogin()">
+                Register Employer
             </button>
 
             } @else {

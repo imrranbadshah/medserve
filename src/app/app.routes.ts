@@ -108,14 +108,14 @@ export const routes: Routes = [
         path: 'employers-dashboard',
         component: EmployersDashboardComponent,
         children: [
-            { path: '', redirectTo: 'post-a-job', pathMatch: 'full' },
+            { path: '', redirectTo: 'company-profile', pathMatch: 'full' },
             // { path: 'employers-dashboard', component: EdDashboardComponent },
             { path: 'company-profile', component: EdCompanyProfileComponent },
             // { path: 'jobs', component: EdJobsComponent },
             { path: 'applicants', component: EdApplicantsComponent },
             { path: 'applicants-details', component: ApplicantDetailsComponent },
-            // { path: 'post-a-job', component: EdPostAJobComponent },
-            // { path: 'saved-candidates', component: EdSavedCandidatesComponent },
+            { path: 'post-a-job', component: EdPostAJobComponent },
+            { path: 'saved-candidates', component: EdSavedCandidatesComponent },
             // { path: 'account-settings', component: EdAccountSettingsComponent },
         ]
     },

@@ -31,7 +31,7 @@ import { HelpersService } from '../../services/helpers/helpers.service';
 export class CandidateLoginComponent {
   companyEmail!: string;
   isOTPSent: boolean = false;
-  isCandidateLogin: boolean = false;
+  isCandidateLogin: string = "employer";
   constructor(
     private authService: SocialAuthService,
     private activatedRoute: ActivatedRoute,
@@ -43,9 +43,9 @@ export class CandidateLoginComponent {
         this.router.navigateByUrl("/");
       } else {
         if (this.activatedRoute?.snapshot?.routeConfig?.path?.includes("employer")) {
-          this.isCandidateLogin = false;
+          this.isCandidateLogin = "employer";
         } else {
-          this.isCandidateLogin = true;
+          this.isCandidateLogin = "candidate";
         }
       }
     })
@@ -72,4 +72,10 @@ export class CandidateLoginComponent {
     this.router.navigateByUrl("/employers-dashboard")
   }
 
+  showCompanyRegister() {
+    this.isCandidateLogin = "companyRegister";
+  }
+  showCompanyLogin() {
+    this.isCandidateLogin = "employer";
+  }
 }

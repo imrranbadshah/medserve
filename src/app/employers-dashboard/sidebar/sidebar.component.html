@@ -1,49 +1,51 @@
 <div class="db-sidebar transition">
-    <div class="db-user-option d-flex align-items-center">
-        <img src="img/dashbboard/user.png" alt="User Avatar" class="user-img">
-        <span class="fs-18 fw-bold">Patric Watson</span>
-    </div>
-    <ul class="db-menu list-unstyle">
-        <!-- <li>
+    <div class="sidebar-content">
+        <div class="db-user-option d-flex align-items-center">
+            <img src="img/dashbboard/user.png" alt="User Avatar" class="user-img">
+            <span class="fs-18 fw-bold">Patric Watson</span>
+        </div>
+        <ul class="db-menu list-unstyle">
+            <!-- <li>
             <a routerLink="/employers-dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <i class="ri-dashboard-line"></i>
                 Dashboard
             </a>
         </li> -->
-        <li>
-            <a routerLink="/employers-dashboard/company-profile" routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: true}">
-                <i class="ri-user-line"></i>
-                Company Profile
-            </a>
-        </li>
-        <!-- <li>
+            <li>
+                <a routerLink="/employers-dashboard/company-profile" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <i class="ri-user-line"></i>
+                    Company Profile
+                </a>
+            </li>
+            <!-- <li>
             <a routerLink="/employers-dashboard/jobs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <i class="ri-briefcase-line"></i>
                 Jobs
             </a>
         </li> -->
-        <li>
-            <a routerLink="/employers-dashboard/applicants" routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: true}">
-                <i class="ri-survey-line"></i>
-                Applicants
-            </a>
-        </li>
-        <li>
-            <a routerLink="/employers-dashboard/post-a-job" routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: true}">
-                <i class="ri-edit-box-line"></i>
-                Post A Job
-            </a>
-        </li>
-        <!-- <li>
-            <a routerLink="/employers-dashboard/saved-candidates" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <i class="ri-group-line"></i>
-                Saved Candidates
-            </a>
-        </li> -->
-        <!-- <li>
+            <li>
+                <a routerLink="/employers-dashboard/applicants" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <i class="ri-survey-line"></i>
+                    Applicants
+                </a>
+            </li>
+            <li>
+                <a routerLink="/employers-dashboard/post-a-job" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <i class="ri-edit-box-line"></i>
+                    Post A Job
+                </a>
+            </li>
+            <li>
+                <a routerLink="/employers-dashboard/saved-candidates" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <i class="ri-group-line"></i>
+                    Previous transactions
+                </a>
+            </li>
+            <!-- <li>
             <a routerLink="/employers-dashboard/account-settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <i class="ri-settings-2-line"></i>
                 Account Settings
@@ -55,5 +57,23 @@
                 Logout
             </a>
         </li> -->
-    </ul>
+        </ul>
+    </div>
+    @if(candidateSelected?.length > 0){
+    <div class="card selectionCard col-xl-12 col-lg-12  mt-1">
+        <div class="card-body">
+            <div>
+                {{candidateSelected?.length}} candidates selected
+            </div>
+            <div class="d-flex">
+                <!-- <button class="btn btn-light btn-link btn-sm white"
+                        (click)="clearSelectionList()">clear</button>
+                    <button class="btn btn-warning btn-sm"
+                        (click)="checkoutOutCandidates()">Checkout</button> -->
+                <button class="btn btn-light btn-link btn-sm">clear</button>
+                <button class="btn btn-warning btn-sm" (click)="checkoutOutCandidates()">Checkout</button>
+            </div>
+        </div>
+    </div>
+    }
 </div>

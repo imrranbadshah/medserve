@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HelpersService } from '../../services/helpers/helpers.service';
 
 @Component({
   selector: 'app-applicant-details',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ApplicantDetailsComponent implements OnInit {
   selectionList: any;
-  constructor(public params: ActivatedRoute) {
+  constructor(public params: ActivatedRoute, public router: Router, private helper: HelpersService) {
 
     this.params.queryParams.subscribe((resp: any) => {
       console.log(resp);
@@ -18,6 +19,17 @@ export class ApplicantDetailsComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+  }
 
+  back() {
+    this.router.navigate(["/employers-dashboard/applicants"]);
+  }
+
+  confirmSelections() {
+    console.log("confirm")
+    this.helper.show("Success", "Candidates Hiring Process successfull", "success");
+    setTimeout(() => {
+      this.back();
+    }, 3000);
   }
 }

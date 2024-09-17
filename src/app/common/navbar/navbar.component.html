@@ -2,14 +2,27 @@
 <div class="navbar-area style-one position-relative"
     [ngClass]="{'sticky': isSticky, 'style-two': router.url === '/index-2' || router.url === '/index-3'}">
     <nav class="navbar navbar-expand-lg bg_dark d-flex justify-content-between align-items-center">
-        <div class="container  py-3">
-            <a routerLink="/" class="navbar-brand">
+        <div class="container py-3 col-md-12">
+            <a routerLink="/" class="navbar-brand col-md-4">
                 <img src="img/web-logo.png" alt="Logo">
             </a>
-            <!-- <ul
-                class="category-menu list-unstyle d-none d-xl-block"
-                *ngIf="router.url === '/index-2'"
-            >
+
+            @if(showSearch){
+            <div class="searchRow col-md-9 d-none d-lg-block">
+                <div class="input-group iconSearch input-group-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text ">
+                            <img src="./img/icons/search-black.svg" />
+                        </span>
+                    </div>
+                    <input type="text" class="form-control border-none" placeholder="search candidates"
+                        aria-label="Small" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="searchText"
+                        (input)="onSearchText($event)">
+                </div>
+            </div>
+            }
+
+            <!-- <ul class="category-menu list-unstyle d-none d-xl-block">
                 <li>
                     <a href="javascript:void(0)" class="category-menu-title fw-medium">
                         <span class="d-none d-xxl-inline">
@@ -503,25 +516,24 @@
                         } -->
 
                     </div>
-                    @if(!isLogged){
+                    <!-- @if(!isLogged){
                     <div routerLink="/candidate-login" class="link style-four fw-medium">
-                        <!-- Desktop version -->
                         Login
                     </div>
-                    }
+                    } -->
                     <!-- <a routerLink="/register" class="btn style-four">
                         Register Now
                     </a> -->
                 </div>
-                <div class="other-options d-flex align-items-center justify-content-end"
+                <!-- <div class="other-options d-flex align-items-center justify-content-end"
                     *ngIf="router.url === '/index-2' || router.url === '/index-3'">
                     <a routerLink="/candidate-login" class="link style-three fw-medium ms-0">
                         Login
                     </a>
-                    <!-- <a routerLink="/db-post-job" class="btn style-four">
+                    <a routerLink="/db-post-job" class="btn style-four">
                         Post A Job
-                    </a> -->
-                </div>
+                    </a>
+                </div> -->
             </div>
         </div>
     </nav>

@@ -154,18 +154,7 @@
     }
 }
 
-.iconSearch {
-    .input-group-text {
-        height: 100%;
-        background: white;
-        border-radius: 0;
-        border-right: 0;
-    }
 
-    input {
-        border-left: 0;
-    }
-}
 
 .searchRow {
     z-index: 100;
@@ -174,4 +163,17 @@
     top: 10%;
     right: 0;
     margin-bottom: 5%;
+
+    .iconSearch {
+        .input-group-text {
+            height: 100%;
+            background: white;
+            border-radius: 0;
+            border-right: 0;
+        }
+
+        input {
+            border-left: 0;
+        }
+    }
 }

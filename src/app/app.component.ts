@@ -5,6 +5,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastComponent } from './common/toast/toast.component';
+import { HelpersService } from './services/helpers/helpers.service';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -24,7 +25,8 @@ export class AppComponent {
     constructor(
         private router: Router,
         private viewportScroller: ViewportScroller,
-        public translate: TranslateService
+        public translate: TranslateService,
+        private helper: HelpersService
     ) {
 
         this.translate.addLangs(['en', 'fr']);
@@ -36,6 +38,7 @@ export class AppComponent {
 
         this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd) {
+                this.helper.passData({ type: "search", data: '' });
                 // Scroll to the top after each navigation end
                 this.viewportScroller.scrollToPosition([0, 0]);
             }
