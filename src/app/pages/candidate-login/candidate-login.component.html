@@ -2,27 +2,40 @@
 
 <app-navbar />
 
-<div class="candidateLogin row">
-    <div class="col-xs-12 col-sm-12 col-md-6 bgImage"> </div>
+<div class="candidateLogin row" [ngClass]="getDynamicHeight()">
+    <div class=" col-xs-12 col-sm-12 col-md-6 bgImage"> </div>
     <div
         class="col-xs-12 col-sm-12 col-md-6 formContainer d-flex flex-column align-items-center justify-content-center">
         @if(isCandidateLogin == "candidate"){
-        <div class="text-center">
-            <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin>
-            <!-- <button type="button" class="btn btn-link routeButton white" routerLink="/employer-login">Employer
-                Login</button> -->
+        <div class="companyLogin d-flex flex-column align-items-center justify-content-center">
+            <div class="text-start">
+                <div class="title">Candidate Login</div>
+            </div>
+            <div class="form-group">
+                <!-- <asl-google-signin-button type='standard' size='medium'>
+                </asl-google-signin-button> -->
+
+                <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin>
+            </div>
+            <!-- <div class="title">Candidate Login</div>
+            <div class="text-center">
+                <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin>
+                <button type="button" class="btn btn-link routeButton white" routerLink="/employer-login">Employer
+                Login</button>
+            </div> -->
         </div>
         } @else if(isCandidateLogin == "employer"){
         <div class="companyLogin d-flex flex-column align-items-center justify-content-center">
             @if(!isOTPSent){
             <div class="form-group">
-                <label>Your Email</label>
+                <label>Your Employer Email</label>
                 <input type="text" placeholder="Enter your email" [(ngModel)]="companyEmail">
             </div>
             <div class="flex text-center mt-4">
                 <button class="btn style-four" type="button" (click)="onCompanyEmailSubmit()">Login</button>
             </div>
-            <button type="button" class="btn btn-link routeButton themeColor" (click)="showCompanyRegister()">
+            <button type="button" class="btn btn-link routeButton themeColor"
+                (click)="showCompanyRegister('companyRegister')">
                 Employer Register
             </button>
             } @else {
@@ -34,26 +47,29 @@
             @if(!isOTPSent){
             <div class="form-group">
                 <label>Company name</label>
-                <input type="text" placeholder="Enter company name" [(ngModel)]="companyEmail">
+                <input type="text" placeholder="Enter company name" formControlName="companyName">
             </div>
             <div class="form-group mt-3">
                 <label>Contact name</label>
-                <input type="text" placeholder="Enter Employer name">
+                <input type="text" placeholder="Enter Contact name" formcontrolName="contactName">
             </div>
             <div class="form-group mt-3">
-                <label>Mobile</label>
-                <input type="text" placeholder="Enter mobile number">
+                <label>Mobile number</label>
+                <input type="text" placeholder="Enter mobile number" formcontrolName="mobileNumber">
             </div>
             <div class="form-group mt-3">
                 <label>Email</label>
-                <input type="text" placeholder="Enter your company email">
+                <input type="text" placeholder="Enter your company email" formcontrolName="email">
             </div>
             <div class="form-group mt-3">
                 <label>Location</label>
-                <input type="text" placeholder="Enter your company locations">
+                <input type="text" placeholder="Enter your company locations" formcontrolName="location">
             </div>
             <button class="btn style-four mt-3" type="button" (click)="showCompanyLogin()">
                 Register Employer
+            </button>
+            <button type="button" class="btn btn-link routeButton themeColor" (click)="showCompanyRegister('employer')">
+                Employer Login
             </button>
 
             } @else {
@@ -62,7 +78,6 @@
         </div>
         }
     </div>
-
     <!-- <a href="https://google.com" class="login-btn d-block w-100 round-4 transition" target="_blank">
                 <img src="img/icons/google.png" alt="Facebook"> Continue With <strong>Google</strong>
             </a> -->

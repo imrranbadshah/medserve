@@ -1,9 +1,10 @@
 .login-btn {
-    background: white;
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    align-content: center;
-    vertical-align: middle;
-    font-size: 1rem;
+    background        : white;
+    // display        : flex !important;
+    align-items       : center;
+    justify-content   : space-between;
+    align-content     : center;
+    vertical-align    : middle;
+    font-size         : 1rem;
+    box-shadow        : 1px 1px 5px 0px #bebebe;
 }

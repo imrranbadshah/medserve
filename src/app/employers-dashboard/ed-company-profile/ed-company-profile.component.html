@@ -13,154 +13,171 @@
         <input id="upload" class="file-upload__input" type="file" name="file-upload">
     </div>
 </div> -->
-<h3 class="db-content-title fs-20 fw-bold mb-22">
-    Company Profile & Information
-</h3>
-<form [formGroup]="companyFormGroup" (ngSubmit)="onSubmit()">
-    <div class="form-row companyForm">
-        <div class="form-group col-1">
-            <label for="companyName">Company Name</label>
-            <input type="text" class="form-control" id="companyName" formControlName="companyName"
-                placeholder="Enter company name">
-            @if(getControl("companyName").touched && getControl("companyName").errors){
-            <div class="error-messages">
-                @if (getControl("companyName").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
-                }
-            </div>
+<div class="db-content-title fs-20 fw-bold mb-22 d-flex justify-content-between">
+    <label>Company Profile & Information</label>
+    <!-- <button class="btn">
+        <img src="./img/icons/more.png" />
+    </button> -->
+</div>
+<form [formGroup]="companyParentFormGroup" (ngSubmit)="onSubmit()">
+    <div formArrayName="companyFormGroup">
+        <div class="form-row companyForm border p-4 position-relative"
+            *ngFor="let companyForm of companyFormGrp.controls; let i = index" [formGroupName]="i">
+            @if(i != 0){
+            <button class="btn btn-link removeForm position-absolute"
+                (click)="removeCompanyFormGroup(i,'companyFormGroup')">
+                <img src="./img/icons/minus.png" />
+            </button>
             }
-        </div>
-
-        <div class="form-group col-2">
-            <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" formControlName="address" placeholder="Enter address">
-            @if(getControl("address").touched && getControl("address").errors){
-            <div class="error-messages">
-                @if (getControl("address").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
+            <div class="form-group col-1">
+                <label for="companyName">Company Name</label>
+                <input type="text" class="form-control" id="companyName" formControlName="companyName"
+                    placeholder="Enter company name">
+                @if(getControl(i,"companyName").touched && getControl(i,"companyName").errors){
+                <div class="error-messages">
+                    @if (getControl(i,"companyName").errors?.['required']) {
+                    <small class="error">{{'common.fieldrequired' | translate}}</small>
+                    }
+                </div>
                 }
             </div>
-            }
-        </div>
 
-        <div class="form-group col-3">
-            <label for="yearFounded">Year Founded</label>
-            <input type="text" class="form-control" id="yearFounded" formControlName="yearFounded"
-                placeholder="Enter year founded">
-        </div>
-
-        <div class="form-group col-4">
-            <label for="companyWebsite">Company Website</label>
-            <input type="text" class="form-control" id="companyWebsite" formControlName="companyWebsite"
-                placeholder="Enter company website">
-            @if(getControl("companyWebsite").touched && getControl("companyWebsite").errors){
-            <div class="error-messages">
-                @if (getControl("companyWebsite").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
+            <div class="form-group col-2">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" formControlName="address"
+                    placeholder="Enter address">
+                @if(getControl(i,"address").touched && getControl(i,"address").errors){
+                <div class="error-messages">
+                    @if (getControl(i,"address").errors?.['required']) {
+                    <small class="error">{{'common.fieldrequired' | translate}}</small>
+                    }
+                </div>
                 }
             </div>
-            }
-        </div>
 
-        <div class="form-group col-5">
-            <label for="emailAddress">Email Address</label>
-            <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress"
-                placeholder="Enter email address">
+            <div class="form-group col-3">
+                <label for="yearFounded">Year Founded</label>
+                <input type="text" class="form-control" id="yearFounded" formControlName="yearFounded"
+                    placeholder="Enter year founded">
+            </div>
 
-            @if(getControl("emailAddress").touched && getControl("emailAddress").errors){
-            <div class="error-messages">
-                @if (getControl("emailAddress").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
+            <div class="form-group col-4">
+                <label for="companyWebsite">Company Website</label>
+                <input type="text" class="form-control" id="companyWebsite" formControlName="companyWebsite"
+                    placeholder="Enter company website">
+                @if(getControl(i,"companyWebsite").touched && getControl(i,"companyWebsite").errors){
+                <div class="error-messages">
+                    @if (getControl(i,"companyWebsite").errors?.['required']) {
+                    <small class="error">{{'common.fieldrequired' | translate}}</small>
+                    }
+                </div>
                 }
             </div>
-            }
-        </div>
 
-        <div class="input-group form-group col-6">
-            <label>{{'personalForm.PhoneNumber' | translate}} <sup>*</sup></label>
-            <div class="d-flex input-group row">
-                <input class="form-control noBorderInput w25" placeholder="{{'personalForm.eg91' | translate}}"
-                    formControlName="countryCode" [ngbTypeahead]="searchPhCode"
-                    (focus)="focus$.next($any($event).target.value)" (click)="click$.next($any($event).target.value)" />
+            <div class="form-group col-5">
+                <label for="emailAddress">Email Address</label>
+                <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress"
+                    placeholder="Enter email address">
 
-                <input class="form-control flex-1 noBorderInput w75"
-                    placeholder="{{'personalForm.enteryourphonenumber' | translate}}" formControlName="phoneNumber" />
-            </div>
-            @if((getControl("phoneNumber").touched && getControl("phoneNumber").errors) ||
-            (getControl("countryCode").touched && getControl("countryCode").errors)){
-            <div class="error-messages">
-                @if (getControl("phoneNumber").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
-                }
-                @if (getControl("phoneNumber").errors?.['minLength']) {
-                <small class="error">{{'common.minimumlength' | translate}} {{
-                    getControl("phoneNumber").errors?.['minLength'].requiredLength }} {{'common.required' |
-                    translate}}.</small>
+                @if(getControl(i,"emailAddress").touched && getControl(i,"emailAddress").errors){
+                <div class="error-messages">
+                    @if (getControl(i,"emailAddress").errors?.['required']) {
+                    <small class="error">{{'common.fieldrequired' | translate}}</small>
+                    }
+                </div>
                 }
             </div>
-            }
-        </div>
-        <div class="form-group col-7">
-            <label for="aboutCompany">About Company</label>
-            <textarea class="form-control" id="aboutCompany" rows="3" formControlName="aboutCompany"
-                placeholder="Enter about company"></textarea>
-            @if(getControl("aboutCompany").touched && getControl("aboutCompany").errors){
-            <div class="error-messages">
-                @if (getControl("aboutCompany").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
+
+            <div class="input-group form-group col-6">
+                <label>{{'personalForm.PhoneNumber' | translate}} <sup>*</sup></label>
+                <div class="d-flex input-group row">
+                    <input class="form-control noBorderInput w25" placeholder="{{'personalForm.eg91' | translate}}"
+                        formControlName="countryCode" [ngbTypeahead]="searchPhCode"
+                        (focus)="focus$.next($any($event).target.value)"
+                        (click)="click$.next($any($event).target.value)" />
+
+                    <input class="form-control flex-1 noBorderInput w75"
+                        placeholder="{{'personalForm.enteryourphonenumber' | translate}}"
+                        formControlName="phoneNumber" />
+                </div>
+                @if((getControl(i,"phoneNumber").touched && getControl(i,"phoneNumber").errors) ||
+                (getControl(i,"countryCode").touched && getControl(i,"countryCode").errors)){
+                <div class="error-messages">
+                    @if (getControl(i,"phoneNumber").errors?.['required']) {
+                    <small class="error">{{'common.fieldrequired' | translate}}</small>
+                    }
+                    @if (getControl(i,"phoneNumber").errors?.['minLength']) {
+                    <small class="error">{{'common.minimumlength' | translate}} {{
+                        getControl(i,"phoneNumber").errors?.['minLength'].requiredLength }} {{'common.required' |
+                        translate}}.</small>
+                    }
+                </div>
                 }
             </div>
-            }
-        </div>
-
-        <div class="form-group  col-8">
-            <label for="organizationCode">Organization Code</label>
-            <input type="text" class="form-control" id="organizationCode" formControlName="organizationCode"
-                placeholder="Enter organization code">
-            @if(getControl("organizationCode").touched && getControl("organizationCode").errors){
-            <div class="error-messages">
-                @if (getControl("organizationCode").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
+            <div class="form-group col-7">
+                <label for="aboutCompany">About Company</label>
+                <textarea class="form-control" id="aboutCompany" rows="3" formControlName="aboutCompany"
+                    placeholder="Enter about company"></textarea>
+                @if(getControl(i,"aboutCompany").touched && getControl(i,"aboutCompany").errors){
+                <div class="error-messages">
+                    @if (getControl(i,"aboutCompany").errors?.['required']) {
+                    <small class="error">{{'common.fieldrequired' | translate}}</small>
+                    }
+                </div>
                 }
             </div>
-            }
-        </div>
 
-        <div class="form-group col-9">
-            <label for="companySize">Company Size</label>
-            <select class="form-select noBorderInput" formControlName="companySize">
-                <option selected disabled value="">Select company size</option>
-                <!-- @for(item of genderList;track item.value){
+            <div class="form-group  col-8">
+                <label for="organizationCode">Organization Code</label>
+                <input type="text" class="form-control" id="organizationCode" formControlName="organizationCode"
+                    placeholder="Enter organization code">
+                @if(getControl(i,"organizationCode").touched && getControl(i,"organizationCode").errors){
+                <div class="error-messages">
+                    @if (getControl(i,"organizationCode").errors?.['required']) {
+                    <small class="error">{{'common.fieldrequired' | translate}}</small>
+                    }
+                </div>
+                }
+            </div>
+
+            <div class="form-group col-9">
+                <label for="companySize">Company Size</label>
+                <select class="form-select noBorderInput" formControlName="companySize">
+                    <option selected disabled value="">Select company size</option>
+                    <!-- @for(item of genderList;track item.value){
                 <option [value]="item.id">{{item.value}}</option>
                 } -->
-            </select>
-            <!-- <select class="form-control" id="companySize" formControlName="companySize">
+                </select>
+                <!-- <select class="form-control" id="companySize" formControlName="companySize">
                 <option value="">Select company size</option>
             </select> -->
-            @if(getControl("companySize").touched && getControl("companySize").errors){
-            <div class="error-messages">
-                @if (getControl("companySize").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
+                @if(getControl(i,"companySize").touched && getControl(i,"companySize").errors){
+                <div class="error-messages">
+                    @if (getControl(i,"companySize").errors?.['required']) {
+                    <small class="error">{{'common.fieldrequired' | translate}}</small>
+                    }
+                </div>
                 }
             </div>
-            }
-        </div>
 
-        <div class="form-group col-10">
-            <label for="industryType">Industry Type</label>
-            <select class="form-select noBorderInput" formControlName="industryType">
-                <option selected disabled value="">Select industry type</option>
-                <!-- @for(item of genderList;track item.value){
+            <div class="form-group col-10">
+                <label for="industryType">Industry Type</label>
+                <select class="form-select noBorderInput" formControlName="industryType">
+                    <option selected disabled value="">Select industry type</option>
+                    <!-- @for(item of genderList;track item.value){
                 <option [value]="item.id">{{item.value}}</option>
                 } -->
-            </select>
-        </div>
+                </select>
+            </div>
 
-        <div class="form-group col-11 col-md-12">
-            <app-file-uploads [title]="'Upload company documents'"
-                [desc]="'documentForm.nursingCertificateDesc' | translate"></app-file-uploads>
+            <div class="form-group col-11 col-md-12">
+                <app-file-uploads [title]="'Upload company documents'"
+                    [desc]="'documentForm.nursingCertificateDesc' | translate"></app-file-uploads>
+            </div>
         </div>
     </div>
-
-    <button type="submit" [disabled]="companyFormGroup.invalid" class="btn btn-primary">Save & Submit</button>
+    <button type="submit" class="btn btn-primary m-2 mb-4" [disabled]="companyParentFormGroup.invalid">Save &
+        Submit</button>
+    <button type="button" class="btn btn-primary m-2 mb-4" (click)="addCompanyFormGroup('companyFormGroup')">Add another
+        company</button>
 </form>

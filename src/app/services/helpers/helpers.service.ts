@@ -79,6 +79,7 @@ export class HelpersService {
    * @description used to save the user details to storage with encryptions
    */
   saveToStorage(userObj: any) {
+    debugger
     if (!isPlatformBrowser(this.platformId)) {
       return
     }
@@ -120,12 +121,13 @@ export class HelpersService {
       if (user) {
         this.saveToStorage(user);
         this.router.navigateByUrl("/candidates-dashboard/personal-forms");
-      } else {
-        if (!type) {
-          await this.refreshToken();
-        }
-        this.isUserTokenValid();
       }
+      // else {
+      //   if (!type) {
+      //     await this.refreshToken();
+      //   }
+      //   this.isUserTokenValid();
+      // }
     }, (err: any) => {
       this.show("something went wrong", err.message, "error");
     });

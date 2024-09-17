@@ -35,7 +35,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: true,
+        autoLogin: false,
         lang: 'en',
         providers: [
           {
