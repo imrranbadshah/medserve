@@ -72,13 +72,15 @@ export class CandidateLoginComponent {
   }
 
   ngOnInit() {
-    this.authSubscription = this.authService.authState.subscribe((userObj) => {
-      console.log('userObj', userObj);
-      let encryptedUserObject: string = encrypt("id", userObj)?.data as string;
-      localStorage.setItem("id", encryptedUserObject);
-      localStorage.setItem("token", userObj.idToken);
-      this.router.navigate(["/candidates-dashboard/personal-forms"]);
-    });
+    // this.authSubscription = this.authService.authState.subscribe((userObj) => {
+    //   console.log('userObj', userObj);
+    //   if (userObj) {
+    //     let encryptedUserObject: string = encrypt("id", userObj)?.data as string;
+    //     localStorage.setItem("id", encryptedUserObject);
+    //     localStorage.setItem("token", userObj.idToken);
+    //     this.router.navigate(["/candidates-dashboard/personal-forms"]);
+    //   }
+    // });
   }
 
   googleSigninLogin(type?: string) {
@@ -106,7 +108,7 @@ export class CandidateLoginComponent {
     //     this.router.navigate(["/"]);
     //   }, 2000);
     // })
-    // this.helper.isUserTokenValid('buttonClick');
+    this.helper.isUserTokenValid('buttonClick');
   }
 
   gotoforms() {

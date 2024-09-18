@@ -85,10 +85,12 @@ export class HelpersService {
     let encryptedUserObject: string = encrypt("id", userObj)?.data as string;
     localStorage.setItem("id", encryptedUserObject);
     localStorage.setItem("token", userObj.idToken);
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 2000);
-    // this.router.navigateByUrl("/candidates-dashboard/personal-forms");
+    setTimeout(() => {
+      console.log("reploaidng")
+      // window.location.href("http://localhost:4200/candidates-dashboard/personal-forms");
+      window.location.replace('http://localhost:4200/candidates-dashboard/personal-forms');
+      // this.router.navigateByUrl("/candidates-dashboard/personal-forms");
+    }, 2000);
   }
 
 
@@ -123,7 +125,6 @@ export class HelpersService {
       console.log('user', user);
       if (user) {
         this.saveToStorage(user);
-
       }
       // else {
       //   if (!type) {
