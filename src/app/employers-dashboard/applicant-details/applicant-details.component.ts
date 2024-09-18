@@ -15,6 +15,7 @@ export class ApplicantDetailsComponent implements OnInit {
 
     this.params.queryParams.subscribe((resp: any) => {
       console.log(resp);
+      this.helper.passData({ data: [], fromPage: "cadidatesSelections" });
       this.selectionList = JSON.parse(resp.data);
     })
   }
