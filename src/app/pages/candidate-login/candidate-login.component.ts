@@ -83,21 +83,6 @@ export class CandidateLoginComponent {
     // });
   }
 
-  googleSigninLogin(type?: string) {
-    this.authService.authState.subscribe(async (user) => {
-      console.log("user==>", user);
-      if (user) {
-        // tt.unsubscribe();
-        this.helper.saveToStorage(user);
-        this.router.navigateByUrl("/candidates-dashboard");
-      } else {
-        if (!type) {
-          await this.helper.refreshToken();
-        }
-        this.googleSigninLogin();
-      }
-    });
-  }
 
   googleSignin(googleWrapper: any) {
     googleWrapper.click();

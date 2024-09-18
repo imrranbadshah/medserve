@@ -41,7 +41,7 @@ export class EdCompanyProfileComponent implements OnInit {
     // });
 
     this.companyParentFormGroup = this.fb.group({
-      "companyFormGroup": this.fb.array([this.createProductFormGroup()]),
+      companyFormGroup: this.fb.array([this.createProductFormGroup()]),
     });
   }
 

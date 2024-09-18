@@ -20,9 +20,8 @@ export class AuthGuard implements CanActivate {
       .pipe(
         take(1), // {2} 
         map((isLoggedIn: any) => {   // {3}
-          debugger
           console.log("isLoggedIn", isLoggedIn);
-          if (Object.keys(isLoggedIn).length == 0) {
+          if (!isLoggedIn || Object.keys(isLoggedIn).length == 0) {
             this.router.navigate(['/candidate-login']);  // {4}
             return false;
           }
