@@ -51,7 +51,7 @@ export class CandidateLoginComponent {
   ) {
     console.log("this.activatedRoute", this.activatedRoute?.snapshot?.routeConfig?.path);
     this.helper.getUserDetails().subscribe((resp: any) => {
-      if (Object.keys(resp).length > 0) {
+      if (resp && Object.keys(resp).length > 0) {
         this.router.navigateByUrl("/");
       } else {
         if (this.activatedRoute?.snapshot?.routeConfig?.path?.includes("employer")) {
