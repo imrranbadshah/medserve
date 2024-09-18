@@ -1,6 +1,6 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { BackToTopComponent } from '../../common/back-to-top/back-to-top.component';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { FooterComponent } from '../../common/footer/footer.component';
 import { NavbarComponent } from '../../common/navbar/navbar.component';
 import { TopHeaderComponent } from '../../common/top-header/top-header.component';
@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { OtpLayoutComponent } from '../../components/otp-layout/otp-layout.component';
 import { HelpersService } from '../../services/helpers/helpers.service';
 import { CommonModule } from '@angular/common';
+import { encrypt } from '../../services/sharedFunctions/sharedFunctions';
 
 @Component({
   selector: 'app-candidate-login',
@@ -27,7 +28,8 @@ import { CommonModule } from '@angular/common';
     OtpLayoutComponent,
     ReactiveFormsModule,
     CommonModule,
-    GoogleSigninButtonModule
+    RouterModule
+    // GoogleSigninButtonModule
   ],
   templateUrl: './candidate-login.component.html',
   styleUrl: './candidate-login.component.scss',
@@ -44,7 +46,8 @@ export class CandidateLoginComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private helper: HelpersService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public ngZone: NgZone
   ) {
     console.log("this.activatedRoute", this.activatedRoute?.snapshot?.routeConfig?.path);
     this.helper.getUserDetails().subscribe((resp: any) => {
@@ -69,31 +72,45 @@ export class CandidateLoginComponent {
   }
 
   ngOnInit() {
-    // this.authSubscription = this.authService.authState.subscribe((user) => {
-    //   console.log('user', user);
-    // });
+    this.authSubscription = this.authService.authState.subscribe((userObj) => {
+      console.log('userObj', userObj);
+      let encryptedUserObject: string = encrypt("id", userObj)?.data as string;
+      localStorage.setItem("id", encryptedUserObject);
+      localStorage.setItem("token", userObj.idToken);
+      this.router.navigate(["/candidates-dashboard/personal-forms"]);
+    });
   }
 
   googleSigninLogin(type?: string) {
-    let tt = this.authService.authState.subscribe(async (user) => {
+    this.authService.authState.subscribe(async (user) => {
       console.log("user==>", user);
-      debugger
       if (user) {
-        tt.unsubscribe();
+        // tt.unsubscribe();
         this.helper.saveToStorage(user);
         this.router.navigateByUrl("/candidates-dashboard");
       } else {
         if (!type) {
           await this.helper.refreshToken();
         }
-        // this.googleSignin();
+        this.googleSigninLogin();
       }
     });
   }
 
   googleSignin(googleWrapper: any) {
     googleWrapper.click();
-    this.helper.isUserTokenValid('buttonClick');
+    // this.ngZone.run(() => {
+    console.log("navigating", googleWrapper)
+    // this.router.navigateByUrl("/candidates-dashboard/personal-forms");
+    //   setTimeout(() => {
+    //     this.router.navigate(["/"]);
+    //   }, 2000);
+    // })
+    // this.helper.isUserTokenValid('buttonClick');
+  }
+
+  gotoforms() {
+    this.router.navigateByUrl("/candidates-dashboard/personal-forms");
   }
 
   onCompanyEmailSubmit() {
@@ -138,9 +155,9 @@ export class CandidateLoginComponent {
     // }else if()
   }
 
-  ngOnDestroy(): void {
-    if (this.helper.authSubscription) {
-      this.helper.authSubscription.unsubscribe();
-    }
-  }
+  // ngOnDestroy(): void {
+  //   if (this.helper.authSubscription) {
+  //     this.helper.authSubscription.unsubscribe();
+  //   }
+  // }
 }

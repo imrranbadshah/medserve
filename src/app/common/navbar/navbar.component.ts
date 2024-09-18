@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
             }
         })
         this.helper.getPassedData().subscribe((resp: any) => {
-            if (resp && resp.type == "search") {
+            if (resp && resp.fromPage == "search") {
                 if (this.router.url == "/employers-dashboard/applicants") {
                     this.showSearch = true;
                 } else {

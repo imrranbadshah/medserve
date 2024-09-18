@@ -79,13 +79,16 @@ export class HelpersService {
    * @description used to save the user details to storage with encryptions
    */
   saveToStorage(userObj: any) {
-    debugger
     if (!isPlatformBrowser(this.platformId)) {
       return
     }
     let encryptedUserObject: string = encrypt("id", userObj)?.data as string;
     localStorage.setItem("id", encryptedUserObject);
     localStorage.setItem("token", userObj.idToken);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 2000);
+    // this.router.navigateByUrl("/candidates-dashboard/personal-forms");
   }
 
 
@@ -120,7 +123,7 @@ export class HelpersService {
       console.log('user', user);
       if (user) {
         this.saveToStorage(user);
-        this.router.navigateByUrl("/candidates-dashboard/personal-forms");
+
       }
       // else {
       //   if (!type) {

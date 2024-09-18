@@ -38,7 +38,7 @@ export class AppComponent {
 
         this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd) {
-                this.helper.passData({ type: "search", data: '' });
+                this.helper.passData({ fromPage: "search", data: '' });
                 // Scroll to the top after each navigation end
                 this.viewportScroller.scrollToPosition([0, 0]);
             }

@@ -7,6 +7,6 @@ export interface Toast {
 
 export interface passDataType {
     data: any;
-    type: string;
+    fromPage: string;
 
 }

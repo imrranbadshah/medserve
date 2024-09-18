@@ -33,6 +33,7 @@ export class GoogleSigninComponent {
 
 
   handleGoogleLogin() {
+    console.log("this.createFakeGoogleWrapper()", this.createFakeGoogleWrapper());
     this.loginWithGoogle.emit(this.createFakeGoogleWrapper());
   }
 }

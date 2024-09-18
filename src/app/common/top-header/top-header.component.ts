@@ -14,11 +14,11 @@ export class TopHeaderComponent {
     userObject: any;
     isUserDropdownMenus: boolean = false;
     userDropdownOptions: any = [
-        {
-            id: 1,
-            name: "Edit Profile",
-            routerLink: "/candidates-dashboard/my-profile"
-        },
+        // {
+        //     id: 1,
+        //     name: "Edit Profile",
+        //     routerLink: "/candidates-dashboard/my-profile"
+        // },
         {
             id: 100,
             name: "Logout",

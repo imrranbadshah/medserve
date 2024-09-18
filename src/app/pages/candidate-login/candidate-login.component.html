@@ -2,7 +2,7 @@
 
 <app-navbar />
 
-<div class="candidateLogin row" [ngClass]="getDynamicHeight()">
+<div class="candidateLogin row hcalc100" [ngClass]="getDynamicHeight()">
     <div class=" col-xs-12 col-sm-12 col-md-6 bgImage"> </div>
     <div
         class="col-xs-12 col-sm-12 col-md-6 formContainer d-flex flex-column align-items-center justify-content-center">
@@ -14,14 +14,14 @@
             <div class="form-group">
                 <!-- <asl-google-signin-button type='standard' size='medium'>
                 </asl-google-signin-button> -->
-
+                <button type="button" class="" routerLink="/candidates-dashboard/personal-forms">Employer
+                    Login</button>
                 <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin>
             </div>
             <!-- <div class="title">Candidate Login</div>
             <div class="text-center">
                 <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin>
-                <button type="button" class="btn btn-link routeButton white" routerLink="/employer-login">Employer
-                Login</button>
+               
             </div> -->
         </div>
         } @else if(isCandidateLogin == "employer"){

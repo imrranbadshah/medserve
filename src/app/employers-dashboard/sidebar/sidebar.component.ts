@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
     ngOnInit(): void {
         this.helper.getPassedData().subscribe((resp: passDataType) => {
             console.log("Side barresp", resp)
-            if (resp && resp.type == "cadidatesSelections") {
+            if (resp && resp.fromPage == "cadidatesSelections") {
                 this.candidateSelected = resp.data;
             }
         })

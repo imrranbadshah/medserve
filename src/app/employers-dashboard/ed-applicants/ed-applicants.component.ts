@@ -110,7 +110,7 @@ export class EdApplicantsComponent implements OnInit {
             this.candidateSelected.splice(index, 1);
         }
         console.log(this.candidateSelected);
-        this.helper.passData({ data: this.candidateSelected, type: "cadidatesSelections" });
+        this.helper.passData({ data: this.candidateSelected, fromPage: "cadidatesSelections" });
     }
 
     clearSelectionList() {
