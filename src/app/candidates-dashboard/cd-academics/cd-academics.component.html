@@ -1,6 +1,10 @@
 <!-- <app-dynamic-forms [jsonFormData]="formData" [styleClass]="'academics'"></app-dynamic-forms> -->
 
 <form [formGroup]="academicsFormGroup" (ngSubmit)="onSubmit()">
+    <div>
+        <h3>Schooling </h3>
+        <p>Please list all schooling attended before college / university</p>
+    </div>
     <div class="form-row academics">
         <div class="form-group col-1">
             <label>{{'academicsForm.yourName' | translate}} <sup>*</sup></label>

@@ -11,7 +11,6 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { OtpLayoutComponent } from '../../components/otp-layout/otp-layout.component';
 import { HelpersService } from '../../services/helpers/helpers.service';
 import { CommonModule } from '@angular/common';
-import { encrypt } from '../../services/sharedFunctions/sharedFunctions';
 
 @Component({
   selector: 'app-candidate-login',

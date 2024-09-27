@@ -8,14 +8,13 @@
         "invalidformat": "Invalid format",
         "required": "required",
         "SaveSubmit": "Save & Submit",
-        "cancel": "cancel"
+        "cancel": "cancel",
+        "eg91": "eg : +91"
     },
-    "personalForm": {
+    "userForm": {
         "yourFirstName": "Your First Name",
         "yourLastName": "Your Last Name",
-        "gender": "Gender",
         "dateOfBirth": "Date of Birth",
-        "spouseName": "Spouse Name",
         "PhoneNumber": "Phone Number",
         "countryCode": "Country Code",
         "email": "Email",
@@ -41,6 +40,39 @@
         "enterthecountryofissue": "Enter the country of issue",
         "enterissueDate": "Enter issue Date",
         "enterexpirydate": "Enter expiry date"
+    },
+    "personalForm": {
+        "permanentEmailNotify": "Permanent Email To Receive Notification On",
+        "permanentMobileNotify": "Permanent Mobile Number To Receive Notifications On",
+        "gender": "Gender",
+        "dateOfBirth": "Date of Birth",
+        "PhoneNumber": "Phone Number",
+        "countryCode": "Country Code",
+        "stateCity": "State / City",
+        "residenceCountry": "Country Of Residence",
+        "nationality": "Nationality",
+        "passportNumber": "Passport Number",
+        "countryOfIssue": "Country of Issue",
+        "passportExpiryDate": "Passport Expiry Date",
+        "spokenLanguages": "Spoken Languages",
+        "searchspokenLang": "Search your spoken languages",
+        "wasEnglishLangDegree": "Was English The Language Of Instruction For Your Degree",
+        "langInstruction": "What Was The Language Of Instruction?",
+        "englishProficiencyTest": "Have You Ever Taken The English Proficiency Test?",
+        "passportScanCopy": "Upload a passport SCAN COPY ",
+        "selectyourGender": "Select your Gender",
+        "enteryourcountry": "Enter your Country",
+        "enteryournationality": "Enter your Nationality",
+        "enteryourDateofBirth": "Enter your Date of Birth",
+        "enteryPhoneNumber": "Enter your Phone Number",
+        "enteryouremailaddress": "Enter your email address",
+        "enteryourstateorcity": "Enter your state or city",
+        "enteryourpassportnumber": "Enter your passport number",
+        "enterexpirydate": "Enter expiry date"
+    },
+    "schooling": {
+        "country": "Your Country",
+        "enteryourcountry": "Enter your country"
     },
     "experiencesForm": {
         "companyName": "Company Name",
