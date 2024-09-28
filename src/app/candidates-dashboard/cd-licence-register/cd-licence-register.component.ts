@@ -25,7 +25,6 @@ import { FileUploadsComponent } from '../../components/file-uploads/file-uploads
 })
 export class CdLicenceRegisterComponent {
   @ViewChild('instance', { static: true }) instance!: NgbTypeahead;
-  isBoardCertified: string = "yes";
   searching = false;
   searchFailed = false;
   experienceParentFormGroup!: FormGroup;
