@@ -24,10 +24,11 @@
                 <p class="mb-2 fs-14">{{candidate.jobTitle}}</p>
                 <p class="mb-2 fs-12">{{candidate.location}}</p>
             </div>
-            <div class="d-flex job-info  mb-3">
+            <div class="d-flex job-info mb-3">
                 @for(skill of candidate.skills;track skill){
-                <span class="fs-8 d-flex justify-content-center align-items-center" title="{{skill}}">{{skill |
-                    truncate:18}}</span>
+                <span class="fs-8 d-flex justify-content-center align-items-center skill" title="{{skill}}">
+                    {{skill | truncate:18}}
+                </span>
                 }
             </div>
             <div class="buttonSection">

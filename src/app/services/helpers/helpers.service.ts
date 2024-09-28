@@ -6,6 +6,7 @@ import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-socia
 import { passDataType, Toast } from '../../models/toast-models';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,7 @@ export class HelpersService {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private authService: SocialAuthService,
-    private router: Router
+    private router: Router,
   ) { }
 
 

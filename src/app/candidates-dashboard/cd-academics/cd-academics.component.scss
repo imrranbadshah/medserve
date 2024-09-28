@@ -1,6 +1,7 @@
 .academics {
     &.form-row {
         display: grid;
+        grid-template-columns: 1fr 1fr;
         grid-template-areas:
             'col1 col1'
             'col2 col2'

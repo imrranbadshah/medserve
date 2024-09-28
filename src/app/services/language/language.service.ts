@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../api/api.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,9 @@ import { ApiService } from '../api/api.service';
 export class LanguageService {
   languageList: any;
 
+
   constructor(private api: ApiService) { }
-  
+
   getLanguagesList() {
     return new Observable((obs) => {
       if (this.languageList) {
@@ -26,4 +28,6 @@ export class LanguageService {
       }
     })
   }
+
+
 }

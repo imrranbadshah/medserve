@@ -10,8 +10,14 @@ export class ApiService {
   API_URL = environment.SERVER_URL;
   platformId = inject(PLATFORM_ID)
   ipaddress: any;
+
   constructor(private http: HttpClient) {
-    this.ipaddress = getIpaddress(this.platformId);
+    this.ipaddress = {
+      ip: "52.2.21.14",
+      country: "US",
+      timestamp: 1726736078529,
+    };
+    // this.ipaddress = getIpaddress(this.platformId);
   }
 
   getLanguagesList() {

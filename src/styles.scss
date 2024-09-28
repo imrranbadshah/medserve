@@ -1,75 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --primaryFont: 'Outfit', sans-serif;
-    --secondaryFont: "EB Garamond", serif;
-    --sharpBoldFont: "Outfit-Bold";
+    --primaryFont      : 'Outfit', sans-serif;
+    --secondaryFont    : "EB Garamond", serif;
+    --sharpBoldFont    : "Outfit-Bold";
     --sharpSemiboldFont: "Outfit-Semibold";
-    --sharpMediumFont: "Outfit-Medium";
-    --sharpRegularFont: "Outfit-Regular";
+    --sharpMediumFont  : "Outfit-Medium";
+    --sharpRegularFont : "Outfit-Regular";
 
 
 
 
-    --primaryColor: #083791;
-    --secondaryColor: #FE8C23;
-    --optionalColor: #A6FA34;
+    --primaryColor   : #083791;
+    --secondaryColor : #FE8C23;
+    --optionalColor  : #A6FA34;
     --lightGreenColor: #8DCF9B;
-    --neonGreenColor: #A6FA34;
-    --grayColorTwo: #ABB3B9;
-    --paraColor: #5F6E7A;
-    --paraColorTwo: #7A8B7A;
-    --paraColorThree: #6A7782;
-    --purpleColor: #5C64FE;
-    --ashColor: #475865;
-    --greenColor: #083791;
-    --grayColor: #EAEBEA;
-    --titleColor: #1C2E3D;
-    --osloColor: #878D90;
-    --darkColor: #18251B;
-    --whiteColor: #fff;
-    --offwhiteColor: rgba(255, 255, 255, 0.88);
-    --borderColor: #BFCAD2;
-    --offwhiteColor: #9FA8AE;
-    --aztechColor: #111828;
-    --codColor: #12131B;
-    --charcoalColor: #3c3c3c;
-    --mildColor: #222;
-    --fontSize: 16px;
-    --transition: all ease .5s;
+    --neonGreenColor : #A6FA34;
+    --grayColorTwo   : #ABB3B9;
+    --paraColor      : #5F6E7A;
+    --paraColorTwo   : #7A8B7A;
+    --paraColorThree : #6A7782;
+    --purpleColor    : #5C64FE;
+    --ashColor       : #475865;
+    --greenColor     : #083791;
+    --grayColor      : #EAEBEA;
+    --titleColor     : #1C2E3D;
+    --osloColor      : #878D90;
+    --darkColor      : #18251B;
+    --whiteColor     : #fff;
+    --offwhiteColor  : rgba(255, 255, 255, 0.88);
+    --borderColor    : #BFCAD2;
+    --offwhiteColor  : #9FA8AE;
+    --aztechColor    : #111828;
+    --codColor       : #12131B;
+    --charcoalColor  : #3c3c3c;
+    --mildColor      : #222;
+    --fontSize       : 16px;
+    --transition     : all ease .5s;
 
-    --it-ff-body: 'Outfit', sans-serif;
-    --it-ff-heading: 'Outfit', sans-serif;
+    --it-ff-body       : 'Outfit', sans-serif;
+    --it-ff-heading    : 'Outfit', sans-serif;
     --it-ff-fontawesome: Font Awesome 5 Pro;
-    --it-text-body: "#4e4e4e"
+    --it-text-body     : "#4e4e4e"
 }
 
 @font-face {
     font-family: "Outfit";
-    src: url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
+    src        : url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Outfit-bold";
-    src: url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
+    src        : url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
     font-weight: bold;
 }
 
 @font-face {
-    font-family: "Outfit-Semibold";
-    src: url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
+    font-family   : "Outfit-Semibold";
+    src           : url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
     // font-weight: 700;
 }
 
 @font-face {
-    font-family: "Outfit-Medium";
-    src: url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
+    font-family   : "Outfit-Medium";
+    src           : url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
     // font-weight: 500;
 }
 
 @font-face {
     font-family: "Outfit-Regular";
-    src: url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
+    src        : url(../public/fonts/QGYvz_MVcBeNP4NJtEtq.woff2);
     font-weight: normal;
 }
 
@@ -84,13 +84,13 @@ html {
 :focus,
 button:focus,
 .btn:focus {
-    outline: 0;
+    outline   : 0;
     box-shadow: none;
 }
 
 .form-control:focus {
     -webkit-box-shadow: none;
-    box-shadow: none;
+    box-shadow        : none;
 }
 
 a,
@@ -103,8 +103,8 @@ input[type="submit"] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
+    appearance        : none;
+    margin            : 0;
 }
 
 /* clears the ‘X’ from Chrome */
@@ -118,25 +118,25 @@ input[type="search"]::-webkit-search-results-decoration {
 /* Firefox */
 input[type=number] {
     -moz-appearance: textfield;
-    appearance: textfield;
+    appearance     : textfield;
 }
 
 input,
 textarea,
 select {
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border          : 1px solid rgba(0, 0, 0, 0.15);
     background-color: transparent;
-    padding: 12px 15px 12px !important;
-    font-size: 16px;
-    width: 100%;
+    padding         : 12px 15px 12px !important;
+    font-size       : 16px;
+    width           : 100%;
 }
 
 a {
     -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    color: var(--titleColor);
-    text-transform: inherit;
-    text-decoration: none;
+    transition        : all 0.3s ease;
+    color             : var(--titleColor);
+    text-transform    : inherit;
+    text-decoration   : none;
 
     &:hover {
         color: var(--blueColor);
@@ -146,7 +146,7 @@ a {
 a:hover,
 a:focus {
     text-decoration: none;
-    box-shadow: none;
+    box-shadow     : none;
 }
 
 a:focus {
@@ -155,7 +155,7 @@ a:focus {
 
 img {
     max-width: 100%;
-    height: auto;
+    height   : auto;
 }
 
 h1,
@@ -165,7 +165,7 @@ h4,
 h5,
 h6 {
     font-weight: 700;
-    color: var(--titleColor);
+    color      : var(--titleColor);
 
     a {
         &:hover {
@@ -176,12 +176,12 @@ h6 {
 
 body {
     font-family: var(--it-ff-body);
-    font-size: 17px;
-    color: var(--it-text-body);
+    font-size  : 17px;
+    color      : var(--it-text-body);
     line-height: 1.3;
 
     font: {
-        size: var(--fontSize);
+        size  : var(--fontSize);
         family: var(--primaryFont);
         weight: normal;
     }
@@ -193,15 +193,15 @@ p {
 
 select {
     -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
+    -moz-appearance   : none;
+    appearance        : none;
+    cursor            : pointer;
 
     background: {
-        image: url(../public/img/down-arrow.png);
+        image   : url(../public/img/down-arrow.png);
         position: calc(100% - 15px) 50%;
-        repeat: no-repeat;
-        size: 14px;
+        repeat  : no-repeat;
+        size    : 14px;
     }
 
     ;
@@ -409,7 +409,7 @@ select {
 
 .ptb-100 {
     padding: {
-        top: 100px;
+        top   : 100px;
         bottom: 100px;
     }
 
@@ -446,7 +446,7 @@ select {
 
 .my-60 {
     margin: {
-        top: 60px;
+        top   : 60px;
         bottom: 60px;
     }
 
@@ -550,8 +550,8 @@ select {
 }
 
 .list-unstyle {
-    margin: 0;
-    padding: 0;
+    margin    : 0;
+    padding   : 0;
     list-style: none;
 
     li {
@@ -561,26 +561,26 @@ select {
 
 // Btn
 .btn {
-    z-index: 1;
-    border: none;
-    font-weight: 500;
-    overflow: hidden;
-    line-height: 16px;
-    padding: 19px 31px;
-    position: relative;
+    z-index      : 1;
+    border       : none;
+    font-weight  : 500;
+    overflow     : hidden;
+    line-height  : 16px;
+    padding      : 19px 31px;
+    position     : relative;
     border-radius: 50px;
-    transition: var(--transition);
+    transition   : var(--transition);
 
     &:before,
     &:after {
-        top: 50%;
-        left: 50%;
-        content: "";
-        width: 100%;
-        z-index: -1;
-        position: absolute;
+        top       : 50%;
+        left      : 50%;
+        content   : "";
+        width     : 100%;
+        z-index   : -1;
+        position  : absolute;
         transition: var(--transition);
-        transform: translate(-50%, -50%);
+        transform : translate(-50%, -50%);
     }
 
     &:before {
@@ -588,16 +588,16 @@ select {
     }
 
     &:after {
-        height: 0%;
-        opacity: 0;
+        height    : 0%;
+        opacity   : 0;
         visibility: hidden;
     }
 
     &:hover {
         &:after {
             visibility: visible;
-            height: 100%;
-            opacity: 1;
+            height    : 100%;
+            opacity   : 1;
         }
     }
 
@@ -630,7 +630,7 @@ select {
     }
 
     &.style-three {
-        color: var(--secondaryColor);
+        color : var(--secondaryColor);
         border: 1px solid var(--secondaryColor);
 
         &:before {
@@ -642,7 +642,7 @@ select {
         }
 
         &:hover {
-            color: var(--whiteColor);
+            color       : var(--whiteColor);
             border-color: transparent;
         }
     }
@@ -663,9 +663,9 @@ select {
         color: var(--greenColor);
 
         img {
-            position: relative;
+            position   : relative;
             margin-left: 5px;
-            top: -2px;
+            top        : -2px;
         }
 
         &:before {
@@ -698,7 +698,7 @@ select {
     }
 
     &.style-seven {
-        color: var(--primaryColor);
+        color : var(--primaryColor);
         border: 1px solid var(--primaryColor);
 
         &:before {
@@ -710,7 +710,7 @@ select {
         }
 
         &:hover {
-            color: var(--whiteColor);
+            color       : var(--whiteColor);
             border-color: transparent;
         }
     }
@@ -731,17 +731,17 @@ select {
 // Link
 .link {
     padding-bottom: 3px;
-    position: relative;
-    line-height: 1;
-    color: var(--primaryColor);
+    position      : relative;
+    line-height   : 1;
+    color         : var(--primaryColor);
 
     &::after {
-        left: 0;
-        width: 0;
-        bottom: 0;
-        content: "";
-        height: 1px;
-        position: absolute;
+        left      : 0;
+        width     : 0;
+        bottom    : 0;
+        content   : "";
+        height    : 1px;
+        position  : absolute;
         transition: var(--transition);
     }
 
@@ -750,14 +750,14 @@ select {
     }
 
     i {
-        top: 2px;
+        top        : 2px;
         margin-left: 2px;
         line-height: 0.8;
-        position: relative;
-        transition: var(--transition);
+        position   : relative;
+        transition : var(--transition);
 
         font: {
-            size: 19px;
+            size  : 19px;
             weight: 300;
         }
 
@@ -786,8 +786,8 @@ select {
         }
 
         img {
-            top: -1px;
-            max-width: 16px;
+            top        : -1px;
+            max-width  : 16px;
             margin-left: 6px;
         }
     }
@@ -800,7 +800,7 @@ select {
         }
 
         img {
-            top: -1px;
+            top        : -1px;
             margin-left: 6px;
         }
     }
@@ -826,9 +826,9 @@ select {
 .bg-f {
     background: {
         position: center center;
-        repeat: no-repeat;
-        color: #dddddd;
-        size: cover;
+        repeat  : no-repeat;
+        color   : #dddddd;
+        size    : cover;
     }
 
     ;
@@ -881,7 +881,7 @@ select {
 // Transition
 .transition {
     -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
+    transition        : all 200ms linear;
 }
 
 // Social Profile
@@ -917,7 +917,7 @@ select {
         line-height: 50px;
 
         font: {
-            size: 40px;
+            size  : 40px;
             weight: 600;
         }
 
@@ -945,28 +945,28 @@ select {
 
     &.style-three {
         h2 {
-            font-family: var(--sharpSemiboldFont);
+            font-family   : var(--sharpSemiboldFont);
             letter-spacing: -0.03em;
         }
     }
 }
 
 .section-link {
-    color: #23333F;
+    color        : #23333F;
     border-radius: 50px;
-    padding: 11px 34px 9px;
-    border: 1px solid #E3E7EA;
+    padding      : 11px 34px 9px;
+    border       : 1px solid #E3E7EA;
 }
 
 // Rating
 .rating {
     li {
-        display: inline-block;
+        display     : inline-block;
         margin-right: 0;
 
         i {
-            font-size: 18px;
-            color: #F8B42B;
+            font-size  : 18px;
+            color      : #F8B42B;
             line-height: 0.8;
         }
 
@@ -986,15 +986,15 @@ select {
 
 // Form Check
 .form-check-input {
-    padding: 0;
-    width: 1.2em;
-    height: 1.2em;
+    padding      : 0;
+    width        : 1.2em;
+    height       : 1.2em;
     border-radius: 0 !important;
-    box-shadow: unset !important;
+    box-shadow   : unset !important;
 
     &:checked {
         background-color: var(--primaryColor);
-        border-color: var(--primaryColor);
+        border-color    : var(--primaryColor);
     }
 
     &:focus {
@@ -1004,7 +1004,7 @@ select {
 
 .form-check-label {
     margin-left: 5px;
-    cursor: pointer;
+    cursor     : pointer;
 
     a {
         font-weight: 500;
@@ -1014,12 +1014,12 @@ select {
 // Pagination
 .page-nav {
     li {
-        margin: 0 4px;
+        margin : 0 4px;
         display: inline-block;
 
         &:first-child {
             a {
-                width: auto;
+                width : auto;
                 height: auto;
 
                 &:before {
@@ -1034,7 +1034,7 @@ select {
 
         &:last-child {
             a {
-                width: auto;
+                width : auto;
                 height: auto;
 
                 &:before {
@@ -1048,36 +1048,36 @@ select {
         }
 
         a {
-            z-index: 1;
-            width: 45px;
-            height: 45px;
-            font-weight: 600;
-            overflow: hidden;
-            position: relative;
-            transition: var(--transition);
+            z-index         : 1;
+            width           : 45px;
+            height          : 45px;
+            font-weight     : 600;
+            overflow        : hidden;
+            position        : relative;
+            transition      : var(--transition);
             background-color: transparent;
 
             &:before {
-                top: 0;
-                left: 0;
-                width: 0;
-                opacity: 0;
-                z-index: -1;
-                height: 100%;
-                content: "";
-                position: absolute;
+                top       : 0;
+                left      : 0;
+                width     : 0;
+                opacity   : 0;
+                z-index   : -1;
+                height    : 100%;
+                content   : "";
+                position  : absolute;
                 transition: var(--transition);
                 background: var(--neonGreenColor);
             }
 
             i {
-                top: 6px;
+                top        : 6px;
                 line-height: 0.8;
-                color: #DEDEDE;
-                transition: var(--transition);
+                color      : #DEDEDE;
+                transition : var(--transition);
 
                 font: {
-                    size: 26px;
+                    size  : 26px;
                     weight: 300;
                 }
 
@@ -1089,7 +1089,7 @@ select {
                 border-color: transparent;
 
                 &:before {
-                    width: 100%;
+                    width  : 100%;
                     opacity: 1;
                 }
 
@@ -1103,12 +1103,12 @@ select {
     &.style-two {
         li {
             a {
-                border: 1px solid rgba(24, 32, 27, 0.2);
+                border          : 1px solid rgba(24, 32, 27, 0.2);
                 background-color: var(--whiteColor);
-                transition: var(--transition);
-                position: relative;
-                box-shadow: none;
-                overflow: hidden;
+                transition      : var(--transition);
+                position        : relative;
+                box-shadow      : none;
+                overflow        : hidden;
 
                 &:before {
                     background: transparent;
@@ -1116,10 +1116,10 @@ select {
 
                 &.active,
                 &:hover {
-                    opacity: 1;
-                    color: var(--whiteColor);
+                    opacity     : 1;
+                    color       : var(--whiteColor);
                     border-color: transparent;
-                    background: var(--secondaryColor);
+                    background  : var(--secondaryColor);
                 }
             }
         }
@@ -1129,23 +1129,23 @@ select {
 // Filter
 .filter_btn,
 .filter-btn {
-    border: 1px solid var(--purpleColor);
+    border          : 1px solid var(--purpleColor);
     background-color: transparent;
-    transition: var(--transition);
-    border-radius: 4px;
-    padding: 4px 20px;
+    transition      : var(--transition);
+    border-radius   : 4px;
+    padding         : 4px 20px;
 
     span {
-        margin-right: 10px;
+        margin-right  : 10px;
         letter-spacing: -0.02em;
-        color: var(--purpleColor);
-        transition: var(--transition);
+        color         : var(--purpleColor);
+        transition    : var(--transition);
     }
 
     img {
         transition: var(--transition);
-        position: relative;
-        top: -2px;
+        position  : relative;
+        top       : -2px;
     }
 
     &:hover {
@@ -1162,24 +1162,24 @@ select {
 }
 
 .filter-cat {
-    height: 54px;
-    font-size: 15px;
-    color: #23333F;
-    padding: 13px 20px;
-    border-radius: 4px;
+    height          : 54px;
+    font-size       : 15px;
+    color           : #23333F;
+    padding         : 13px 20px;
+    border-radius   : 4px;
     background-color: #F6F8FA;
 }
 
 // Maps
 .map-container {
-    width: 100%;
-    height: 250px;
+    width   : 100%;
+    height  : 250px;
     overflow: hidden;
 
     &.side-map {
         position: sticky;
-        height: 100vh;
-        top: 0;
+        height  : 100vh;
+        top     : 0;
     }
 
     &.top-map {
@@ -1187,7 +1187,7 @@ select {
     }
 
     #main-full-map {
-        width: 100%;
+        width : 100%;
         height: 100%;
     }
 }
@@ -1246,12 +1246,12 @@ select {
 
 @keyframes fadeInUp {
     0% {
-        opacity: 0;
+        opacity  : 0;
         transform: translate3d(0, 80px, 0);
     }
 
     to {
-        opacity: 1;
+        opacity  : 1;
         transform: translateZ(0);
     }
 }
@@ -1272,12 +1272,12 @@ select {
 
 @keyframes fadeInDown {
     0% {
-        opacity: 0;
+        opacity  : 0;
         transform: translate3d(0, -100%, 0);
     }
 
     to {
-        opacity: 1;
+        opacity  : 1;
         transform: translateZ(0);
     }
 }
@@ -1387,8 +1387,8 @@ select {
             }
 
             a {
-                width: 34px;
-                height: 34px;
+                width    : 34px;
+                height   : 34px;
                 font-size: 14px;
             }
         }
@@ -1403,7 +1403,7 @@ select {
         max-width: 540px;
 
         padding: {
-            left: calc(var(--bs-gutter-x) * .5);
+            left : calc(var(--bs-gutter-x) * .5);
             right: calc(var(--bs-gutter-x) * .5);
         }
 
@@ -1422,7 +1422,7 @@ select {
     select,
     label,
     li {
-        font-size: 14px;
+        font-size  : 14px;
         line-height: 25px;
     }
 
@@ -1490,7 +1490,7 @@ select {
 
     .ptb-100 {
         padding: {
-            top: 60px;
+            top   : 60px;
             bottom: 60px;
         }
 
@@ -1550,7 +1550,7 @@ select {
     // Btn
     .btn {
         font-size: 13px;
-        padding: 15px 25px;
+        padding  : 15px 25px;
     }
 
     // Section Title
@@ -1560,7 +1560,7 @@ select {
         }
 
         h2 {
-            font-size: 26px;
+            font-size  : 26px;
             line-height: 34px;
         }
 
@@ -1586,7 +1586,7 @@ select {
         max-width: 720px;
 
         padding: {
-            left: calc(var(--bs-gutter-x) * .5);
+            left : calc(var(--bs-gutter-x) * .5);
             right: calc(var(--bs-gutter-x) * .5);
         }
 
@@ -1627,7 +1627,7 @@ select {
 
     .ptb-100 {
         padding: {
-            top: 70px;
+            top   : 70px;
             bottom: 70px;
         }
 
@@ -1653,7 +1653,7 @@ select {
     // Section Title
     .section-title {
         h2 {
-            font-size: 30px;
+            font-size  : 30px;
             line-height: 42px;
         }
     }
@@ -1724,7 +1724,7 @@ select {
     // Section Title
     .section-title {
         h2 {
-            font-size: 36px;
+            font-size  : 36px;
             line-height: 49px;
         }
     }
@@ -1777,7 +1777,7 @@ select {
     // Section Title
     .section-title {
         h2 {
-            font-size: 46px;
+            font-size  : 46px;
             line-height: 56px;
         }
 
@@ -1823,8 +1823,8 @@ select {
 
 }
 
-.form-group {
-    display: flex;
+.form-group:not(.radio) {
+    display       : flex;
     flex-direction: column;
 
     label {
@@ -1834,6 +1834,12 @@ select {
     input,
     select {
         height: 46.6px;
+    }
+}
+
+.radio {
+    .form-check {
+        padding: 4% 10% 0 0;
     }
 }
 
@@ -1875,17 +1881,17 @@ select {
     }
 
     button:not(.dropdown-item) {
-        border: 1px solid #dee2e6;
+        border       : 1px solid #dee2e6;
         border-radius: 0;
-        padding: 12px 15px 12px;
-        border-left: none;
+        padding      : 12px 15px 12px;
+        border-left  : none;
 
         &:hover,
         &:active {
-            border: 1px solid #dee2e6 !important;
-            background: transparent;
+            border          : 1px solid #dee2e6 !important;
+            background      : transparent;
             background-color: transparent !important;
-            border-left: none !important;
+            border-left     : none !important;
         }
     }
 }
@@ -1900,14 +1906,14 @@ select {
 }
 
 .hiddenDateInput {
-    position: absolute;
-    opacity: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
+    position : absolute;
+    opacity  : 0;
+    height   : 100%;
+    width    : 100%;
+    z-index  : 1;
     transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
+    left     : 50%;
+    top      : 50%;
 }
 
 .error-messages {
@@ -1916,7 +1922,7 @@ select {
 
 .error,
 sup {
-    color: red;
+    color    : red;
     font-size: 0.8rem;
 }
 
@@ -1937,14 +1943,14 @@ sup {
 }
 
 .dp {
-    width: 75px;
-    border: 1px solid #e1e1e1;
+    width     : 75px;
+    border    : 1px solid #e1e1e1;
     background: #e1e1e1;
 }
 
 .routeButton {
-    background: transparent;
-    border: none;
+    background     : transparent;
+    border         : none;
     text-decoration: none;
 }
 
@@ -1958,4 +1964,39 @@ sup {
 
 .form-control {
     border-radius: 0px;
+}
+
+.multiselect-dropdown .dropdown-btn {
+    border       : 1px solid rgba(0, 0, 0, 0.15) !important;
+    line-height  : 2 !important;
+    height       : 46.6px;
+    border-radius: 0 !important;
+    color        : #7b7b80 !important;
+
+    .selected-item-container .selected-item {
+        border-color: var(--primaryColor) !important;
+        background  : var(--primaryColor) !important;
+    }
+
+    .dropdown-multiselect__caret::before {
+        position    : relative;
+        right       : 0;
+        top         : 65%;
+        color       : var(--primaryColor) !important;
+        margin-top  : 4px;
+        border-style: solid;
+        border-width: 5px 5px 0 5px !important;
+        border-color: var(--primaryColor) transparent !important;
+        content     : "";
+    }
+}
+
+.multiselect-item-checkbox input[type=checkbox]:checked+div:before {
+    background  : var(--primaryColor) !important;
+    border-color: var(--primaryColor) !important;
+}
+
+.helperText {
+    font-size: 0.9rem;
+    color    : #a4a4a4;
 }

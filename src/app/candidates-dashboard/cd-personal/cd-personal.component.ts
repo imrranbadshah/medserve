@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api/api.service';
-import { DynamicFormsComponent } from '../../components/dynamic-forms/dynamic-forms.component';
+// import { DynamicFormsComponent } from '../../components/dynamic-forms/dynamic-forms.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HelpersService } from '../../services/helpers/helpers.service';
 import { catchError, debounceTime, distinctUntilChanged, filter, map, merge, Observable, of, Subject, switchMap, tap } from 'rxjs';
 import { NgbTypeahead, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { IDropdownSettings, NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { FileUploadsComponent } from '../../components/file-uploads/file-uploads.component';
 
 @Component({
   selector: 'app-cd-personal',
@@ -13,7 +15,9 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     ReactiveFormsModule,
     NgbTypeaheadModule,
-    TranslateModule
+    TranslateModule,
+    NgMultiSelectDropDownModule,
+    FileUploadsComponent
   ],
   templateUrl: './cd-personal.component.html',
   styleUrl: './cd-personal.component.scss'
@@ -47,30 +51,44 @@ export class CdPersonalComponent implements OnInit {
   focus$ = new Subject<string>();
   click$ = new Subject<string>();
   countryMaster: any;
-  constructor(private fb: FormBuilder, private helper: HelpersService, private api: ApiService) {
+  dropdownSettings!: IDropdownSettings;
+  spokenLanguages = [];
+  constructor(
+    private fb: FormBuilder,
+    private helper: HelpersService,
+    private api: ApiService,
+    public translate: TranslateService,
+  ) {
     this.personalFormGroup = this.fb.group(
       {
-        firstName: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
-        lastName: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
+        permanentEmailNotify: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
+        permanentMobileNotify: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
         gender: ['', [Validators.required]],
         dateOfBirth: ['', [Validators.required]],
-        spouseName: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
-        countryCode: ['', [Validators.required]],
-        phoneNumber: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3}$')]],
-        address: ['', [Validators.required]],
-        country: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
         stateCity: ['', [Validators.required]],
+        nationality: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
+        residenceCountry: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
         passportNumber: ['', [Validators.required]],
-        countryOfIssue: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
-        issueDate: ['', [Validators.required]],
-        expiryDate: ['', [Validators.required]],
+        passportExpiryDate: ['', [Validators.required]],
+        degreeLanguage: ['', [Validators.required]],
+        wasEnglishLangDegree: ['', [Validators.required]],
+        spokenLanguages: ['', [Validators.required]],
+        englishProficiencyTest: ['', [Validators.required]],
       }
     )
   }
 
   ngOnInit(): void {
     this.getCountryMaster();
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'lngId',
+      textField: 'languageName',
+      enableCheckAll: false,
+      defaultOpen: false,
+      allowSearchFilter: true,
+      searchPlaceholderText: this.getTranslatedString("personalForm.searchspokenLang")
+    }
   }
 
   /**
@@ -88,7 +106,9 @@ export class CdPersonalComponent implements OnInit {
    */
   getCountryMaster() {
     this.api.getCountryMaster().subscribe((resp: any) => {
+      console.log("getCountryMaster resp", resp)
       this.countryMaster = resp.data.countryList;
+      this.spokenLanguages = resp.data.languageList;
     })
   }
 
@@ -186,9 +206,24 @@ export class CdPersonalComponent implements OnInit {
     const selectedCity = title.item;
     if (selectedCity) {
       let place = selectedCity.split(",");
-      this.personalFormGroup.get('country')?.setValue(place[place.length - 1]);
+      this.personalFormGroup.get('residenceCountry')?.setValue(place[place.length - 1]);
       setTimeout(() => this.personalFormGroup.get('stateCity')?.setValue(`${place[0]},${place[1]}`));
     }
+  }
+
+  getTranslatedString(Key: any) {
+    console.log("Translate KEY:" + Key);
+    let translatedValue = "";
+    this.translate.get(Key).subscribe((translatedString: any) => {
+      translatedValue = translatedString;
+    },
+      (error) => {
+        console.log(error);
+        translatedValue = error;
+      }
+    );
+    console.log(translatedValue);
+    return translatedValue;
   }
 
   /**

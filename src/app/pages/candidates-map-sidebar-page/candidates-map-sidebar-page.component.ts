@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 export class CandidatesMapSidebarPageComponent {
 
     // Salary Range Slider
-	minValue: number = 0;
+    minValue: number = 0;
     maxValue: number = 1000;
     onSliderChange(): void {
         if (this.minValue > this.maxValue) {

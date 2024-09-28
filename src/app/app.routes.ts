@@ -61,6 +61,9 @@ import { CdDocumentsComponent } from './candidates-dashboard/cd-documents/cd-doc
 import { CandidateLoginComponent } from './pages/candidate-login/candidate-login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ApplicantDetailsComponent } from './employers-dashboard/applicant-details/applicant-details.component';
+import { CdUserInfoComponent } from './candidates-dashboard/cd-user-info/cd-user-info.component';
+import { CdSpecialityBoardComponent } from './candidates-dashboard/cd-speciality-board/cd-speciality-board.component';
+import { CdSchoolingsComponent } from './candidates-dashboard/cd-schoolings/cd-schoolings.component';
 
 export const routes: Routes = [
     // { path: 'home', component: HomeDemoOneComponent },
@@ -132,10 +135,13 @@ export const routes: Routes = [
             // { path: 'saved-candidates', component: CdSavedCandidatesComponent },
             // { path: 'account-settings', component: CdAccountSettingsComponent },
             { path: '', redirectTo: 'personal-forms', pathMatch: 'full' },
-            { path: 'personal-forms', component: CdPersonalComponent, canActivate: [AuthGuard], },
-            { path: 'academics-forms', component: CdAcademicsComponent, canActivate: [AuthGuard], },
-            { path: 'experience-forms', component: CdExperiencesComponent, canActivate: [AuthGuard], },
-            { path: 'document-forms', component: CdDocumentsComponent, canActivate: [AuthGuard], },
+            { path: 'user-info', component: CdUserInfoComponent },
+            { path: 'speciality-board', component: CdSpecialityBoardComponent },
+            { path: 'personal-forms', component: CdPersonalComponent },
+            { path: 'academics-forms', component: CdAcademicsComponent },
+            { path: 'experience-forms', component: CdExperiencesComponent },
+            { path: 'document-forms', component: CdDocumentsComponent },
+            { path: 'schooling-forms', component: CdSchoolingsComponent },
         ]
     },
     // Here add new pages component

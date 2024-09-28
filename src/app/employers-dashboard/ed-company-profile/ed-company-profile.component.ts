@@ -74,9 +74,7 @@ export class EdCompanyProfileComponent implements OnInit {
     }
   }
 
-  // get companyFormGrp(): FormArray {
-  //   return this.formControllers['companyFormGroup'] as FormArray;
-  // }
+
 
   get companyFormGrp(): FormArray {
     return this.companyParentFormGroup.get('companyFormGroup') as FormArray;
