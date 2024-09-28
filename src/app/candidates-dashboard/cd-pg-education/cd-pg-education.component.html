@@ -1,0 +1,202 @@
+<div class="p-4 mb-2">
+    <form [formGroup]="academicsPGParentFormGroup" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+            <h5>Postgraduate Education</h5>
+            <p class="helperText mt-2">
+                Please list all postgraduate education obtained after graduation from college / university. This shall
+                include internship, Supervised Clinical training/residency, masters, etc. Note: Please ensure no gaps in
+                training unless justified with evidence.
+        </div>
+        <div class="form-row " formArrayName="pgFormGroup">
+            <div class="academics form-row companyForm border p-4 position-relative"
+                *ngFor="let ugForm of academicPGFormGrp.controls; let i = index" [formGroupName]="i">
+                @if(i != 0){
+                <button class="btn btn-link removeForm position-absolute right-0"
+                    (click)="removePGFormGroup(i,'pgFormGroup')">
+                    <img src="./img/icons/minus.png" />
+                </button>
+                }
+                <div class="form-group col-1">
+                    <label>Training Program<sup>*</sup></label>
+                    <input type="text" placeholder="{{'academicsForm.enterinstitutename' | translate}}"
+                        formControlName="trainingProgram" />
+                    @if(getControl(i,"trainingProgram").touched && getControl(i,"trainingProgram").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"trainingProgram").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                        @if (getControl(i,"trainingProgram").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-2">
+                    <label>Institute / Hospital Full / College / University Name<sup>*</sup></label>
+                    <input type="text" placeholder="{{'academicsForm.enterinstitutename' | translate}}"
+                        formControlName="instituteHospitalName" />
+                    @if(getControl(i,"instituteHospitalName").touched &&
+                    getControl(i,"instituteHospitalName").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"instituteHospitalName").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                        @if (getControl(i,"instituteHospitalName").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-3">
+                    <label>{{'personalForm.stateCity' | translate}} <sup>*</sup></label>
+                    <div class="d-flex input-group dataListInputs">
+                        <input class="form-control noBorderInput"
+                            placeholder="{{'personalForm.enteryourstateorcity' | translate}}"
+                            formControlName="stateCity" [ngbTypeahead]="searchCities"
+                            (selectItem)="onCitySelect($event)">
+                        @if (searching){
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/searchLoader.gif" alt="calender">
+                        </button>
+                        }
+                    </div>
+                    @if(getControl(i,"stateCity").touched && getControl(i,"stateCity").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"stateCity").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-4">
+                    <label>{{'schooling.country' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'schooling.enteryourcountry' | translate}}"
+                        formControlName="country">
+                    @if(getControl(i,"country").touched && getControl(i,"country").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"country").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+
+                        @if (getControl(i,"country").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-5">
+                    <label>{{'personalForm.email' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'personalForm.enteryouremailaddress' | translate}}"
+                        formControlName="email" required>
+                    @if(getControl(i,"email").touched && getControl(i,"email").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"email").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-6">
+                    <label>Website</label>
+                    <input type="text" placeholder="Website" formControlName="website">
+                </div>
+                <div class="form-group col-7">
+                    <label>{{'academicsForm.from' | translate}} <sup>*</sup></label>
+                    <div class="input-group dateTime mb-3">
+                        <input type="text" class="form-control" formControlName="attendedfromDate"
+                            placeholder="{{'academicsForm.enterfromdate' | translate}}" />
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
+                            <input type="date" class="hiddenDateInput" (change)="formatDate($event,'fromDate','ug')" />
+                        </button>
+                    </div>
+                    @if(getControl(i,"attendedfromDate").touched && getControl(i,"attendedfromDate").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"attendedfromDate").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-8">
+                    <label>{{'academicsForm.to' | translate}} <sup>*</sup></label>
+                    <div class="input-group dateTime mb-3">
+                        <input type="text" class="form-control" formControlName="attendedtoDate"
+                            placeholder="{{'academicsForm.entertodate' | translate}}" />
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
+                            <input type="date" class="hiddenDateInput" (change)="formatDate($event,'toDate','ug')" />
+                        </button>
+                    </div>
+                    @if(getControl(i,"attendedtoDate").touched && getControl(i,"attendedtoDate").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"attendedtoDate").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="form-group radio col-9">
+                    <label>Was The Postgraduate Education Completed?<sup>*</sup></label>
+                    <div class="d-flex">
+                        <div class="form-check d-flex">
+                            <input class="" type="radio" name="postgraduateCompleted"
+                                formControlName="postgraduateCompleted" id="yes" value="yes">
+                            <label class="form-check-label" for="yes">Yes</label>
+                        </div>
+                        <div class="form-check d-flex ">
+                            <input class="" type="radio" name="postgraduateCompleted"
+                                formControlName="postgraduateCompleted" id="no" value="no">
+                            <label class="form-check-label" for="no">No</label>
+                        </div>
+                    </div>
+                    <!-- <select class="form-select noBorderInput" aria-label="postgraduateCompleted" formControlName="postgraduateCompleted">
+                                <option selected disabled value="">{{'personalForm.selectyourGender' | translate}}</option>
+                                @for(item of genderList;track item.value){
+                                <option [value]="item.id">{{item.value}}</option>
+                                }
+                            </select> -->
+                    @if(getControl(i,"postgraduateCompleted").touched &&
+                    getControl(i,"postgraduateCompleted").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"postgraduateCompleted").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="form-group col-10">
+                    <label>What Qualification / Residency Was Obtained<sup>*</sup></label>
+                    <input type="text" placeholder="What Qualification / Residency Was Obtained"
+                        formControlName="qualificationResidencyObtained" />
+                    @if(getControl(i,"qualificationResidencyObtained").touched &&
+                    getControl(i,"qualificationResidencyObtained").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"qualificationResidencyObtained").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="form-group col-11">
+                    <app-file-uploads [title]="'Upload degree copy'"
+                        [desc]="'Upload a certificate copy of degree copy'">
+                    </app-file-uploads>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end text-end my-2">
+                <button class="btn style-four mx-2" type="submit" [disabled]="academicsPGParentFormGroup.invalid">
+                    {{'common.SaveSubmit' | translate}}
+                </button>
+                <button type="button" class="btn style-four mx-2" (click)="addPGFormGroup('pgFormGroup')">
+                    Add another
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

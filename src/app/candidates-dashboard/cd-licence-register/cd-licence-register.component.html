@@ -1,1 +1,182 @@
-<p>cd-licence-register works!</p>
+<!-- <form [formGroup]="experienceFormGroup" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+        <h5>Exp Board / Professional Membership / Equivalent</h5>
+        <p class="helperText mt-2">
+            Please list all specialty board certification and/or summary of professional membership/affiliation
+            activities obtained after completing the postgraduate education.
+    </div>
+    
+</form> -->
+
+<div class="p-4 mb-2">
+    <form [formGroup]="experienceParentFormGroup" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+            <h5>License Register</h5>
+            <p class="helperText mt-2">
+                Please list all jurisdictions in which a license/registration to practice has been obtained. Include
+                permanent, limited
+                and other special purpose licenses / registrations.
+        </div>
+
+        <div class="form-row " formArrayName="expFormGroup">
+            <div class="experieces form-row border p-4 position-relative"
+                *ngFor="let expForm of expFormGrp.controls; let i = index" [formGroupName]="i">
+                @if(i != 0){
+                <button class="btn btn-link removeForm position-absolute right-0"
+                    (click)="removeExpFormGroup(i,'expFormGroup')">
+                    <img src="./img/icons/minus.png" />
+                </button>
+                }
+                <div class="form-group col-1">
+                    <label>Full Name Of Licensing / Registration Jurisdiction<sup>*</sup></label>
+                    <input type="text" placeholder="Enter Full Name Of Licensing / Registration Jurisdiction"
+                        formControlName="fullNameLRJurisdiction" required>
+                    @if(getControl(i,"fullNameLRJurisdiction").touched &&
+                    getControl(i,"fullNameLRJurisdiction").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"fullNameLRJurisdiction").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+
+                <div class="form-group col-2">
+                    <label>{{'personalForm.country' | translate}} <sup>*</sup></label>
+                    <div class="d-flex input-group dataListInputs">
+                        <input class="form-control noBorderInput"
+                            placeholder="{{'personalForm.enteryourcountry' | translate}}" formControlName="country"
+                            [ngbTypeahead]="searchCities" (selectItem)="onCitySelect($event,i)">
+                        @if (searching){
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/searchLoader.gif" alt="calender">
+                        </button>
+                        }
+                    </div>
+                    @if(getControl(i,"country").touched && getControl(i,"country").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"country").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="form-group col-3">
+                    <label>{{'personalForm.email' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'personalForm.enteryouremailaddress' | translate}}"
+                        formControlName="email" required>
+                    @if(getControl(i,"email").touched && getControl(i,"email").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"email").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-4">
+                    <label>License / Registration Number <sup>*</sup></label>
+                    <input type="text" placeholder="License / Registration Number" formControlName="licenseNumber"
+                        required>
+                    @if(getControl(i,"licenseNumber").touched && getControl(i,"licenseNumber").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"licenseNumber").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+
+                <div class="form-group col-5">
+                    <label>License Issuance Date<sup>*</sup></label>
+                    <div class="input-group dateTime mb-3">
+                        <input type="text" class="form-control" formControlName="licenseInssuanceDate"
+                            placeholder="select License Issuance Date" required />
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
+                            <input type="date" class="hiddenDateInput"
+                                (change)="formatDate($event,'licenseInssuanceDate',i)" />
+                        </button>
+                    </div>
+                    @if(getControl(i,"licenseInssuanceDate").touched && getControl(i,"licenseInssuanceDate").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"licenseInssuanceDate").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="form-group col-6">
+                    <label>License Expiration Date <sup>*</sup></label>
+                    <div class="input-group dateTime ">
+                        <input type="text" class="form-control" formControlName="licenseExpDate"
+                            placeholder="select License Expiration Date" required />
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
+                            <input type="date" class="hiddenDateInput"
+                                (change)="formatDate($event,'licenseExpDate',i)" />
+                        </button>
+                    </div>
+                    @if(getControl(i,"licenseExpDate").touched && getControl(i,"licenseExpDate").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"licenseExpDate").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="form-group radio mb-3 col-7">
+                    <label>Status<sup>*</sup></label>
+                    <div class="d-flex">
+                        <div class="form-check d-flex">
+                            <input class="" type="radio" formControlName="status" name="status" id="yes" value="active">
+                            <label class="form-check-label" for="yes">Active</label>
+                        </div>
+                        <div class="form-check d-flex">
+                            <input class="" type="radio" formControlName="status" name="status" id="no"
+                                value="inactive">
+                            <label class="form-check-label" for="no">Inactive</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-8">
+                    <label>License Title <sup>*</sup></label>
+                    <input type="text" placeholder="Enter License Title" formControlName="licenseTitle" required>
+                    @if(getControl(i,"licenseTitle").touched && getControl(i,"licenseTitle").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"licenseTitle").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-9">
+                    <label>Specialty <sup>*</sup></label>
+                    <input type="text" placeholder="Enter Specialty" formControlName="speciality" required>
+                    @if(getControl(i,"speciality").touched && getControl(i,"speciality").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"speciality").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+
+            </div>
+            <div class="d-flex justify-content-end text-end my-2">
+                <button class="btn style-four mx-2" type="submit" [disabled]="experienceParentFormGroup.invalid">
+                    {{'common.SaveSubmit' | translate}}
+                </button>
+                <button type="button" class="btn style-four mx-2" (click)="addExpFormGroup('expFormGroup')">
+                    Add another
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

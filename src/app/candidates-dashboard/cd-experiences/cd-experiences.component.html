@@ -1,114 +1,172 @@
-<form [formGroup]="experienceFormGroup" (ngSubmit)="onSubmit()">
-    <div class="form-row experieces">
-        <div class="form-group col-1">
-            <label>{{'experiencesForm.companyName' | translate}} <sup>*</sup></label>
-            <input type="text" placeholder="{{'experiencesForm.entercompanyname' | translate}}"
-                formControlName="companyName" required>
-            @if(getControl("companyName").touched && getControl("companyName").errors){
-            <div class="error-messages">
-                @if (getControl("companyName").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
-                }
-            </div>
-            }
-        </div>
-        <div class="form-group col-2">
-            <label>{{'experiencesForm.address' | translate}} <sup>*</sup></label>
-            <input type="text" placeholder="{{'experiencesForm.enteraddress' | translate}}" formControlName="address"
-                required>
-            @if(getControl("address").touched && getControl("address").errors){
-            <div class="error-messages">
-                @if (getControl("address").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
-                }
-            </div>
-            }
+<!-- <form [formGroup]="experienceFormGroup" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+        <h5>Exp Board / Professional Membership / Equivalent</h5>
+        <p class="helperText mt-2">
+            Please list all specialty board certification and/or summary of professional membership/affiliation
+            activities obtained after completing the postgraduate education.
+    </div>
+    
+</form> -->
 
+<div class="p-4 mb-2">
+    <form [formGroup]="experienceParentFormGroup" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+            <h5>Work Experieces</h5>
+            <p class="helperText mt-2">
+                Please provide a summary of your professional practice for at least the last five (5) years (if
+                applicable).
+                Note: Please ensure no gaps in practice unless justified with evidence.
         </div>
 
-        <div class="form-group col-3">
-            <label>{{'experiencesForm.jobTitle' | translate}} <sup>*</sup></label>
-            <input type="text" placeholder="{{'experiencesForm.enterjobtitle' | translate}}" formControlName="jobTitle"
-                required>
-            @if(getControl("jobTitle").touched && getControl("jobTitle").errors){
-            <div class="error-messages">
-                @if (getControl("jobTitle").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
+        <div class="form-row " formArrayName="expFormGroup">
+            <div class="experieces form-row border p-4 position-relative"
+                *ngFor="let expForm of expFormGrp.controls; let i = index" [formGroupName]="i">
+                @if(i != 0){
+                <button class="btn btn-link removeForm position-absolute right-0"
+                    (click)="removeExpFormGroup(i,'expFormGroup')">
+                    <img src="./img/icons/minus.png" />
+                </button>
                 }
+                <div class="form-group col-1">
+                    <label>Appointment / Position Title<sup>*</sup></label>
+                    <input type="text" placeholder="{{'experiencesForm.entercompanyname' | translate}}"
+                        formControlName="positionTitle" required>
+                    @if(getControl(i,"positionTitle").touched && getControl(i,"positionTitle").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"positionTitle").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="form-group col-2">
+                    <label>Institute Name<sup>*</sup></label>
+                    <input type="text" placeholder="{{'experiencesForm.entercompanyname' | translate}}"
+                        formControlName="instituteName" required>
+                    @if(getControl(i,"instituteName").touched && getControl(i,"instituteName").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"instituteName").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+
+                <div class="form-group col-3">
+                    <label>{{'personalForm.stateCity' | translate}} <sup>*</sup></label>
+                    <div class="d-flex input-group dataListInputs">
+                        <input class="form-control noBorderInput"
+                            placeholder="{{'personalForm.enteryourstateorcity' | translate}}"
+                            formControlName="stateCity" [ngbTypeahead]="searchCities"
+                            (selectItem)="onCitySelect($event,i)">
+                        @if (searching){
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/searchLoader.gif" alt="calender">
+                        </button>
+                        }
+                    </div>
+                    @if(getControl(i,"stateCity").touched && getControl(i,"stateCity").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"stateCity").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-4">
+                    <label>{{'schooling.country' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'schooling.enteryourcountry' | translate}}"
+                        formControlName="country">
+                    @if(getControl(i,"country").touched && getControl(i,"country").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"country").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+
+                        @if (getControl(i,"country").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-5">
+                    <label>{{'personalForm.email' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'personalForm.enteryouremailaddress' | translate}}"
+                        formControlName="email" required>
+                    @if(getControl(i,"email").touched && getControl(i,"email").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"email").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-6">
+                    <label>Website</label>
+                    <input type="text" placeholder="Website" formControlName="website">
+                </div>
+
+                <div class="form-group col-7">
+                    <label>{{'experiencesForm.from' | translate}}<sup>*</sup></label>
+                    <div class="input-group dateTime mb-3">
+                        <input type="text" class="form-control" formControlName="fromDate"
+                            placeholder="{{'experiencesForm.enterfromdate' | translate}}" required />
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
+                            <input type="date" class="hiddenDateInput" (change)="formatDate($event,'fromDate',i)" />
+                        </button>
+                    </div>
+                    @if(getControl(i,"fromDate").touched && getControl(i,"fromDate").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"fromDate").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="form-group col-8">
+                    <label>{{'experiencesForm.to' | translate}} <sup>*</sup></label>
+                    <div class="input-group dateTime ">
+                        <input type="text" class="form-control" formControlName="toDate"
+                            placeholder="{{'experiencesForm.entertodate' | translate}}" required />
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
+                            <input type="date" class="hiddenDateInput" (change)="formatDate($event,'toDate',i)" />
+                        </button>
+                    </div>
+                    @if(getControl(i,"toDate").touched && getControl(i,"toDate").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"toDate").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="form-group col-9">
+                    <label>Clinical Department / Area Of Practice</label>
+                    <textarea type="text" rows="6"
+                        placeholder="{{'experiencesForm.enterjobresponsibilities' | translate}}"
+                        formControlName="areaOfPractice">
+                                        </textarea>
+                </div>
+                <div class="form-group col-10">
+                    <app-file-uploads [title]="'Upload degree copy'"
+                        [desc]="'Upload a certificate copy of degree copy'">
+                    </app-file-uploads>
+                </div>
             </div>
-            }
-        </div>
-        <div class="form-group col-4">
-            <label>{{'experiencesForm.from' | translate}} <sup>*</sup></label>
-            <div class="input-group dateTime ">
-                <input type="text" class="form-control" formControlName="fromDate"
-                    placeholder="{{'experiencesForm.enterfromdate' | translate}}" required />
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                    <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
-                    <input type="date" class="hiddenDateInput" (change)="formatDate($event,'fromDate')" />
+            <div class="d-flex justify-content-end text-end my-2">
+                <button class="btn style-four mx-2" type="submit" [disabled]="experienceParentFormGroup.invalid">
+                    {{'common.SaveSubmit' | translate}}
+                </button>
+                <button type="button" class="btn style-four mx-2" (click)="addExpFormGroup('expFormGroup')">
+                    Add another
                 </button>
             </div>
-            @if(getControl("fromDate").touched && getControl("fromDate").errors){
-            <div class="error-messages">
-                @if (getControl("fromDate").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
-                }
-            </div>
-            }
         </div>
-
-
-        <div class="form-group col-5">
-            <label>{{'experiencesForm.to' | translate}} <sup>*</sup></label>
-            <div class="input-group dateTime ">
-                <input type="text" class="form-control" formControlName="toDate"
-                    placeholder="{{'experiencesForm.entertodate' | translate}}" required />
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                    <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
-                    <input type="date" class="hiddenDateInput" (change)="formatDate($event,'toDate')" />
-                </button>
-            </div>
-            @if(getControl("toDate").touched && getControl("toDate").errors){
-            <div class="error-messages">
-                @if (getControl("toDate").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
-                }
-            </div>
-            }
-        </div>
-        <div class="form-group col-6">
-            <label>{{'experiencesForm.industry' | translate}} <sup>*</sup></label>
-            <input type="text" placeholder="{{'experiencesForm.enterindustry' | translate}}" formControlName="industry"
-                required>
-            @if(getControl("industry").touched && getControl("industry").errors){
-            <div class="error-messages">
-                @if (getControl("industry").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
-                }
-                @if (getControl("industry").errors?.['pattern']) {
-                <small class="error">{{'common.invalidformat' | translate}}</small>
-                }
-            </div>
-            }
-        </div>
-        <div class="form-group col-7">
-            <label>{{'experiencesForm.jobResponsibilities' | translate}}<sup>*</sup></label>
-            <textarea type="text" rows="6" placeholder="{{'experiencesForm.enterjobresponsibilities' | translate}}"
-                formControlName="jobResponsibilities" required>
-                </textarea>
-            @if(getControl("jobResponsibilities").touched && getControl("jobResponsibilities").errors){
-            <div class="error-messages">
-                @if (getControl("jobResponsibilities").errors?.['required']) {
-                <small class="error">{{'common.fieldrequired' | translate}}</small>
-                }
-                @if (getControl("jobResponsibilities").errors?.['pattern']) {
-                <small class="error">{{'common.invalidformat' | translate}}</small>
-                }
-            </div>
-            }
-        </div>
-    </div>
-    <div class="flex text-end my-5">
-        <button class="btn style-four" type="submit" [disabled]="experienceFormGroup.invalid">Save & Submit</button>
-    </div>
-</form>
+    </form>
+</div>

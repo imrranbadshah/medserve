@@ -64,6 +64,9 @@ import { ApplicantDetailsComponent } from './employers-dashboard/applicant-detai
 import { CdUserInfoComponent } from './candidates-dashboard/cd-user-info/cd-user-info.component';
 import { CdSpecialityBoardComponent } from './candidates-dashboard/cd-speciality-board/cd-speciality-board.component';
 import { CdSchoolingsComponent } from './candidates-dashboard/cd-schoolings/cd-schoolings.component';
+import { CdPgEducationComponent } from './candidates-dashboard/cd-pg-education/cd-pg-education.component';
+import { CdUgEducationComponent } from './candidates-dashboard/cd-ug-education/cd-ug-education.component';
+import { CdLicenceRegisterComponent } from './candidates-dashboard/cd-licence-register/cd-licence-register.component';
 
 export const routes: Routes = [
     // { path: 'home', component: HomeDemoOneComponent },
@@ -142,6 +145,9 @@ export const routes: Routes = [
             { path: 'experience-forms', component: CdExperiencesComponent },
             { path: 'document-forms', component: CdDocumentsComponent },
             { path: 'schooling-forms', component: CdSchoolingsComponent },
+            { path: 'ug-education', component: CdUgEducationComponent },
+            { path: 'pg-education', component: CdPgEducationComponent },
+            { path: 'license-register', component: CdLicenceRegisterComponent },
         ]
     },
     // Here add new pages component

@@ -1,34 +1,33 @@
+import { NgFor } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { ApiService } from '../../services/api/api.service';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormControl, FormArray } from '@angular/forms';
-import { HelpersService } from '../../services/helpers/helpers.service';
-import { TranslateModule } from '@ngx-translate/core';
-import { NgbTypeahead, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
-import { Subject, Observable, debounceTime, distinctUntilChanged, merge, map, tap, switchMap, catchError, of } from 'rxjs';
-import { CommonModule, NgFor } from '@angular/common';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { NgbTypeahead, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 import { FileUploadsComponent } from '../../components/file-uploads/file-uploads.component';
+import { ApiService } from '../../services/api/api.service';
+import { HelpersService } from '../../services/helpers/helpers.service';
+import { Observable, debounceTime, distinctUntilChanged, merge, map, tap, switchMap, catchError, of, Subject } from 'rxjs';
+
 @Component({
-  selector: 'app-cd-licence-register',
+  selector: 'app-cd-ug-education',
   standalone: true,
   imports: [
     ReactiveFormsModule,
     TranslateModule,
-    CommonModule,
     NgbTypeaheadModule,
     RouterLink,
     FileUploadsComponent,
     NgFor
   ],
-  templateUrl: './cd-licence-register.component.html',
-  styleUrl: './cd-licence-register.component.scss'
+  templateUrl: './cd-ug-education.component.html',
+  styleUrl: './cd-ug-education.component.scss'
 })
-export class CdLicenceRegisterComponent {
+export class CdUgEducationComponent {
   @ViewChild('instance', { static: true }) instance!: NgbTypeahead;
-  isBoardCertified: string = "yes";
   searching = false;
   searchFailed = false;
-  experienceParentFormGroup!: FormGroup;
+  academicsUGParentFormGroup!: FormGroup;
   filteredCities: any;
 
   focus$ = new Subject<string>();
@@ -40,8 +39,8 @@ export class CdLicenceRegisterComponent {
     private helper: HelpersService,
     private api: ApiService
   ) {
-    this.experienceParentFormGroup = this.fb.group({
-      expFormGroup: this.fb.array([this.createExpFormGroup()]),
+    this.academicsUGParentFormGroup = this.fb.group({
+      ugFormGroup: this.fb.array([this.createUGFormGroup()]),
     })
   }
 
@@ -50,10 +49,9 @@ export class CdLicenceRegisterComponent {
   * @param date 
   * @param formControl 
   */
-  formatDate(date: any, formControl: string, i: number) {
+  formatDate(date: any, formControl: string, type: string) {
     let formatedDate = this.helper.formatDate(date.target.value);
-    const ExpFormControls = this.experienceParentFormGroup.get('expFormGroup') as FormArray;
-    ExpFormControls.at(i).patchValue({ [formControl]: formatedDate });
+    this.academicsUGParentFormGroup.patchValue({ [formControl]: formatedDate });
   }
 
   /**
@@ -145,33 +143,32 @@ export class CdLicenceRegisterComponent {
   /**
    * @description used to city selections
    */
-  onCitySelect(title: any, i: number) {
+  onCitySelect(title: any) {
     console.log("onCitySelect", title);
     const selectedCity = title.item;
     if (selectedCity) {
       let place = selectedCity.split(",");
-      const ExpFormControls = this.experienceParentFormGroup.get('expFormGroup') as FormArray;
-      ExpFormControls.at(i).get('country')?.setValue(place[place.length - 1]);
-      setTimeout(() => ExpFormControls.at(i).get('country')?.setValue(`${place[0]},${place[1]}`));
+      this.academicsUGParentFormGroup.get('country')?.setValue(place[place.length - 1]);
+      setTimeout(() => this.academicsUGParentFormGroup.get('stateCity')?.setValue(`${place[0]},${place[1]}`));
     }
   }
 
-  private createExpFormGroup(): FormGroup {
+  private createUGFormGroup(): FormGroup {
     return new FormGroup({
-      "fullNameLRJurisdiction": new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]),
+      "fullInstituteName": new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]),
+      "stateCity": new FormControl('', [Validators.required]),
       "country": new FormControl('', [Validators.required]),
       "email": new FormControl('', [Validators.required]),
-      "licenseNumber": new FormControl('', [Validators.required]),
-      "licenseInssuanceDate": new FormControl('', [Validators.required]),
-      "licenseExpDate": new FormControl('', [Validators.required]),
-      "status": new FormControl('', [Validators.required]),
-      "licenseTitle": new FormControl('', [Validators.required]),
-      "speciality": new FormControl('', [Validators.required]),
+      "attendedfromDate": new FormControl('', [Validators.required]),
+      "attendedtoDate": new FormControl('', [Validators.required]),
+      "graduationDate": new FormControl('', [Validators.required]),
+      "degree": new FormControl('', [Validators.required]),
+      "website": new FormControl('', [Validators.required]),
     })
   }
 
   get formControllers() {
-    return this.experienceParentFormGroup.controls;
+    return this.academicsUGParentFormGroup.controls;
   }
 
   /**
@@ -180,40 +177,40 @@ export class CdLicenceRegisterComponent {
   * @param controlName 
   * @returns 
   */
-  getControl(index: number, controlName: string): FormControl {
-    const expFormArray = this.experienceParentFormGroup.get('expFormGroup') as FormArray;
-    return expFormArray.at(index).get(controlName) as FormControl;
+  getUGControl(index: number, controlName: string): FormControl {
+    const ugFormArray = this.academicsUGParentFormGroup.get('ugFormGroup') as FormArray;
+    return ugFormArray.at(index).get(controlName) as FormControl;
   }
 
-  get expFormGrp(): FormArray {
-    return this.experienceParentFormGroup.get('expFormGroup') as FormArray;
+  get academicUGFormGrp(): FormArray {
+    return this.academicsUGParentFormGroup.get('ugFormGroup') as FormArray;
   }
 
   /**
   * when Plus icon is clicked this func adds new open and close time fields 
   */
-  public addExpFormGroup(val: any) {
-    const expForm = this.experienceParentFormGroup.get(val) as FormArray
-    expForm.push(this.createExpFormGroup())
+  public addUGFormGroup(val: any) {
+    const ugForm = this.academicsUGParentFormGroup.get(val) as FormArray
+    ugForm.push(this.createUGFormGroup())
   }
 
   /**
    * when minus icon is clicked this func adds new open and close time fields 
    */
-  public removeExpFormGroup(i: number, val: any) {
-    const expForm = this.experienceParentFormGroup.get(val) as FormArray
-    if (expForm.length > 1) {
-      expForm.removeAt(expForm.length - 1)
+  public removeUGFormGroup(i: number, val: any) {
+    const ugForm = this.academicsUGParentFormGroup.get(val) as FormArray
+    if (ugForm.length > 1) {
+      ugForm.removeAt(ugForm.length - 1)
     } else {
-      expForm.reset()
+      ugForm.reset()
       return
     }
   }
 
   /**
-   * @description Used to submit the form
-   */
+  * @description Used to submit the form
+  */
   onSubmit() {
-    console.log(this.experienceParentFormGroup.value);
+    console.log(this.academicsUGParentFormGroup.value);
   }
 }

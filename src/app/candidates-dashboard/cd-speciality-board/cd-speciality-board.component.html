@@ -1,1 +1,150 @@
-<p>cd-speciality-board works!</p>
+<div class="p-4 mb-2">
+    <form [formGroup]="specialityParentFormGroup" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+            <h5>Speciality Board / Professional Membership / Equivalent</h5>
+            <p class="helperText mt-2">
+                Please list all specialty board certification and/or summary of professional membership/affiliation
+                activities obtained after completing the postgraduate education.
+        </div>
+        <div class="form-group radio mb-3">
+            <label>Are You Board Certified In Your Speciality?<sup>*</sup></label>
+            <div class="d-flex">
+                <div class="form-check d-flex">
+                    <input class="" type="radio" [ngModelOptions]="{standalone: true}" name="isBoardCertified"
+                        [(ngModel)]="isBoardCertified" id="yes" value="yes" (change)="handleFormEnable($event)">
+                    <label class="form-check-label" for="yes">Yes</label>
+                </div>
+                <div class="form-check d-flex">
+                    <input class="" type="radio" [ngModelOptions]="{standalone: true}" name="isBoardCertified"
+                        [(ngModel)]="isBoardCertified" id="no" value="no" (change)="handleFormEnable($event)">
+                    <label class="form-check-label" for="no">No</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row " [ngClass]="{'disable' : isBoardCertified == 'no'}" formArrayName="specialityFormGroup">
+            <div class="academics form-row companyForm border p-4 position-relative"
+                *ngFor="let specialityForm of specialityFormGrp.controls; let i = index" [formGroupName]="i">
+                @if(i != 0){
+                <button class="btn btn-link removeForm position-absolute right-0"
+                    (click)="removeSpecialityFormGroup(i,'specialityFormGroup')">
+                    <img src="./img/icons/minus.png" />
+                </button>
+                }
+                <div class="form-group col-1">
+                    <label>Specialty Board Name<sup>*</sup></label>
+                    <input type="text" placeholder="Enter Specialty Board Name" formControlName="specialtyBoardName" />
+                    @if(getControl(i,"specialtyBoardName").touched && getControl(i,"specialtyBoardName").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"specialtyBoardName").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                        @if (getControl(i,"specialtyBoardName").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-2">
+                    <label>{{'personalForm.stateCity' | translate}} <sup>*</sup></label>
+                    <div class="d-flex input-group dataListInputs">
+                        <input class="form-control noBorderInput"
+                            placeholder="{{'personalForm.enteryourstateorcity' | translate}}"
+                            formControlName="stateCity" [ngbTypeahead]="searchCities"
+                            (selectItem)="onCitySelect($event,i)">
+                        @if (searching){
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/searchLoader.gif" alt="calender">
+                        </button>
+                        }
+                    </div>
+                    @if(getControl(i,"stateCity").touched && getControl(i,"stateCity").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"stateCity").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-3">
+                    <label>{{'schooling.country' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'schooling.enteryourcountry' | translate}}"
+                        formControlName="country">
+                    @if(getControl(i,"country").touched && getControl(i,"country").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"country").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+
+                        @if (getControl(i,"country").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-4">
+                    <label>{{'personalForm.email' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'personalForm.enteryouremailaddress' | translate}}"
+                        formControlName="email" required>
+                    @if(getControl(i,"email").touched && getControl(i,"email").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"email").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-5">
+                    <label>Website</label>
+                    <input type="text" placeholder="Website" formControlName="website">
+                </div>
+                <div class="form-group col-6">
+                    <label>Date Certification Obtained <sup>*</sup></label>
+                    <div class="input-group dateTime mb-3">
+                        <input type="text" class="form-control" formControlName="dateCertificationObtained"
+                            placeholder="Select Certification Obtained Date" />
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
+                            <input type="date" class="hiddenDateInput"
+                                (change)="formatDate($event,'dateCertificationObtained',i)" />
+                        </button>
+                    </div>
+                    @if(getControl(i,"dateCertificationObtained").touched &&
+                    getControl(i,"dateCertificationObtained").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"dateCertificationObtained").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-7">
+                    <label>Board Identification Number<sup>*</sup></label>
+                    <input type="text" placeholder="Enter Board Identification Number"
+                        formControlName="boardIdentificationNumber" />
+                    @if(getControl(i,"boardIdentificationNumber").touched &&
+                    getControl(i,"boardIdentificationNumber").errors){
+                    <div class="error-messages">
+                        @if (getControl(i,"boardIdentificationNumber").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-8">
+                    <app-file-uploads [title]="'Upload degree copy'" [desc]="'Upload a certificate copy of degree copy'">
+                    </app-file-uploads>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end text-end my-2">
+                <button class="btn style-four mx-2" type="submit" [disabled]="specialityParentFormGroup.invalid">
+                    {{'common.SaveSubmit' | translate}}
+                </button>
+                <button type="button" class="btn style-four mx-2"
+                    (click)="addspecialityFormGroup('specialityFormGroup')">
+                    Add another
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
