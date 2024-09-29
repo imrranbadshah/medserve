@@ -62,7 +62,7 @@ export class CdPersonalComponent implements OnInit {
     this.personalFormGroup = this.fb.group(
       {
         permanentEmailNotify: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
-        permanentMobileNotify: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]+$")]],
+        permanentMobileNotify: ['', [Validators.required, Validators.pattern("^[0-9 ]+$")]],
         gender: ['', [Validators.required]],
         dateOfBirth: ['', [Validators.required]],
         stateCity: ['', [Validators.required]],

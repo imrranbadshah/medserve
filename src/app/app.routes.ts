@@ -67,6 +67,13 @@ import { CdSchoolingsComponent } from './candidates-dashboard/cd-schoolings/cd-s
 import { CdPgEducationComponent } from './candidates-dashboard/cd-pg-education/cd-pg-education.component';
 import { CdUgEducationComponent } from './candidates-dashboard/cd-ug-education/cd-ug-education.component';
 import { CdLicenceRegisterComponent } from './candidates-dashboard/cd-licence-register/cd-licence-register.component';
+import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { OverviewComponent } from './home-dashboard/overview/overview.component';
+import { PendingTaskComponent } from './home-dashboard/pending-task/pending-task.component';
+import { SbumittedReqComponent } from './home-dashboard/sbumitted-req/sbumitted-req.component';
+import { DocumentWalComponent } from './home-dashboard/document-wal/document-wal.component';
+import { PaymentsComponent } from './home-dashboard/payments/payments.component';
+import { HelpdeskComponent } from './home-dashboard/helpdesk/helpdesk.component';
 
 export const routes: Routes = [
     // { path: 'home', component: HomeDemoOneComponent },
@@ -110,6 +117,7 @@ export const routes: Routes = [
     { path: '', redirectTo: '/candidates-dashboard', pathMatch: 'full' },
     { path: 'candidate-login', component: CandidateLoginComponent, title: "Candidate Login" },
     { path: 'employer-login', component: CandidateLoginComponent, title: "Employer Login" },
+
     {
         path: 'employers-dashboard',
         component: EmployersDashboardComponent,
@@ -128,7 +136,7 @@ export const routes: Routes = [
     {
         path: 'candidates-dashboard',
         component: CandidatesDashboardComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         children: [
             // { path: '', component: CdDashboardComponent },
             // { path: 'my-profile', component: CdMyProfileComponent },
@@ -137,7 +145,7 @@ export const routes: Routes = [
             // { path: 'shortlist-jobs', component: CdShortlistJobsComponent },
             // { path: 'saved-candidates', component: CdSavedCandidatesComponent },
             // { path: 'account-settings', component: CdAccountSettingsComponent },
-            { path: '', redirectTo: 'personal-forms', pathMatch: 'full' },
+            { path: '', redirectTo: 'user-info', pathMatch: 'full' },
             { path: 'user-info', component: CdUserInfoComponent },
             { path: 'speciality-board', component: CdSpecialityBoardComponent },
             { path: 'personal-forms', component: CdPersonalComponent },
@@ -148,6 +156,19 @@ export const routes: Routes = [
             { path: 'ug-education', component: CdUgEducationComponent },
             { path: 'pg-education', component: CdPgEducationComponent },
             { path: 'license-register', component: CdLicenceRegisterComponent },
+        ]
+    },
+    {
+        path: 'home-dashboard',
+        component: HomeDashboardComponent,
+        children: [
+            { path: '', redirectTo: 'overview', pathMatch: 'full' },
+            { path: 'overview', component: OverviewComponent },
+            { path: 'pending-task', component: PendingTaskComponent },
+            { path: 'submitted-req', component: SbumittedReqComponent },
+            { path: 'document-wal', component: DocumentWalComponent },
+            { path: 'payments', component: PaymentsComponent },
+            { path: 'helpdesk', component: HelpdeskComponent },
         ]
     },
     // Here add new pages component

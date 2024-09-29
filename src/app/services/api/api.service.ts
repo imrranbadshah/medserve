@@ -1,17 +1,19 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { environment } from './endPointsURL';
 import { getIpaddress } from '../sharedFunctions/sharedFunctions';
+import { isPlatformBrowser } from '@angular/common';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   API_URL = environment.SERVER_URL;
-  platformId = inject(PLATFORM_ID)
+  // platformId = inject(PLATFORM_ID)
   ipaddress: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object,) {
     this.ipaddress = {
       ip: "52.2.21.14",
       country: "US",

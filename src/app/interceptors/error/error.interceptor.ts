@@ -4,7 +4,10 @@ import { catchError, throwError } from 'rxjs';
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401) {
+      if (error.status === 400) {
+        // Unauthorized
+        console.error('Bad Request - 400');
+      } else if (error.status === 401) {
         // Unauthorized
         console.error('Unauthorized access - 401');
       } else if (error.status === 403) {

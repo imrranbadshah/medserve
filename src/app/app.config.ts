@@ -11,6 +11,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { environment } from './services/api/endPointsURL';
+import { RECAPTCHA_SETTINGS, RECAPTCHA_V3_SITE_KEY, RecaptchaSettings } from 'ng-recaptcha';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,7 +45,7 @@ export const appConfig: ApplicationConfig = {
             provider: new GoogleLoginProvider(
               '191695444510-f0mqq0cc0vscfsf2j0nvmsn2vmppvjre.apps.googleusercontent.com', {
               oneTapEnabled: false,
-              
+
             } // own acc
             ),
 
@@ -57,7 +58,17 @@ export const appConfig: ApplicationConfig = {
           console.error(err);
         }
       } as SocialAuthServiceConfig,
-    }
+    },
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKeyV2,
+      } as RecaptchaSettings,
+    },
+    // {
+    //   provide: RECAPTCHA_V3_SITE_KEY,
+    //   useValue: environment.recaptcha.siteKey,
+    // },
     // {
     //   provide: "SocialAuthServiceConfig",
     //   useValue: {

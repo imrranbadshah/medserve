@@ -1,50 +1,87 @@
 <app-top-header />
 
-<app-navbar />
+<!-- <app-navbar /> -->
 
 <div class="candidateLogin row" [ngClass]="getDynamicHeight()">
-    <div class=" col-xs-12 col-sm-12 col-md-6 bgImage"> </div>
-    <div
-        class="col-xs-12 col-sm-12 col-md-6 formContainer d-flex flex-column align-items-center justify-content-center">
-        @if(isCandidateLogin == "candidate"){
-        <div class="companyLogin d-flex flex-column align-items-center justify-content-center">
-            <div class="text-start">
-                <div class="title">Candidate Login</div>
-            </div>
-            <div class="form-group">
-                <!-- <asl-google-signin-button type='standard' size='medium'>
-                </asl-google-signin-button> -->
-                <!-- <button type="button" class="" routerLink="/candidates-dashboard/personal-forms">Employer
-                    Login</button> -->
-                <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin>
-            </div>
-            <!-- <div class="title">Candidate Login</div>
-            <div class="text-center">
-                <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin>
-               
-            </div> -->
+    @switch (isCandidateLogin){
+    <!-- candidate login -->
+    @case ("candidate"){
+    <div class="col-xs-12 col-sm-12 col-md-4"></div>
+    <form class="companyLogin col-xs-12 col-sm-12 col-md-4" [formGroup]="loginFormGroup" (ngSubmit)="onCandidateLoginSubmit()">
+        <div class="text-center">
+            <img src="img/web-logo.png" class="logo" alt="Logo">
+            <div class="title">Candidate Sign In</div>
+            <p class="helperText">Please enter your information below</p>
         </div>
-        } @else if(isCandidateLogin == "employer"){
-        <div class="companyLogin d-flex flex-column align-items-center justify-content-center">
+        <div>
+            <div class="form-group mb-4">
+                <label>Your Candidate Email</label>
+                <input type="text" placeholder="Enter your email" formControlName="candidateEmail">
+            </div>
+            <div class="form-group mb-4">
+                <label>Your Password</label>
+                <input type="text" placeholder="Enter your password" formControlName="candidatePasswd">
+            </div>
+            <div class="flex text-center mt-4">
+                <button class="btn style-four noBorderInput w-100" type="button" (click)="onCandidateLoginSubmit()">Candidate
+                    Sign In
+                </button>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-link routeButton noBorderInput themeColor p-0 pt-2 mt-1" type="button"
+                        (click)="showCompanyRegister('forgetPwd')">
+                        Forget Password
+                    </button>
+                    <button class="btn btn-link routeButton noBorderInput themeColor p-0 pt-2 mt-1" type="button"
+                        (click)="showCompanyRegister('candidateRegister')">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="col-xs-12 col-sm-12 col-md-4"></div>
+    }
+    <!-- employer login -->
+    @case ("employer"){
+    <div class="col-xs-12 col-sm-12 col-md-6 bgImage"></div>
+    <div class="empLogin d-flex flex-column align-items-center justify-content-center row col-xs-12 col-sm-12 col-md-6">
+        <div class="text-center">
+            <img src="img/web-logo.png" class="logo" alt="Logo">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2"></div>
+        <div class="col-xs-12 col-sm-12 col-md-8">
             @if(!isOTPSent){
             <div class="form-group">
                 <label>Your Employer Email</label>
                 <input type="text" placeholder="Enter your email" [(ngModel)]="companyEmail">
             </div>
-            <div class="flex text-center mt-4">
-                <button class="btn style-four" type="button" (click)="onCompanyEmailSubmit()">Login</button>
+            <div class="flex text-center mt-4 ">
+                <button class="btn style-four w-100 noBorderInput" type="button"
+                    (click)="onCompanyEmailSubmit()">Login</button>
             </div>
-            <button type="button" class="btn btn-link routeButton themeColor"
-                (click)="showCompanyRegister('companyRegister')">
-                Employer Register
-            </button>
+            <div class="flex text-center mt-2 ">
+                <button type="button" class="btn btn-link routeButton themeColor"
+                    (click)="showCompanyRegister('employerRegister')">
+                    Employer Register
+                </button>
+            </div>
             } @else {
             <app-otp-layout [company-Email]="companyEmail" (otpVal)="verifyOTP($event)"></app-otp-layout>
             }
         </div>
-        }@else if(isCandidateLogin == "companyRegister"){
-        <div class="companyLogin d-flex flex-column align-items-center justify-content-center">
-            @if(!isOTPSent){
+        <div class="col-xs-12 col-sm-12 col-md-2"></div>
+    </div>
+    }
+    <!-- employer Register -->
+    @case ("employerRegister"){
+    <div class="col-xs-12 col-sm-12 col-md-6 bgImage"></div>
+    <div
+        class="empRegister d-flex flex-column align-items-center justify-content-start row col-xs-12 col-sm-12 col-md-6">
+        <div class="text-center mt-3">
+            <img src="img/web-logo.png" class="logo" alt="Logo">
+        </div>
+        @if(!isOTPSent){
+        <form [formGroup]="registerForms" (ngSubmit)="onEmpRegsiterSubmit()">
             <div class="form-group">
                 <label>Company name</label>
                 <input type="text" placeholder="Enter company name" formControlName="companyName">
@@ -65,19 +102,299 @@
                 <label>Location</label>
                 <input type="text" placeholder="Enter your company locations" formcontrolName="location">
             </div>
-            <button class="btn style-four mt-3" type="button" (click)="showCompanyLogin()">
-                Register Employer
-            </button>
-            <button type="button" class="btn btn-link routeButton themeColor" (click)="showCompanyRegister('employer')">
-                Employer Login
-            </button>
-
-            } @else {
-            <app-otp-layout [company-Email]="companyEmail" (otpVal)="verifyOTP($event)"></app-otp-layout>
-            }
-        </div>
+            <div class="d-flex flex-column align-items-center justify-content-start">
+                <button class="btn style-four mt-3 noBorderInput w-100" type="button" (click)="showCompanyLogin()">
+                    Register Employer
+                </button>
+                <button type="button" class="btn btn-link routeButton themeColor"
+                    (click)="showCompanyRegister('employer')">
+                    Employer Login
+                </button>
+            </div>
+        </form>
         }
     </div>
-    <!-- <a href="https://google.com" class="login-btn d-block w-100 round-4 transition" target="_blank">
-                <img src="img/icons/google.png" alt="Facebook"> Continue With <strong>Google</strong>
-            </a> -->
+    }
+    @case ("candidateRegister"){
+    <div class="col-xs-12 col-sm-12 col-md-4 bgImage"></div>
+    <div
+        class="candidateRegister  d-flex flex-column align-items-center justify-content-start row col-xs-12 col-sm-12 col-md-8">
+        <form [formGroup]="candidateRegisterForms" (ngSubmit)="onCandidateRegsiterSubmit()">
+            <div class="text-start mt-3">
+                <img src="img/web-logo.png" class="logo cRegister" alt="Logo">
+                <div class="title">Candidate Register</div>
+                <p class="helperText">Please enter your information below</p>
+            </div>
+            <div class="w-100 line my-4"></div>
+            <div class="form1 form-row">
+                <div class="form-group col-1">
+                    <label>{{'personalForm.email' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="Enter your Email" formControlName="email">
+                    @if(getControl("email").touched && getControl("email").errors){
+                    <div class="error-messages">
+                        @if (getControl("email").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+
+                        @if (getControl("email").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-2">
+                    <label>{{'personalForm.confirmEmail' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'personalForm.enteryourcountry' | translate}} "
+                        formControlName="confirmEmail">
+                    @if(getControl("confirmEmail").touched && getControl("confirmEmail").errors){
+                    <div class="error-messages">
+                        @if (getControl("confirmEmail").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+
+                        @if (getControl("confirmEmail").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-3">
+                    <label>username <sup>*</sup></label>
+                    <input type="text" placeholder="Enter your username" formControlName="username">
+                    @if(getControl("username").touched && getControl("username").errors){
+                    <div class="error-messages">
+                        @if (getControl("username").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+
+                        @if (getControl("username").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-4">
+                    <label>password <sup>*</sup></label>
+                    <input type="text" placeholder="Enter your password" formControlName="password">
+                    @if(getControl("password").touched && getControl("password").errors){
+                    <div class="error-messages">
+                        @if (getControl("password").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+
+                        @if (getControl("password").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-5">
+                    <label>confirmpassword <sup>*</sup></label>
+                    <input type="text" placeholder="Enter your confirm password" formControlName="confirmpassword">
+                    @if(getControl("confirmpassword").touched && getControl("confirmpassword").errors){
+                    <div class="error-messages">
+                        @if (getControl("confirmpassword").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+
+                        @if (getControl("confirmpassword").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="form-group col-6">
+                    <label>Email to receive notifications on <sup>*</sup></label>
+                    <input type="text" placeholder="Enter your Email" formControlName="notifyEmail">
+                    @if(getControl("notifyEmail").touched && getControl("notifyEmail").errors){
+                    <div class="error-messages">
+                        @if (getControl("notifyEmail").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+
+                        @if (getControl("notifyEmail").errors?.['pattern']) {
+                        <small class="error">{{'common.invalidformat' | translate}}</small>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="input-group form-group col-7">
+                    <label>Mobile number to receive notifications on<sup>*</sup></label>
+                    <div class="d-flex input-group">
+                        <input class="form-control noBorderInput flex-02 w25"
+                            placeholder="{{'common.eg91' | translate}}" formControlName="countryCode"
+                            [ngbTypeahead]="searchPhCode" (focus)="focus$.next($any($event).target.value)"
+                            (click)="click$.next($any($event).target.value)" />
+
+                        <input class="form-control flex-1 noBorderInput w75"
+                            placeholder="{{'personalForm.enteryPhoneNumber' | translate}}"
+                            formControlName="notifyMobile" />
+                    </div>
+                    @if(getControl("countryCode").touched && getControl("countryCode").errors){
+                    <div class="error-messages">
+                        @if (getControl("countryCode").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                    </div>
+                    }
+                    @if(getControl("notifyMobile").touched && getControl("notifyMobile").errors){
+                    <div class="error-messages">
+                        @if (getControl("notifyMobile").errors?.['required']) {
+                        <small class="error">{{'common.fieldrequired' | translate}}</small>
+                        }
+                        @if (getControl("notifyMobile").errors?.['minLength']) {
+                        <small class="error">{{'common.minimumlength' | translate}} {{
+                            getControl("notifyMobile").errors?.['minLength'].requiredLength }} {{'common.required' |
+                            translate}}.</small>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="form22">
+                <div class="text-start mt-3">
+                    <div class="title">Main Contact Person</div>
+                    <p class="helperText">Please enter your information as per passport</p>
+                </div>
+                <div class="w-100 line my-4"></div>
+                <div class="form2 form-row">
+                    <div class="form-group col-1">
+                        <label>firstName <sup>*</sup></label>
+                        <input type="text" placeholder="Enter your firstName" formControlName="firstName">
+                        @if(getControl("firstName").touched && getControl("firstName").errors){
+                        <div class="error-messages">
+                            @if (getControl("firstName").errors?.['required']) {
+                            <small class="error">{{'common.fieldrequired' | translate}}</small>
+                            }
+
+                            @if (getControl("firstName").errors?.['pattern']) {
+                            <small class="error">{{'common.invalidformat' | translate}}</small>
+                            }
+                        </div>
+                        }
+                    </div>
+                    <div class="form-group col-2">
+                        <label>lastName <sup>*</sup></label>
+                        <input type="text" placeholder="Enter your lastName" formControlName="lastName">
+                        @if(getControl("lastName").touched && getControl("lastName").errors){
+                        <div class="error-messages">
+                            @if (getControl("lastName").errors?.['required']) {
+                            <small class="error">{{'common.fieldrequired' | translate}}</small>
+                            }
+
+                            @if (getControl("lastName").errors?.['pattern']) {
+                            <small class="error">{{'common.invalidformat' | translate}}</small>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label>{{'personalForm.email' | translate}} <sup>*</sup></label>
+                        <input type="text" placeholder="Enter your Email" formControlName="email">
+                        @if(getControl("email").touched && getControl("email").errors){
+                        <div class="error-messages">
+                            @if (getControl("email").errors?.['required']) {
+                            <small class="error">{{'common.fieldrequired' | translate}}</small>
+                            }
+
+                            @if (getControl("email").errors?.['pattern']) {
+                            <small class="error">{{'common.invalidformat' | translate}}</small>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <div class="input-group form-group col-4">
+                        <label>{{'personalForm.PhoneNumber' | translate}} <sup>*</sup></label>
+                        <div class="d-flex input-group">
+                            <input class="form-control noBorderInput flex-02 w25"
+                                placeholder="{{'common.eg91' | translate}}" formControlName="mcountryCode"
+                                [ngbTypeahead]="searchPhCodeMain" (focus)="focusMain$.next($any($event).target.value)"
+                                (click)="clickMain$.next($any($event).target.value)" />
+
+                            <input class="form-control flex-1 noBorderInput w75"
+                                placeholder="{{'personalForm.enteryPhoneNumber' | translate}}"
+                                formControlName="phoneNumber" />
+                        </div>
+                        @if(getControl("countryCode").touched && getControl("countryCode").errors){
+                        <div class="error-messages">
+                            @if (getControl("countryCode").errors?.['required']) {
+                            <small class="error">{{'common.fieldrequired' | translate}}</small>
+                            }
+                        </div>
+                        }
+                        @if(getControl("phoneNumber").touched && getControl("phoneNumber").errors){
+                        <div class="error-messages">
+                            @if (getControl("phoneNumber").errors?.['required']) {
+                            <small class="error">{{'common.fieldrequired' | translate}}</small>
+                            }
+                            @if (getControl("phoneNumber").errors?.['minLength']) {
+                            <small class="error">{{'common.minimumlength' | translate}} {{
+                                getControl("phoneNumber").errors?.['minLength'].requiredLength }} {{'common.required' |
+                                translate}}.</small>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <div class="form-group col-5">
+                        <label>{{'personalForm.residenceCountry' | translate}} <sup>*</sup></label>
+                        <input type="text" placeholder="{{'personalForm.enteryourcountry' | translate}} "
+                            formControlName="residenceCountry">
+                        @if(getControl("residenceCountry").touched && getControl("residenceCountry").errors){
+                        <div class="error-messages">
+                            @if (getControl("residenceCountry").errors?.['required']) {
+                            <small class="error">{{'common.fieldrequired' | translate}}</small>
+                            }
+
+                            @if (getControl("residenceCountry").errors?.['pattern']) {
+                            <small class="error">{{'common.invalidformat' | translate}}</small>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label>{{'personalForm.nationality' | translate}} <sup>*</sup></label>
+                        <div class="d-flex input-group dataListInputs">
+                            <input class="form-control noBorderInput"
+                                placeholder="{{'personalForm.enteryournationality' | translate}}"
+                                formControlName="nationality" [ngbTypeahead]="searchCities"
+                                (selectItem)="onCitySelect($event)">
+                            @if (searching){
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                <img class="iconType" src="/img/searchLoader.gif" alt="calender">
+                            </button>
+                            }
+                        </div>
+                        @if(getControl("nationality").touched && getControl("nationality").errors){
+                        <div class="error-messages">
+                            @if (getControl("nationality").errors?.['required']) {
+                            <small class="error">{{'common.fieldrequired' | translate}}</small>
+                            }
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <re-captcha (resolved)="resolved($event)" (errored)="onError($event)" errorMode="handled"
+                formControlName="recaptcha"></re-captcha>
+
+            <div class="flex text-center mt-4">
+                <button class="btn style-four noBorderInput w-100" type="button" (click)="showCompanyLogin()">Candidate
+                    Register
+                </button>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-link routeButton noBorderInput themeColor p-0 pt-2 mt-1" type="button"
+                        (click)="showCompanyRegister('candidate')">
+                        Candidate Login
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    }
+    }
+</div>
+<!-- <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin> -->
