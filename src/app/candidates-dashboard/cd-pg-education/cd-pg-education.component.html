@@ -1,11 +1,9 @@
 <div class="p-4 mb-2">
     <form [formGroup]="academicsPGParentFormGroup" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-            <h5>Postgraduate Education</h5>
+            <h5>{{'pg.postgraduateeducation' | translate}}</h5>
             <p class="helperText mt-2">
-                Please list all postgraduate education obtained after graduation from college / university. This shall
-                include internship, Supervised Clinical training/residency, masters, etc. Note: Please ensure no gaps in
-                training unless justified with evidence.
+                {{'pg.postgraduateeducationobtained' | translate}}
         </div>
         <div class="form-row " formArrayName="pgFormGroup">
             <div class="academics form-row companyForm border p-4 position-relative"
@@ -17,7 +15,7 @@
                 </button>
                 }
                 <div class="form-group col-1">
-                    <label>Training Program<sup>*</sup></label>
+                    <label>{{'pg.trainingprogram' | translate}}<sup>*</sup></label>
                     <input type="text" placeholder="{{'academicsForm.enterinstitutename' | translate}}"
                         formControlName="trainingProgram" />
                     @if(getControl(i,"trainingProgram").touched && getControl(i,"trainingProgram").errors){
@@ -33,7 +31,7 @@
                     }
                 </div>
                 <div class="form-group col-2">
-                    <label>Institute / Hospital Full / College / University Name<sup>*</sup></label>
+                    <label>{{'pg.institutehospitaluniversityname' | translate}}<sup>*</sup></label>
                     <input type="text" placeholder="{{'academicsForm.enterinstitutename' | translate}}"
                         formControlName="instituteHospitalName" />
                     @if(getControl(i,"instituteHospitalName").touched &&
@@ -99,8 +97,9 @@
                     }
                 </div>
                 <div class="form-group col-6">
-                    <label>Website</label>
-                    <input type="text" placeholder="Website" formControlName="website">
+                    <label>{{'specialityBoard.website' | translate}}</label>
+                    <input type="text" placeholder="{{'specialityBoard.enterwebsite' | translate}}"
+                        formControlName="website">
                 </div>
                 <div class="form-group col-7">
                     <label>{{'academicsForm.from' | translate}} <sup>*</sup></label>
@@ -140,17 +139,17 @@
                 </div>
 
                 <div class="form-group radio col-9">
-                    <label>Was The Postgraduate Education Completed?<sup>*</sup></label>
+                    <label>{{'pg.postgraduateeducationcompleted?' | translate}}<sup>*</sup></label>
                     <div class="d-flex">
                         <div class="form-check d-flex">
                             <input class="" type="radio" name="postgraduateCompleted"
                                 formControlName="postgraduateCompleted" id="yes" value="yes">
-                            <label class="form-check-label" for="yes">Yes</label>
+                            <label class="form-check-label" for="yes">{{'common.yes' | translate}}</label>
                         </div>
                         <div class="form-check d-flex ">
                             <input class="" type="radio" name="postgraduateCompleted"
                                 formControlName="postgraduateCompleted" id="no" value="no">
-                            <label class="form-check-label" for="no">No</label>
+                            <label class="form-check-label" for="no">{{'common.no' | translate}}</label>
                         </div>
                     </div>
                     <!-- <select class="form-select noBorderInput" aria-label="postgraduateCompleted" formControlName="postgraduateCompleted">
@@ -170,8 +169,8 @@
                 </div>
 
                 <div class="form-group col-10">
-                    <label>What Qualification / Residency Was Obtained<sup>*</sup></label>
-                    <input type="text" placeholder="What Qualification / Residency Was Obtained"
+                    <label>{{'pg.qualificationresidencyobtained' | translate}}<sup>*</sup></label>
+                    <input type="text" placeholder="{{'pg.enterqualificationresidencyobtained' | translate}}"
                         formControlName="qualificationResidencyObtained" />
                     @if(getControl(i,"qualificationResidencyObtained").touched &&
                     getControl(i,"qualificationResidencyObtained").errors){
@@ -184,8 +183,8 @@
                 </div>
 
                 <div class="form-group col-11">
-                    <app-file-uploads [title]="'Upload degree copy'"
-                        [desc]="'Upload a certificate copy of degree copy'">
+                    <app-file-uploads [title]="'common.uploaddegreecopy' | translate"
+                        [desc]="'common.uploadcertificatecopy' | translate">
                     </app-file-uploads>
                 </div>
             </div>
@@ -194,7 +193,7 @@
                     {{'common.SaveSubmit' | translate}}
                 </button>
                 <button type="button" class="btn style-four mx-2" (click)="addPGFormGroup('pgFormGroup')">
-                    Add another
+                    {{'common.addAnother' | translate}}
                 </button>
             </div>
         </div>

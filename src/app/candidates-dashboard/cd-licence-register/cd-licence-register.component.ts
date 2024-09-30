@@ -51,15 +51,15 @@ export class CdLicenceRegisterComponent {
   */
   formatDate(date: any, formControl: string, i: number) {
     let formatedDate = this.helper.formatDate(date.target.value);
-    const ExpFormControls = this.experienceParentFormGroup.get('expFormGroup') as FormArray;
-    ExpFormControls.at(i).patchValue({ [formControl]: formatedDate });
+    const expFormControls = this.experienceParentFormGroup.get('expFormGroup') as FormArray;
+    expFormControls.at(i).patchValue({ [formControl]: formatedDate });
   }
 
   /**
   * @description used to call api for country list
   */
   getCountryMaster() {
-    this.api.getCountryMaster().subscribe((resp: any) => {
+    this.api.getCountryMaster().then((resp: any) => {
       console.log("getCountryMaster resp", resp)
       this.countryMaster = resp.data.countryList;
     })

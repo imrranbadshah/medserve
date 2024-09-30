@@ -11,11 +11,9 @@
 <div class="p-4 mb-2">
     <form [formGroup]="experienceParentFormGroup" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-            <h5>Work Experieces</h5>
+            <h5>{{'experiences.workexperieces' | translate}}</h5>
             <p class="helperText mt-2">
-                Please provide a summary of your professional practice for at least the last five (5) years (if
-                applicable).
-                Note: Please ensure no gaps in practice unless justified with evidence.
+                {{'experiences.summaryofyourprofessionalpractice' | translate}}
         </div>
 
         <div class="form-row " formArrayName="expFormGroup">
@@ -28,7 +26,7 @@
                 </button>
                 }
                 <div class="form-group col-1">
-                    <label>Appointment / Position Title<sup>*</sup></label>
+                    <label>{{'experiences.positiontitle' | translate}}<sup>*</sup></label>
                     <input type="text" placeholder="{{'experiencesForm.entercompanyname' | translate}}"
                         formControlName="positionTitle" required>
                     @if(getControl(i,"positionTitle").touched && getControl(i,"positionTitle").errors){
@@ -41,7 +39,7 @@
                 </div>
 
                 <div class="form-group col-2">
-                    <label>Institute Name<sup>*</sup></label>
+                    <label>{{'experiences.instituteName' | translate}}<sup>*</sup></label>
                     <input type="text" placeholder="{{'experiencesForm.entercompanyname' | translate}}"
                         formControlName="instituteName" required>
                     @if(getControl(i,"instituteName").touched && getControl(i,"instituteName").errors){
@@ -104,12 +102,13 @@
                     }
                 </div>
                 <div class="form-group col-6">
-                    <label>Website</label>
-                    <input type="text" placeholder="Website" formControlName="website">
+                    <label>{{'experiences.website' | translate}}</label>
+                    <input type="text" placeholder="{{'specialityBoard.enterwebsite' | translate}}"
+                        formControlName="website">
                 </div>
 
                 <div class="form-group col-7">
-                    <label>{{'experiencesForm.from' | translate}}<sup>*</sup></label>
+                    <label>{{'experiences.from' | translate}}<sup>*</sup></label>
                     <div class="input-group dateTime mb-3">
                         <input type="text" class="form-control" formControlName="fromDate"
                             placeholder="{{'experiencesForm.enterfromdate' | translate}}" required />
@@ -128,7 +127,7 @@
                 </div>
 
                 <div class="form-group col-8">
-                    <label>{{'experiencesForm.to' | translate}} <sup>*</sup></label>
+                    <label>{{'experiences.to' | translate}} <sup>*</sup></label>
                     <div class="input-group dateTime ">
                         <input type="text" class="form-control" formControlName="toDate"
                             placeholder="{{'experiencesForm.entertodate' | translate}}" required />
@@ -147,15 +146,15 @@
                 </div>
 
                 <div class="form-group col-9">
-                    <label>Clinical Department / Area Of Practice</label>
+                    <label>{{'experiences.areaofpractice' | translate}}</label>
                     <textarea type="text" rows="6"
                         placeholder="{{'experiencesForm.enterjobresponsibilities' | translate}}"
                         formControlName="areaOfPractice">
                                         </textarea>
                 </div>
                 <div class="form-group col-10">
-                    <app-file-uploads [title]="'Upload degree copy'"
-                        [desc]="'Upload a certificate copy of degree copy'">
+                    <app-file-uploads [title]="'common.uploaddegreecopy' | translate"
+                        [desc]="'common.uploadcertificatecopy' | translate">
                     </app-file-uploads>
                 </div>
             </div>
@@ -164,7 +163,7 @@
                     {{'common.SaveSubmit' | translate}}
                 </button>
                 <button type="button" class="btn style-four mx-2" (click)="addExpFormGroup('expFormGroup')">
-                    Add another
+                    {{'common.addAnother' | translate}}
                 </button>
             </div>
         </div>

@@ -131,6 +131,26 @@ select {
     width           : 100%;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 a {
     -webkit-transition: all 0.3s ease;
     transition        : all 0.3s ease;
@@ -381,6 +401,14 @@ select {
 
 .index-1 {
     z-index: 1;
+}
+
+.pl-0 {
+    padding-left: 0px !important;
+}
+
+.pr-0 {
+    padding-right: 0px !important;
 }
 
 .pt-75 {

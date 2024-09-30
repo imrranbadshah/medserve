@@ -3,15 +3,15 @@
 <div class="border p-4 mb-2">
     <form [formGroup]="schoolingFormGroup" (ngSubmit)="onSubmitSchoolForm()">
         <div>
-            <h5>Schooling </h5>
-            <p class="helperText">Please list all schooling attended before college / university</p>
+            <h5>{{'schooling.schooling' | translate}} </h5>
+            <p class="helperText">{{'schooling.schoolingbeforecollege' | translate}}</p>
         </div>
         <div class="form-row schools">
             <div class="form-group col-1">
-                <label>Obtained School<sup>*</sup></label>
+                <label>{{'schooling.obtainedschool' | translate}}<sup>*</sup></label>
                 <!-- <input type="text" placeholder="Select you school" formControlName="obtainedSchool"> -->
                 <select class="form-select noBorderInput" aria-label="obtainedSchool" formControlName="obtainedSchool">
-                    <option selected disabled value="">Select your schools</option>
+                    <option selected disabled value="">{{'schooling.selectyourschools' | translate}}</option>
                     @for(item of schoolsList;track item.id){
                     <option [value]="item.id">{{item.value}}</option>
                     }
@@ -29,8 +29,9 @@
                 }
             </div>
             <div class="form-group col-2">
-                <label>Name Of Secondary School <sup>*</sup></label>
-                <input type="text" placeholder="Enter the Name Of Secondary School" formControlName="secondarySchool">
+                <label>{{'schooling.nameofsecondaryschool' | translate}} <sup>*</sup></label>
+                <input type="text" placeholder="{{'schooling.enternameofsecondaryschool' | translate}}"
+                    formControlName="secondarySchool">
                 @if(getControl("secondarySchool").touched && getControl("secondarySchool").errors){
                 <div class="error-messages">
                     @if (getControl("secondarySchool").errors?.['required']) {
@@ -45,10 +46,10 @@
             </div>
 
             <div class="form-group col-3">
-                <label>Graduation Date <sup>*</sup></label>
+                <label>{{'schooling.graduationdate' | translate}} <sup>*</sup></label>
                 <div class="input-group dateTime mb-3">
                     <input type="text" class="form-control" formControlName="graduationDate"
-                        placeholder="Select your Graduation date" />
+                        placeholder="{{'schooling.selectyourgraduationdate' | translate}}" />
                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                         <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                         <input type="date" class="hiddenDateInput" (change)="formatDate($event,'fromDate','school')" />

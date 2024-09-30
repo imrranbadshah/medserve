@@ -1,11 +1,9 @@
 <div class="p-4 mb-2">
     <form [formGroup]="academicsUGParentFormGroup" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-            <h5>Undergraduate Education</h5>
+            <h5>{{'education.undergraduateeducation' | translate}}</h5>
             <p class="helperText mt-2">
-                Please list all Undergraduate Education attended after obtaining high school
-                /
-                secondary education diploma/certificate; not just the one from which you graduated.</p>
+                {{'education.undergraduateeducationsecondary' | translate}}
         </div>
         <div class="form-row " formArrayName="ugFormGroup">
             <div class="academics form-row companyForm border p-4 position-relative"
@@ -17,7 +15,7 @@
                 </button>
                 }
                 <div class="form-group col-1">
-                    <label>Full Name Of College/University<sup>*</sup></label>
+                    <label>{{'education.nameofuniversity' | translate}}<sup>*</sup></label>
                     <input type="text" placeholder="{{'academicsForm.enterinstitutename' | translate}}"
                         formControlName="fullInstituteName" />
                     @if(getUGControl(i,"fullInstituteName").touched && getUGControl(i,"fullInstituteName").errors){
@@ -82,8 +80,8 @@
                     }
                 </div>
                 <div class="form-group col-5">
-                    <label>Website</label>
-                    <input type="text" placeholder="Website" formControlName="website">
+                    <label>{{'specialityBoard.website' | translate}}</label>
+                    <input type="text" placeholder="{{'education.enterwebsite' | translate}}" formControlName="website">
                 </div>
                 <div class="form-group col-6">
                     <label>{{'academicsForm.from' | translate}} <sup>*</sup></label>
@@ -123,10 +121,10 @@
                 </div>
 
                 <div class="form-group col-8">
-                    <label>Graduation Date <sup>*</sup></label>
+                    <label>{{'education.graduationdate' | translate}} <sup>*</sup></label>
                     <div class="input-group dateTime mb-3">
                         <input type="text" class="form-control" formControlName="graduationDate"
-                            placeholder="Select your Graduation date" />
+                            placeholder="{{'education.selectyourgraduationdate' | translate}}" />
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                             <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                             <input type="date" class="hiddenDateInput"
@@ -138,7 +136,6 @@
                         @if (getUGControl(i,"graduationDate").errors?.['required']) {
                         <small class="error">{{'common.fieldrequired' | translate}}</small>
                         }
-
                     </div>
                     }
                 </div>
@@ -156,8 +153,8 @@
                     }
                 </div>
                 <div class="form-group col-10">
-                    <app-file-uploads [title]="'Upload degree copy'"
-                        [desc]="'Upload a certificate copy of degree copy'">
+                    <app-file-uploads [title]="'common.uploaddegreecopy' | translate"
+                        [desc]="'common.uploadcertificatecopy' | translate">
                     </app-file-uploads>
                 </div>
             </div>
@@ -166,7 +163,7 @@
                     {{'common.SaveSubmit' | translate}}
                 </button>
                 <button type="button" class="btn style-four mx-2" (click)="addUGFormGroup('ugFormGroup')">
-                    Add another
+                    {{'common.addAnother' | translate}}
                 </button>
             </div>
         </div>

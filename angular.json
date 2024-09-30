@@ -39,7 +39,8 @@
                             "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
                             "node_modules/magnific-popup/dist/magnific-popup.css",
                             "node_modules/remixicon/fonts/remixicon.css",
-                            "src/styles.scss"
+                            "src/styles.scss",
+                            "node_modules/ngx-easy-table/style.scss"
                         ],
                         "scripts": [],
                         "server": "src/main.server.ts",

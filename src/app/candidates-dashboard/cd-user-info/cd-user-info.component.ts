@@ -59,10 +59,12 @@ export class CdUserInfoComponent implements OnInit {
   /**
    * @description used to call api for country list
    */
-  getCountryMaster() {
-    this.api.getCountryMaster().subscribe((resp: any) => {
+  async getCountryMaster() {
+    this.api.getCountryMaster().then((resp: any) => {
+      console.log("getCountryMaster resp", resp)
       this.countryMaster = resp.data.countryList;
     })
+    // this.countryMaster = await this.api.getCountryMaster();
   }
 
   /**

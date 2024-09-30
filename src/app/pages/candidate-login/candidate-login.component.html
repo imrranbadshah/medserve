@@ -2,44 +2,48 @@
 
 <!-- <app-navbar /> -->
 
-<div class="candidateLogin row" [ngClass]="getDynamicHeight()">
+<div class="candidateLogin row w-100" [ngClass]="getDynamicHeight()">
     @switch (isCandidateLogin){
     <!-- candidate login -->
     @case ("candidate"){
-    <div class="col-xs-12 col-sm-12 col-md-4"></div>
-    <form class="companyLogin col-xs-12 col-sm-12 col-md-4" [formGroup]="loginFormGroup" (ngSubmit)="onCandidateLoginSubmit()">
-        <div class="text-center">
-            <img src="img/web-logo.png" class="logo" alt="Logo">
-            <div class="title">Candidate Sign In</div>
-            <p class="helperText">Please enter your information below</p>
-        </div>
-        <div>
-            <div class="form-group mb-4">
-                <label>Your Candidate Email</label>
-                <input type="text" placeholder="Enter your email" formControlName="candidateEmail">
+    <div class="row can-bg mx-auto">
+        <div class="col-xs-12 col-sm-12 col-md-4"></div>
+        <form class="companyLogin col-xs-12 col-sm-12 col-md-4" [formGroup]="loginFormGroup"
+            (ngSubmit)="onCandidateLoginSubmit()">
+            <div class="text-center">
+                <img src="img/web-logo.png" class="logo" alt="Logo">
+                <div class="title">Candidate Sign In</div>
+                <p class="helperText">Please enter your information below</p>
             </div>
-            <div class="form-group mb-4">
-                <label>Your Password</label>
-                <input type="text" placeholder="Enter your password" formControlName="candidatePasswd">
-            </div>
-            <div class="flex text-center mt-4">
-                <button class="btn style-four noBorderInput w-100" type="button" (click)="onCandidateLoginSubmit()">Candidate
-                    Sign In
-                </button>
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-link routeButton noBorderInput themeColor p-0 pt-2 mt-1" type="button"
-                        (click)="showCompanyRegister('forgetPwd')">
-                        Forget Password
+            <div>
+                <div class="form-group mb-4">
+                    <label>Your Candidate Email</label>
+                    <input type="text" placeholder="Enter your email" formControlName="candidateEmail">
+                </div>
+                <div class="form-group mb-4">
+                    <label>Your Password</label>
+                    <input type="text" placeholder="Enter your password" formControlName="candidatePasswd">
+                </div>
+                <div class="flex text-center mt-4">
+                    <button class="btn style-four noBorderInput w-100" type="button"
+                        (click)="onCandidateLoginSubmit()">Candidate
+                        Sign In
                     </button>
-                    <button class="btn btn-link routeButton noBorderInput themeColor p-0 pt-2 mt-1" type="button"
-                        (click)="showCompanyRegister('candidateRegister')">
-                        Register
-                    </button>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-link routeButton noBorderInput themeColor p-0 pt-2 mt-1" type="button"
+                            (click)="showCompanyRegister('forgetPwd')">
+                            Forget Password
+                        </button>
+                        <button class="btn btn-link routeButton noBorderInput themeColor p-0 pt-2 mt-1" type="button"
+                            (click)="showCompanyRegister('candidateRegister')">
+                            Register
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
-    <div class="col-xs-12 col-sm-12 col-md-4"></div>
+        </form>
+        <div class="col-xs-12 col-sm-12 col-md-4"></div>
+    </div>
     }
     <!-- employer login -->
     @case ("employer"){
@@ -116,9 +120,9 @@
     </div>
     }
     @case ("candidateRegister"){
-    <div class="col-xs-12 col-sm-12 col-md-4 bgImage"></div>
+    <!-- <div class="col-xs-12 col-sm-12 col-md-2 bgImage"></div> -->
     <div
-        class="candidateRegister  d-flex flex-column align-items-center justify-content-start row col-xs-12 col-sm-12 col-md-8">
+        class="candidateRegister  d-flex flex-column align-items-center justify-content-start row col-xs-12 col-sm-12 col-md-12">
         <form [formGroup]="candidateRegisterForms" (ngSubmit)="onCandidateRegsiterSubmit()">
             <div class="text-start mt-3">
                 <img src="img/web-logo.png" class="logo cRegister" alt="Logo">
@@ -129,7 +133,8 @@
             <div class="form1 form-row">
                 <div class="form-group col-1">
                     <label>{{'personalForm.email' | translate}} <sup>*</sup></label>
-                    <input type="text" placeholder="Enter your Email" formControlName="email">
+                    <input type="text" placeholder="{{'personalForm.enteryouremailaddress' | translate}}"
+                        formControlName="email">
                     @if(getControl("email").touched && getControl("email").errors){
                     <div class="error-messages">
                         @if (getControl("email").errors?.['required']) {
@@ -143,8 +148,8 @@
                     }
                 </div>
                 <div class="form-group col-2">
-                    <label>{{'personalForm.confirmEmail' | translate}} <sup>*</sup></label>
-                    <input type="text" placeholder="{{'personalForm.enteryourcountry' | translate}} "
+                    <label>{{'personalForm.enterconfirmEmail' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'personalForm.enterconfirmEmail' | translate}} "
                         formControlName="confirmEmail">
                     @if(getControl("confirmEmail").touched && getControl("confirmEmail").errors){
                     <div class="error-messages">
@@ -189,7 +194,7 @@
                     }
                 </div>
                 <div class="form-group col-5">
-                    <label>confirmpassword <sup>*</sup></label>
+                    <label>confirm password <sup>*</sup></label>
                     <input type="text" placeholder="Enter your confirm password" formControlName="confirmpassword">
                     @if(getControl("confirmpassword").touched && getControl("confirmpassword").errors){
                     <div class="error-messages">

@@ -34,11 +34,11 @@
             <div class="d-flex">
                 <div class="form-check d-flex">
                     <input class="" type="radio" name="gender" formControlName="gender" id="male" value="male">
-                    <label class="form-check-label" for="male">Male</label>
+                    <label class="form-check-label" for="male">{{'common.male' | translate}}</label>
                 </div>
                 <div class="form-check d-flex ">
                     <input class="" type="radio" name="gender" formControlName="gender" id="female" value="female">
-                    <label class="form-check-label" for="female">Female</label>
+                    <label class="form-check-label" for="female">{{'common.female' | translate}}</label>
                 </div>
             </div>
             <!-- <select class="form-select noBorderInput" aria-label="gender" formControlName="gender">
@@ -110,7 +110,7 @@
             <div class="d-flex input-group dataListInputs">
                 <input class="form-control noBorderInput"
                     placeholder="{{'personalForm.enteryourstateorcity' | translate}}" formControlName="stateCity"
-                    [ngbTypeahead]="searchCities" (selectItem)="onCitySelect($event)">
+                    [ngbTypeahead]="searchCities" (selectItem)="onCitySelect($event,'stateCity')" [resultTemplate]="rt">
                 @if (searching){
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <img class="iconType" src="/img/searchLoader.gif" alt="calender">
@@ -150,8 +150,9 @@
             <div class="d-flex input-group dataListInputs">
                 <input class="form-control noBorderInput"
                     placeholder="{{'personalForm.enteryournationality' | translate}}" formControlName="nationality"
-                    [ngbTypeahead]="searchCities" (selectItem)="onCitySelect($event)">
-                @if (searching){
+                    [ngbTypeahead]="searchCountries" (selectItem)="onCitySelect($event,'nationality')"
+                    [resultTemplate]="rt" [inputFormatter]="searchCountryformatter">
+                @if (searchingCountry){
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <img class="iconType" src="/img/searchLoader.gif" alt="calender">
                 </button>
@@ -239,7 +240,8 @@
             <label>{{'personalForm.langInstruction' | translate}}<sup>*</sup></label>
             <div class="d-flex input-group dataListInputs">
                 <input class="form-control noBorderInput" placeholder="{{'personalForm.langInstruction' | translate}}"
-                    formControlName="degreeLanguage" [ngbTypeahead]="searchCities">
+                    formControlName="degreeLanguage" [ngbTypeahead]="searchCities"
+                    [inputFormatter]="searchCityformatter">
                 @if (searching){
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <img class="iconType" src="/img/searchLoader.gif" alt="calender">
@@ -260,13 +262,13 @@
             <div class="d-flex">
                 <div class="form-check d-flex">
                     <input class="" type="radio" name="englishProficiencyTest" formControlName="englishProficiencyTest"
-                        id="yes" value="yes">
-                    <label class="form-check-label" for="yes">Yes</label>
+                        id="englishProficiencyTestyes" value="yes">
+                    <label class="form-check-label" for="englishProficiencyTestyes">Yes</label>
                 </div>
                 <div class="form-check d-flex ">
                     <input class="" type="radio" name="englishProficiencyTest" formControlName="englishProficiencyTest"
-                        id="no" value="no">
-                    <label class="form-check-label" for="no">No</label>
+                        id="englishProficiencyTestno" value="no">
+                    <label class="form-check-label" for="englishProficiencyTestno">No</label>
                 </div>
             </div>
             @if(getControl("englishProficiencyTest").touched && getControl("englishProficiencyTest").errors){
@@ -288,3 +290,9 @@
             translate}}</button>
     </div>
 </form>
+
+<ng-template #rt let-r="result" let-t="term">
+    <div class="p-2">
+        <ngb-highlight [result]="r.title" [term]="t"></ngb-highlight>
+    </div>
+</ng-template>

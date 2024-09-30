@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api/api.service';
 // import { DynamicFormsComponent } from '../../components/dynamic-forms/dynamic-forms.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,6 +8,7 @@ import { NgbTypeahead, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { IDropdownSettings, NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { FileUploadsComponent } from '../../components/file-uploads/file-uploads.component';
+import { isPlatformBrowser, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cd-personal',
@@ -17,7 +18,8 @@ import { FileUploadsComponent } from '../../components/file-uploads/file-uploads
     NgbTypeaheadModule,
     TranslateModule,
     NgMultiSelectDropDownModule,
-    FileUploadsComponent
+    FileUploadsComponent,
+    JsonPipe
   ],
   templateUrl: './cd-personal.component.html',
   styleUrl: './cd-personal.component.scss'
@@ -25,6 +27,7 @@ import { FileUploadsComponent } from '../../components/file-uploads/file-uploads
 export class CdPersonalComponent implements OnInit {
   @ViewChild('instance', { static: true }) instance!: NgbTypeahead;
   searching = false;
+  searchingCountry = false;
   searchFailed = false;
   personalFormGroup!: FormGroup;
   genderList: any[] = [
@@ -58,6 +61,7 @@ export class CdPersonalComponent implements OnInit {
     private helper: HelpersService,
     private api: ApiService,
     public translate: TranslateService,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
     this.personalFormGroup = this.fb.group(
       {
@@ -78,16 +82,20 @@ export class CdPersonalComponent implements OnInit {
     )
   }
 
-  ngOnInit(): void {
-    this.getCountryMaster();
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'lngId',
-      textField: 'languageName',
-      enableCheckAll: false,
-      defaultOpen: false,
-      allowSearchFilter: true,
-      searchPlaceholderText: this.getTranslatedString("personalForm.searchspokenLang")
+  async ngOnInit(): Promise<void> {
+    if (isPlatformBrowser(this.platformId)) {
+      let resp: any = await this.getCountryMaster();
+      this.countryMaster = resp.data.countryList;
+      this.spokenLanguages = resp.data.languageList;
+      this.dropdownSettings = {
+        singleSelection: false,
+        idField: 'lngId',
+        textField: 'languageName',
+        enableCheckAll: false,
+        defaultOpen: false,
+        allowSearchFilter: true,
+        searchPlaceholderText: this.getTranslatedString("personalForm.searchspokenLang")
+      }
     }
   }
 
@@ -104,12 +112,10 @@ export class CdPersonalComponent implements OnInit {
   /**
    * @description used to call api for country list
    */
-  getCountryMaster() {
-    this.api.getCountryMaster().subscribe((resp: any) => {
-      console.log("getCountryMaster resp", resp)
-      this.countryMaster = resp.data.countryList;
-      this.spokenLanguages = resp.data.languageList;
-    })
+  async getCountryMaster() {
+    // if (isPlatformBrowser(this.platformId)) {
+    return await this.api.getCountryMaster()
+    // }
   }
 
   /**
@@ -144,6 +150,10 @@ export class CdPersonalComponent implements OnInit {
     return filteredCountries.slice(0, 10); // Return first 10 filtered countries
   }
 
+  // formatter = (result: any) => {
+  //   debugger
+  //   return result?.toUpperCase()
+  // };
   /**
    * @description used to search for cities
    */
@@ -152,10 +162,40 @@ export class CdPersonalComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       tap(() => (this.searching = true)),
-      switchMap(term => this.getCities(term)),
+      switchMap(term => this.getCities(term, 'city')),
       tap(() => (this.searching = false)),
       map((resp: any) => {
-        return resp.map((city: any) => city.title);
+        return resp.map((city: any) => city);
+        // return resp.map((city: any) => city.title);
+      })
+    );
+
+  searchCountryformatter = (x: { title: string, countryName: string }) => {
+    console.log("searchCoutryCityformatter - country", x);
+    if (!x.countryName) {
+      return x.title;
+    } else {
+      return x.countryName;
+    }
+  };
+
+  searchCityformatter = (x: { title: string, countryName: string }) => {
+    console.log("searchCoutryCityformatter - city", x);
+    return x.title;
+  };
+
+  /**
+   * @description used to search for cities
+   */
+  searchCountries = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => (this.searchingCountry = true)),
+      switchMap(term => this.getCities(term, 'country')),
+      tap(() => (this.searchingCountry = false)),
+      map((resp: any) => {
+        return resp.map((country: any) => country);
       })
     );
 
@@ -163,7 +203,7 @@ export class CdPersonalComponent implements OnInit {
   /**
    * @description API call to get cities based on user input and filter list based on type 1
    */
-  getCities(searchTerm: string): Observable<any[]> {
+  getCities(searchTerm: string, type: string): Observable<any[]> {
     console.log("searchTerm", searchTerm);
     if (searchTerm.length < 2) {
       return new Observable(observer => observer.next([])); // Return empty array if the input is too short
@@ -174,6 +214,12 @@ export class CdPersonalComponent implements OnInit {
       search: searchTerm,
       lastTimeStamp: null
     };
+    let typeId;
+    if (type == "city") {
+      typeId = 1;
+    } else {
+      typeId = 3;
+    }
 
     return this.api.getCities(temp).pipe(
       tap(() => (this.searchFailed = false)),
@@ -182,7 +228,7 @@ export class CdPersonalComponent implements OnInit {
         return of([]);
       }),
       map((resp: any) => {
-        let title = resp.data.list?.filter((city: any) => city.type === 1);
+        let title = resp.data.list?.filter((city: any) => city.type === typeId);
         return title;
       })
     );
@@ -201,13 +247,15 @@ export class CdPersonalComponent implements OnInit {
   /**
    * @description used to city selections
    */
-  onCitySelect(title: any) {
-    console.log("onCitySelect", title);
-    const selectedCity = title.item;
-    if (selectedCity) {
-      let place = selectedCity.split(",");
-      this.personalFormGroup.get('residenceCountry')?.setValue(place[place.length - 1]);
+  onCitySelect(item: any, formcontrol: string) {
+    console.log("onCitySelect", item);
+    const selectedObj = item.item;
+    if (selectedObj && formcontrol != "nationality") {
+      // if () {
+      let place = selectedObj.title.split(",");
+      this.personalFormGroup.get('residenceCountry')?.setValue(selectedObj.countryName);
       setTimeout(() => this.personalFormGroup.get('stateCity')?.setValue(`${place[0]},${place[1]}`));
+      // }
     }
   }
 

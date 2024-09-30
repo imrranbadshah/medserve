@@ -1,13 +1,12 @@
 <div class="p-4 mb-2">
     <form [formGroup]="specialityParentFormGroup" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-            <h5>Speciality Board / Professional Membership / Equivalent</h5>
+            <h5>{{'specialityBoard.specialityprofessionalequivalent' | translate}}</h5>
             <p class="helperText mt-2">
-                Please list all specialty board certification and/or summary of professional membership/affiliation
-                activities obtained after completing the postgraduate education.
+                {{'specialityBoard.listallcertification' | translate}}
         </div>
         <div class="form-group radio mb-3">
-            <label>Are You Board Certified In Your Speciality?<sup>*</sup></label>
+            <label>{{'specialityBoard.areyouboardcertified' | translate}}<sup>*</sup></label>
             <div class="d-flex">
                 <div class="form-check d-flex">
                     <input class="" type="radio" [ngModelOptions]="{standalone: true}" name="isBoardCertified"
@@ -31,8 +30,9 @@
                 </button>
                 }
                 <div class="form-group col-1">
-                    <label>Specialty Board Name<sup>*</sup></label>
-                    <input type="text" placeholder="Enter Specialty Board Name" formControlName="specialtyBoardName" />
+                    <label>{{'specialityBoard.boardname' | translate}}<sup>*</sup></label>
+                    <input type="text" placeholder="{{'specialityBoard.enterboardname' | translate}}"
+                        formControlName="specialtyBoardName" />
                     @if(getControl(i,"specialtyBoardName").touched && getControl(i,"specialtyBoardName").errors){
                     <div class="error-messages">
                         @if (getControl(i,"specialtyBoardName").errors?.['required']) {
@@ -95,14 +95,15 @@
                     }
                 </div>
                 <div class="form-group col-5">
-                    <label>Website</label>
-                    <input type="text" placeholder="Website" formControlName="website">
+                    <label>{{'specialityBoard.website' | translate}}</label>
+                    <input type="text" placeholder="{{'specialityBoard.enterwebsite' | translate}}"
+                        formControlName="website">
                 </div>
                 <div class="form-group col-6">
-                    <label>Date Certification Obtained <sup>*</sup></label>
+                    <label>{{'specialityBoard.datecertification' | translate}} <sup>*</sup></label>
                     <div class="input-group dateTime mb-3">
                         <input type="text" class="form-control" formControlName="dateCertificationObtained"
-                            placeholder="Select Certification Obtained Date" />
+                            placeholder="{{'specialityBoard.selectcertificationobtaineddate' | translate}}" />
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                             <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                             <input type="date" class="hiddenDateInput"
@@ -119,8 +120,8 @@
                     }
                 </div>
                 <div class="form-group col-7">
-                    <label>Board Identification Number<sup>*</sup></label>
-                    <input type="text" placeholder="Enter Board Identification Number"
+                    <label>{{'specialityBoard.boardidentification' | translate}}<sup>*</sup></label>
+                    <input type="text" placeholder="{{'specialityBoard.enterboardidentificationnumber' | translate}}"
                         formControlName="boardIdentificationNumber" />
                     @if(getControl(i,"boardIdentificationNumber").touched &&
                     getControl(i,"boardIdentificationNumber").errors){
@@ -132,7 +133,8 @@
                     }
                 </div>
                 <div class="form-group col-8">
-                    <app-file-uploads [title]="'Upload degree copy'" [desc]="'Upload a certificate copy of degree copy'">
+                    <app-file-uploads [title]="'common.uploaddegreecopy' | translate"
+                        [desc]="'common.uploadcertificatecopy' | translate">
                     </app-file-uploads>
                 </div>
             </div>
@@ -142,7 +144,7 @@
                 </button>
                 <button type="button" class="btn style-four mx-2"
                     (click)="addspecialityFormGroup('specialityFormGroup')">
-                    Add another
+                    {{'common.addAnother' | translate}}
                 </button>
             </div>
         </div>

@@ -1,9 +1,12 @@
 import { Component, Input, Output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-file-uploads',
   standalone: true,
-  imports: [],
+  imports: [
+    TranslateModule
+  ],
   templateUrl: './file-uploads.component.html',
   styleUrl: './file-uploads.component.scss'
 })

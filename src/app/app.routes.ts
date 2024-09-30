@@ -114,13 +114,14 @@ export const routes: Routes = [
     // { path: 'blog-details-right-sidebar', component: BlogDetailsRightSidebarPageComponent },
     // { path: 'blog-details-no-sidebar', component: BlogDetailsNoSidebarPageComponent },
     // { path: 'contact-us', component: ContactPageComponent },
-    { path: '', redirectTo: '/candidates-dashboard', pathMatch: 'full' },
+    { path: '', redirectTo: '/home-dashboard', pathMatch: 'full' },
     { path: 'candidate-login', component: CandidateLoginComponent, title: "Candidate Login" },
     { path: 'employer-login', component: CandidateLoginComponent, title: "Employer Login" },
 
     {
         path: 'employers-dashboard',
         component: EmployersDashboardComponent,
+        // canActivate: [AuthGuard],
         children: [
             { path: '', redirectTo: 'company-profile', pathMatch: 'full' },
             // { path: 'employers-dashboard', component: EdDashboardComponent },
@@ -161,6 +162,7 @@ export const routes: Routes = [
     {
         path: 'home-dashboard',
         component: HomeDashboardComponent,
+        // canActivate: [AuthGuard],
         children: [
             { path: '', redirectTo: 'overview', pathMatch: 'full' },
             { path: 'overview', component: OverviewComponent },

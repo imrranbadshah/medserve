@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { CommonModule, ViewportScroller } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { RouterOutlet, Router, Event, NavigationEnd } from '@angular/router';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastComponent } from './common/toast/toast.component';
 import { HelpersService } from './services/helpers/helpers.service';
+import { ApiService } from './services/api/api.service';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -26,13 +27,16 @@ export class AppComponent {
         private router: Router,
         private viewportScroller: ViewportScroller,
         public translate: TranslateService,
-        private helper: HelpersService
+        private helper: HelpersService,
+        private api: ApiService,
+        @Inject(PLATFORM_ID) private platformId: Object,
     ) {
 
         this.translate.addLangs(['en', 'fr']);
         this.translate.setDefaultLang('en');
 
         const browserLang = this.translate.getBrowserLang();
+        // const browserLang = "fr";
         console.log("browserLang==>", browserLang);
         translate.use(browserLang && browserLang.match(/en|fr/) ? browserLang : 'en');
 
@@ -44,5 +48,4 @@ export class AppComponent {
             }
         });
     }
-
 }

@@ -1,14 +1,21 @@
 .candidateLogin {
-    background: var(--primaryColor);
+    // background: var(--primaryColor);
 
     // width: 100%;
 
     .bgImage {
         background-image   : url("../../../../public/img/candidates/candidateBanner.jpg");
-        background-position: center bottom;
+        background-position: center top;
         background-repeat  : no-repeat;
         background-size    : cover;
     }
+}
+
+.can-bg {
+    background-image   : url("../../../../public/img/can-bg.jpg");
+    background-position: center;
+    background-repeat  : no-repeat;
+    background-size    : cover;
 }
 
 .login-btn {

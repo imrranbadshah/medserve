@@ -6,24 +6,25 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error: HttpErrorResponse) => {
       if (error.status === 400) {
         // Unauthorized
-        console.error('Bad Request - 400');
+        console.error('errorInterceptor Bad Request - 400');
       } else if (error.status === 401) {
         // Unauthorized
-        console.error('Unauthorized access - 401');
+        console.error('errorInterceptor Unauthorized access - 401');
       } else if (error.status === 403) {
         // Forbidden
-        console.error('Access denied - 403');
+        console.error('errorInterceptor Access denied - 403');
       } else if (error.status === 404) {
         // Not Found
-        console.error('Resource not found - 404');
+        console.error('errorInterceptor Resource not found - 404');
       } else if (error.status === 500) {
         // Internal Server 
-        console.error('Internal Server Error - 500');
+        console.error('errorInterceptor Internal Server Error - 500');
       } else {
         // unexpected Errors
-        console.error('An unexpected error occurred', error);
+        console.error('errorInterceptor An unexpected error occurred', error);
       }
-      return throwError(() => new Error(error.message || 'Server Error'));
+      const err: any = error.message || error.statusText;
+      return throwError(() => new Error(err || 'Server Error'));
     })
   );
 };

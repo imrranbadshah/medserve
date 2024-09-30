@@ -11,11 +11,9 @@
 <div class="p-4 mb-2">
     <form [formGroup]="experienceParentFormGroup" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-            <h5>License Register</h5>
+            <h5>{{'license.licenseregister' | translate}}</h5>
             <p class="helperText mt-2">
-                Please list all jurisdictions in which a license/registration to practice has been obtained. Include
-                permanent, limited
-                and other special purpose licenses / registrations.
+                {{'license.listalljurisdictions' | translate}}
         </div>
 
         <div class="form-row " formArrayName="expFormGroup">
@@ -28,8 +26,8 @@
                 </button>
                 }
                 <div class="form-group col-1">
-                    <label>Full Name Of Licensing / Registration Jurisdiction<sup>*</sup></label>
-                    <input type="text" placeholder="Enter Full Name Of Licensing / Registration Jurisdiction"
+                    <label>{{'license.nameOfLicensing' | translate}}<sup>*</sup></label>
+                    <input type="text" placeholder="{{'license.enterfullnameOflicensingregistration' | translate}}"
                         formControlName="fullNameLRJurisdiction" required>
                     @if(getControl(i,"fullNameLRJurisdiction").touched &&
                     getControl(i,"fullNameLRJurisdiction").errors){
@@ -43,7 +41,7 @@
 
 
                 <div class="form-group col-2">
-                    <label>{{'personalForm.country' | translate}} <sup>*</sup></label>
+                    <label>{{'schooling.country' | translate}} <sup>*</sup></label>
                     <div class="d-flex input-group dataListInputs">
                         <input class="form-control noBorderInput"
                             placeholder="{{'personalForm.enteryourcountry' | translate}}" formControlName="country"
@@ -76,9 +74,9 @@
                     }
                 </div>
                 <div class="form-group col-4">
-                    <label>License / Registration Number <sup>*</sup></label>
-                    <input type="text" placeholder="License / Registration Number" formControlName="licenseNumber"
-                        required>
+                    <label>{{'license.registrationnumber' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'license.licenseregistrationnumber' | translate}}"
+                        formControlName="licenseNumber" required>
                     @if(getControl(i,"licenseNumber").touched && getControl(i,"licenseNumber").errors){
                     <div class="error-messages">
                         @if (getControl(i,"licenseNumber").errors?.['required']) {
@@ -90,10 +88,10 @@
 
 
                 <div class="form-group col-5">
-                    <label>License Issuance Date<sup>*</sup></label>
+                    <label>{{'license.licenseissuancedate' | translate}}<sup>*</sup></label>
                     <div class="input-group dateTime mb-3">
                         <input type="text" class="form-control" formControlName="licenseInssuanceDate"
-                            placeholder="select License Issuance Date" required />
+                            placeholder="{{'license.selectlicenseissuancedate' | translate}}" required />
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                             <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                             <input type="date" class="hiddenDateInput"
@@ -110,10 +108,10 @@
                 </div>
 
                 <div class="form-group col-6">
-                    <label>License Expiration Date <sup>*</sup></label>
+                    <label>{{'license.licenseexpirationdate' | translate}} <sup>*</sup></label>
                     <div class="input-group dateTime ">
                         <input type="text" class="form-control" formControlName="licenseExpDate"
-                            placeholder="select License Expiration Date" required />
+                            placeholder="{{'license.selectlicenseexpirationdate' | translate}}" required />
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                             <img class="iconType" src="/img/icons/calendar.svg" alt="calender">
                             <input type="date" class="hiddenDateInput"
@@ -130,23 +128,24 @@
                 </div>
 
                 <div class="form-group radio mb-3 col-7">
-                    <label>Status<sup>*</sup></label>
+                    <label>{{'license.status' | translate}}<sup>*</sup></label>
                     <div class="d-flex">
                         <div class="form-check d-flex">
                             <input class="" type="radio" formControlName="status" name="status" id="yes" value="active">
-                            <label class="form-check-label" for="yes">Active</label>
+                            <label class="form-check-label" for="yes">{{'common.active' | translate}}</label>
                         </div>
                         <div class="form-check d-flex">
                             <input class="" type="radio" formControlName="status" name="status" id="no"
                                 value="inactive">
-                            <label class="form-check-label" for="no">Inactive</label>
+                            <label class="form-check-label" for="no">{{'common.inactive' | translate}}</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group col-8">
-                    <label>License Title <sup>*</sup></label>
-                    <input type="text" placeholder="Enter License Title" formControlName="licenseTitle" required>
+                    <label>{{'license.licensetitle' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'license.enterlicensetitle' | translate}}"
+                        formControlName="licenseTitle" required>
                     @if(getControl(i,"licenseTitle").touched && getControl(i,"licenseTitle").errors){
                     <div class="error-messages">
                         @if (getControl(i,"licenseTitle").errors?.['required']) {
@@ -156,8 +155,9 @@
                     }
                 </div>
                 <div class="form-group col-9">
-                    <label>Specialty <sup>*</sup></label>
-                    <input type="text" placeholder="Enter Specialty" formControlName="speciality" required>
+                    <label>{{'license.specialty' | translate}} <sup>*</sup></label>
+                    <input type="text" placeholder="{{'license.enterspecialty' | translate}}"
+                        formControlName="speciality" required>
                     @if(getControl(i,"speciality").touched && getControl(i,"speciality").errors){
                     <div class="error-messages">
                         @if (getControl(i,"speciality").errors?.['required']) {
@@ -174,7 +174,7 @@
                     {{'common.SaveSubmit' | translate}}
                 </button>
                 <button type="button" class="btn style-four mx-2" (click)="addExpFormGroup('expFormGroup')">
-                    Add another
+                    {{'common.addAnother' | translate}}
                 </button>
             </div>
         </div>

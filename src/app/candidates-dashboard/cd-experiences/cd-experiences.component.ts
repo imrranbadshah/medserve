@@ -61,10 +61,14 @@ export class CdExperiencesComponent {
   * @description used to call api for country list
   */
   getCountryMaster() {
-    this.api.getCountryMaster().subscribe((resp: any) => {
+    this.api.getCountryMaster().then((resp: any) => {
       console.log("getCountryMaster resp", resp)
       this.countryMaster = resp.data.countryList;
     })
+    // this.api.getCountryMaster().subscribe((resp: any) => {
+    //   console.log("getCountryMaster resp", resp)
+    //   this.countryMaster = resp.data.countryList;
+    // })
   }
 
   /**

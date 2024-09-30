@@ -15,15 +15,6 @@ export class SidebarComponent {
   constructor(private helper: HelpersService, public router: Router) { }
 
   ngOnInit(): void {
-    // this.helper.getPassedData().subscribe((resp: passDataType) => {
-    //   console.log("Side barresp", resp)
-    //   if (resp && resp.fromPage == "cadidatesSelections") {
-    //     this.candidateSelected = resp.data;
-    //   }
-    // })
-  }
 
-  checkoutOutCandidates() {
-    // this.router.navigate(["/employers-dashboard/applicants-details"], { queryParams: { data: JSON.stringify(this.candidateSelected) } });
   }
 }

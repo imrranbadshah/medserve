@@ -112,7 +112,8 @@ export class EdPostAJobComponent implements OnInit {
       * @description used to call api for country list
       */
     getCountryMaster() {
-        this.api.getCountryMaster().subscribe((resp: any) => {
+        this.api.getCountryMaster().then((resp: any) => {
+            console.log("getCountryMaster resp", resp)
             this.countryMaster = resp.data.countryList;
         })
     }

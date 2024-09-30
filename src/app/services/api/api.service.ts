@@ -12,8 +12,9 @@ export class ApiService {
   API_URL = environment.SERVER_URL;
   // platformId = inject(PLATFORM_ID)
   ipaddress: any;
-
+  // countriesMasterList!: any;
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object,) {
+
     this.ipaddress = {
       ip: "52.2.21.14",
       country: "US",
@@ -29,7 +30,7 @@ export class ApiService {
 
   getCountryMaster() {
     const timestamp = new Date().getTime();
-    return this.http.get<any[]>(`${this.API_URL}icrweb/countryMaster?ip=${this.ipaddress.ip}&country=${this.ipaddress.country}`, { params: { timestamp: timestamp.toString() } });
+    return this.http.get<any[]>(`${this.API_URL}icrweb/countryMaster?ip=${this.ipaddress.ip}&country=${this.ipaddress.country}`, { params: { timestamp: timestamp.toString() } }).toPromise();
   }
 
   getCities(dataParams: any) {
