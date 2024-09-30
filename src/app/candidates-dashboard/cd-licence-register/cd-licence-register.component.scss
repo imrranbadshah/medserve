@@ -21,8 +21,9 @@
 
         @media only screen and (max-width: 767px) {
             &.form-row {
-                display: grid;
-                grid-template-areas:
+                display              : grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas  :
                     'col1 col1'
                     'col2 col2'
                     'col3 col3'
@@ -30,6 +31,8 @@
                     'col5 col5'
                     'col6 col6'
                     'col7 col7'
+                    'col8 col8'
+                    'col9 col9'
                 ;
             }
         }
